@@ -39,6 +39,15 @@ const portfolioData = {
      figmaLink: paste your Figma prototype URL (replace the # placeholder). */
   caseStudies: [
     {
+      title: "One Source of Truth: Rebuilding Agora's Design System",
+      description:
+        "Leading the rebuild of an outdated Figma kit into a living design system shared by design and development.",
+      tags: ["Design Systems", "Design Ops", "Tokens"],
+      image: "assets/Design system - thumbnail.png",
+      imageAlt: "Preview of the Agora design system case study",
+      figmaLink: "design-system-case-study.html",
+    },
+    {
       title: "Import Experience",
       description:
         "Helping teams import complex data with more control, confidence, and fewer mistakes.",

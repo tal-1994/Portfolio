@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>One Source of Truth: Rebuilding Agora's Design System · Tal Yanay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,400..600;1,400..600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Portfolio palette: cream page, coral accent, warm neutrals */
+  --ink:#17150f; --body:#57534a; --muted:#9a968b; --line:#e3ded2;
+  --bg:#ffffff; --soft:#faf9f7; --indigo:#FF5432; --indigo-soft:#fdeae4;
+  --green:#12B981; --coral:#F1556C; --maxw:1100px; --col:720px;
+  --serif:'Lora',Georgia,'Times New Roman',serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--body);
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  font-size:18px;line-height:1.72;-webkit-font-smoothing:antialiased;
+  font-feature-settings:'ss01','cv11';}
+a{color:inherit}
+::selection{background:#FF5432;color:#fff}
+.topbar{position:sticky;top:0;z-index:20;backdrop-filter:saturate(180%) blur(12px);
+  background:rgba(255,255,255,.82);border-bottom:1px solid #ececec}
+.nav{display:flex;justify-content:space-between;align-items:center;
+  max-width:var(--maxw);margin:0 auto;padding:18px 28px;font-size:14px}
+.nav .name{font-weight:600;color:var(--ink);letter-spacing:-.01em;font-size:15px}
+.nav .navlinks{display:flex;gap:30px}
+.nav a{color:var(--muted);text-decoration:none;font-weight:500;transition:color .2s}
+.nav a:hover{color:var(--ink)}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.prose{max-width:var(--col);margin-left:0;margin-right:0}
+section{padding:44px 0}
+.eyebrow{font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--indigo);margin:0 0 12px}
+h1{font-family:var(--serif);color:var(--ink);font-weight:500;letter-spacing:-.02em;line-height:1.08;
+  font-size:clamp(40px,6vw,64px);margin:0 0 18px}
+h2{font-family:inherit;color:var(--ink);font-weight:700;letter-spacing:-.02em;line-height:1.18;
+  font-size:28px;margin:0 0 16px}
+h1 em{font-style:normal;color:inherit}
+p{margin:0 0 20px}
+.lead{font-size:20px;color:var(--body);max-width:760px}
+.muted{color:var(--muted)}
+
+/* hero */
+.hero{position:relative;padding:88px 0 40px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-20% 0 auto 0;height:520px;z-index:-1;
+  background:radial-gradient(60% 70% at 22% 0,rgba(91,91,240,.10),transparent 60%),
+             radial-gradient(50% 60% at 90% 8%,rgba(18,185,129,.08),transparent 60%);}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.chip{display:inline-flex;gap:8px;align-items:center;padding:8px 14px;border:1px solid var(--line);
+  border-radius:999px;background:#fff;font-size:13.5px;color:var(--body);font-weight:500}
+.chip b{color:var(--ink);font-weight:700}
+
+/* figures */
+.fig{margin:14px 0 8px;max-width:var(--maxw);border-radius:22px;
+  box-shadow:0 10px 40px rgba(15,22,51,.07);overflow:hidden;background:#fff}
+/* bare: dissolves the frame so the diagram blends into the page */
+.fig.bare{box-shadow:none;background:transparent;border-radius:0}
+.fig svg{width:100%;height:auto;display:block}
+figcaption{max-width:var(--col);margin:16px 0 0;font-size:14px;color:var(--muted);text-align:left}
+
+/* cost cards */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:var(--maxw);margin:8px 0}
+.card{border:1px solid var(--line);border-radius:16px;padding:22px;background:var(--soft)}
+.card h3{margin:0 0 6px;color:var(--ink);font-size:17px;font-weight:700}
+.card p{margin:0;font-size:15px;color:var(--body)}
+
+/* pull quote */
+.quote{max-width:820px;margin:18px 0;padding:8px 0 8px 26px;border-left:3px solid var(--indigo);
+  font-family:inherit;font-style:normal;font-size:20px;line-height:1.45;
+  color:var(--ink);font-weight:600;letter-spacing:-.01em}
+
+/* phase headings inline */
+.prose h3{color:var(--ink);font-size:20px;font-weight:700;margin:26px 0 8px;letter-spacing:-.01em}
+.tag{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.05em;color:var(--indigo);
+  background:var(--indigo-soft);padding:3px 9px;border-radius:7px;margin-right:8px;vertical-align:2px}
+
+/* callout */
+.callout{max-width:var(--maxw);margin:10px 0;background:linear-gradient(180deg,#fdeae4,#fffdf9);
+  border:1px solid #f2ddd3;border-radius:20px;padding:34px 40px}
+.callout .eyebrow{color:var(--indigo)}
+.callout h2{font-size:clamp(24px,3vw,30px)}
+.callout p{max-width:800px;margin-bottom:0}
+
+/* impact blurbs */
+.impact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 40px;max-width:900px;margin:20px 0 0}
+.impact-grid div{border-top:2px solid var(--line);padding-top:12px}
+.impact-grid b{color:var(--ink)}
+
+/* divider */
+.rule{max-width:var(--maxw);margin:8px 0;height:1px;background:var(--line)}
+
+/* footer: matches site */
+footer{border-top:1px solid var(--line);margin-top:96px;padding:0}
+.foot{max-width:1160px;margin:0 auto;padding:72px 40px 80px;text-align:center}
+.foot h2{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2rem);font-weight:500;
+  letter-spacing:-.02em;margin:0 0 8px;color:var(--ink)}
+.foot .fsub{font-size:15px;color:#6b675d;margin:0 0 32px}
+.flinks{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:40px}
+.flinks a{font-size:14px;font-weight:500;color:var(--ink);border:1px solid #ddd8cc;
+  border-radius:999px;padding:10px 22px;text-decoration:none;transition:border-color .2s,color .2s}
+.flinks a:hover{border-color:var(--indigo);color:var(--indigo)}
+.fcopy{font-size:13px;color:var(--muted);margin:0 0 10px}
+.fbuilt{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);margin:0}
+.fbuilt svg{fill:#FF5432;stroke:#FF5432;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+  transform:rotate(-8deg);vertical-align:middle}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+@media(max-width:760px){
+  body{font-size:16.5px}
+  .cards,.impact-grid{grid-template-columns:1fr}
+  section{padding:34px 0}
+  .callout{padding:26px 22px}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <nav class="nav">
+    <a href="index.html" class="name">Tal Yanay</a>
+    <div class="navlinks">
+      <a href="index.html#work">Work</a>
+      <a href="about.html">About</a>
+    </div>
+  </nav>
+</header>
+
+<header class="hero">
+  <div class="container">
+    <p class="eyebrow reveal">Design System · Case Study</p>
+    <h1 class="reveal">One source of truth:<br>rebuilding Agora's <em>design system</em>.</h1>
+    <p class="lead reveal">How I led the move from an outdated Figma kit to a living design system in Figma and Storybook, one shared source of truth that design and development actually build on. Around 65 components, rebuilt on a new token foundation over a single quarter.</p>
+    <div class="meta reveal">
+      <span class="chip"><b>Role</b> Design System Lead</span>
+      <span class="chip"><b>Team</b> 4 designers + Frontend Lead</span>
+      <span class="chip"><b>Tools</b> Figma · Storybook · Notion</span>
+    </div>
+  </div>
+</header>
+
+<section style="padding-top:16px">
+  <div class="container">
+    <figure class="fig reveal">
+      <img src="assets/Design system - thumbnail.png"
+           alt="Agora design system cover"
+           style="width:100%;height:auto;display:block">
+    </figure>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="prose">
+      <p class="eyebrow reveal">The problem</p>
+      <h2 class="reveal">A design system in name only</h2>
+      <p class="reveal">Agora had a design system that existed on paper. It lived in Figma, it was out of date, it looked visually weak, and it was full of gaps. No variables. No consistent theme. No primitives, no tokens.</p>
+      <p class="reveal">Worse, there was no Storybook and no shared source of truth between design and development. So engineers rebuilt components from scratch, each one a little different from the last. The same button existed in several visual versions, and the product slowly drifted out of sync with itself. Inconsistency wasn't an accident here. It was built into the way we worked.</p>
+    </div>
+    <figure class="fig reveal"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 430" font-family="Inter, 'SF Pro Display', 'Segoe UI', system-ui, -apple-system, sans-serif">
+<defs><marker id="arw" markerWidth="10" markerHeight="10" refX="7" refY="3.2" orient="auto"><path d="M0,0 L7,3.2 L0,6.4 Z" fill="#9AA1B2"/></marker><marker id="arwI" markerWidth="10" markerHeight="10" refX="7" refY="3.2" orient="auto"><path d="M0,0 L7,3.2 L0,6.4 Z" fill="#5B5BF0"/></marker><marker id="arwG" markerWidth="10" markerHeight="10" refX="7" refY="3.2" orient="auto"><path d="M0,0 L7,3.2 L0,6.4 Z" fill="#12B981"/></marker></defs>
+<rect x="1" y="1" width="1198" height="428" rx="22" ry="22" fill="#FFFFFF" stroke="#E7E8EF" stroke-width="1.5"/>
+<text x="48" y="62" font-size="25" fill="#0F1633" font-weight="700" text-anchor="start">The same button, built five different ways</text>
+<text x="48" y="88" font-size="15" fill="#9AA1B2" font-weight="400" text-anchor="start">No shared source of truth, so every screen reinvented the basics.</text>
+<rect x="48" y="92" width="86" height="24" rx="12" ry="12" fill="#FCE8EC"/>
+<text x="91.0" y="108.5" font-size="12" fill="#F1556C" font-weight="700" text-anchor="middle" letter-spacing="0.6">BEFORE</text>
+<rect x="48" y="156" width="120" height="40" rx="4" ry="4" fill="#5B5BF0"/>
+<text x="108.0" y="180.9" font-size="14" fill="#FFFFFF" font-weight="600" text-anchor="middle">Save</text>
+<rect x="198" y="150" width="132" height="52" rx="26" ry="26" fill="#FFFFFF" stroke="#12B981" stroke-width="2"/>
+<text x="264.0" y="181.25" font-size="15" fill="#12B981" font-weight="600" text-anchor="middle">Save</text>
+<rect x="360" y="160" width="108" height="34" rx="10" ry="10" fill="#2B3350"/>
+<text x="414.0" y="181.2" font-size="12" fill="#FFFFFF" font-weight="600" text-anchor="middle" letter-spacing="1">SAVE</text>
+<rect x="492" y="152" width="150" height="48" rx="12" ry="12" fill="#12B981"/>
+<text x="567.0" y="181.95" font-size="17" fill="#FFFFFF" font-weight="700" text-anchor="middle">Save</text>
+<rect x="666" y="162" width="96" height="32" rx="16" ry="16" fill="#F1556C"/>
+<text x="714.0" y="182.2" font-size="12" fill="#FFFFFF" font-weight="600" text-anchor="middle">save</text>
+<text x="48" y="242" font-size="13" fill="#9AA1B2" font-weight="400" text-anchor="start" font-style="italic">Different colors, radii, sizes, casing. Same job, five answers.</text>
+<line x1="760" y1="176" x2="838" y2="176" stroke="#9AA1B2" stroke-width="2" marker-end="url(#arw)"/>
+<rect x="864" y="92" width="76" height="24" rx="12" ry="12" fill="#E4F7F0"/>
+<text x="902.0" y="108.5" font-size="12" fill="#12B981" font-weight="700" text-anchor="middle" letter-spacing="0.6">AFTER</text>
+<rect x="852" y="130" width="300" height="150" rx="16" ry="16" fill="#F5F6FA" stroke="#E7E8EF" stroke-width="1.5"/>
+<text x="1002" y="158" font-size="14" fill="#0F1633" font-weight="700" text-anchor="middle">One component</text>
+<rect x="902" y="176" width="200" height="44" rx="8" ry="8" fill="#5B5BF0"/>
+<text x="1002.0" y="203.25" font-size="15" fill="#FFFFFF" font-weight="600" text-anchor="middle">Save</text>
+<text x="1002" y="250" font-size="12.5" fill="#9AA1B2" font-weight="400" text-anchor="middle">One definition, every state,</text>
+<text x="1002" y="267" font-size="12.5" fill="#9AA1B2" font-weight="400" text-anchor="middle">shared by design and code.</text>
+</svg>
+</figure>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="prose">
+      <p class="eyebrow reveal">Why it was worth solving</p>
+      <h2 class="reveal">Structural, not cosmetic</h2>
+      <p class="reveal">The drift showed up everywhere: duplicated components in code, mismatches between Figma and production, and slow, repetitive UI work. It was only going to compound as the product grew, so I stepped up to lead the fix at the root.</p>
+    </div>
+    <div class="cards">
+      <div class="card reveal"><h3>Slower shipping</h3><p>Every new screen meant rebuilding pieces we already had.</p></div>
+      <div class="card reveal"><h3>Harder onboarding</h3><p>No single place that said "this is how we build."</p></div>
+      <div class="card reveal"><h3>Lost coherence</h3><p>The interface quietly drifted as the product scaled.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="prose">
+      <p class="eyebrow reveal">The reframe</p>
+      <h2 class="reveal">A system, not a prettier file</h2>
+    </div>
+    <p class="quote reveal">A better looking Figma file would not have solved this. The real fix was a single source of truth that design and development share.</p>
+    <div class="prose">
+      <p class="reveal">We chose Storybook as that anchor. It gives developers an interactive workshop to build and test components in isolation, and it gives designers a live catalog to verify that the final code matches the exact spec. Instead of endless back and forth over pixel measurements and hidden states, anyone can open the Storybook URL, tweak variables, stress-test edge cases, and run visual QA on the real coded components.</p>
+    </div>
+    <figure class="fig reveal"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" font-family="Inter, 'SF Pro Display', 'Segoe UI', system-ui, -apple-system, sans-serif">
+<defs><marker id="arw" markerWidth="10" markerHeight="10" refX="7" refY="3.2" orient="auto"><path d="M0,0 L7,3.2 L0,6.4 Z" fill="#9AA1B2"/></marker><marker id="arwI" markerWidth="10" markerHeight="10" refX="7" refY="3.2" orient="auto"><path d="M0,0 L7,3.2 L0,6.4 Z" fill="#5B5BF0"/></marker><marker id="arwG" markerWidth="10" markerHeight="10" refX="7" refY="3.2" orient="auto"><path d="M0,0 L7,3.2 L0,6.4 Z" fill="#12B981"/></marker></defs>
+<rect x="1" y="1" width="1198" height="518" rx="22" ry="22" fill="#FFFFFF" stroke="#E7E8EF" stroke-width="1.5"/>
+<text x="48" y="60" font-size="25" fill="#0F1633" font-weight="700" text-anchor="start">Storybook as the shared source of truth</text>
+<text x="48" y="86" font-size="15" fill="#9AA1B2" font-weight="400" text-anchor="start">One interactive contract that design and development both build against.</text>
+<rect x="450.0" y="225.0" width="300" height="150" rx="18" ry="18" fill="#5B5BF0"/>
+<text x="600.0" y="276" font-size="15" fill="#FFFFFF" font-weight="700" text-anchor="middle">Design system</text>
+<text x="600.0" y="298" font-size="15" fill="#FFFFFF" font-weight="700" text-anchor="middle">library</text>
+<rect x="480.0" y="318" width="108" height="30" rx="15" ry="15" fill="#FFFFFF"/>
+<text x="534.0" y="338" font-size="12.5" fill="#5B5BF0" font-weight="700" text-anchor="middle">Figma</text>
+<rect x="612.0" y="318" width="108" height="30" rx="15" ry="15" fill="#7A7AF5"/>
+<text x="666.0" y="338" font-size="12.5" fill="#FFFFFF" font-weight="700" text-anchor="middle">Storybook</text>
+<rect x="60" y="254" width="250" height="92" rx="16" ry="16" fill="#F5F6FA" stroke="#E7E8EF" stroke-width="1.5"/>
+<text x="185.0" y="290" font-size="15" fill="#0F1633" font-weight="700" text-anchor="middle">Design</text>
+<text x="185.0" y="314" font-size="12" fill="#4B5563" font-weight="400" text-anchor="middle">builds &amp; specs components</text>
+<rect x="890" y="254" width="250" height="92" rx="16" ry="16" fill="#F5F6FA" stroke="#E7E8EF" stroke-width="1.5"/>
+<text x="1015.0" y="290" font-size="15" fill="#0F1633" font-weight="700" text-anchor="middle">Development</text>
+<text x="1015.0" y="314" font-size="12" fill="#4B5563" font-weight="400" text-anchor="middle">builds &amp; tests in isolation</text>
+<line x1="318" y1="292" x2="442.0" y2="292" stroke="#5B5BF0" stroke-width="1.8" marker-end="url(#arwI)"/>
+<line x1="442.0" y1="310" x2="318" y2="310" stroke="#5B5BF0" stroke-width="1.8" marker-end="url(#arwI)"/>
+<line x1="758.0" y1="292" x2="882" y2="292" stroke="#5B5BF0" stroke-width="1.8" marker-end="url(#arwI)"/>
+<line x1="882" y1="310" x2="758.0" y2="310" stroke="#5B5BF0" stroke-width="1.8" marker-end="url(#arwI)"/>
+<rect x="450.0" y="108" width="300" height="52" rx="14" ry="14" fill="#F5F6FA" stroke="#E7E8EF" stroke-width="1.5"/>
+<text x="600.0" y="132" font-size="13.5" fill="#0F1633" font-weight="700" text-anchor="middle">Foundations</text>
+<text x="600.0" y="150" font-size="12" fill="#4B5563" font-weight="400" text-anchor="middle">Primitives  →  Semantic tokens</text>
+<line x1="600.0" y1="160" x2="600.0" y2="219.0" stroke="#9AA1B2" stroke-width="1.6" marker-end="url(#arw)"/>
+<text x="185" y="420" font-size="12.5" fill="#9AA1B2" font-weight="400" text-anchor="middle">Tweak variables, verify specs,</text>
+<text x="185" y="438" font-size="12.5" fill="#9AA1B2" font-weight="400" text-anchor="middle">run visual QA on real code</text>
+<text x="1015" y="420" font-size="12.5" fill="#9AA1B2" font-weight="400" text-anchor="middle">Assemble features, refactor</text>
+<text x="1015" y="438" font-size="12.5" fill="#9AA1B2" font-weight="400" text-anchor="middle">fearlessly, no scratch-building</text>
+</svg>
+</figure>
+    <figure class="reveal" style="margin:14px 0 8px">
+      <div class="fig" style="margin:0"><img src="assets/design system images/A real Storybook screen.png" alt="The BaseSelect component in Storybook, with its controls panel exposing size, variant, status and boolean props." loading="lazy" style="width:100%;height:auto;display:block"></div>
+      <figcaption>Our Storybook (“The Real Agorabook”). Every component sits in the sidebar with its states, docs and a live controls panel, so anyone can tweak a prop and QA the real coded component in seconds.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="prose">
+      <p class="eyebrow reveal">What we built</p>
+      <h2 class="reveal">Foundations first, then everything on top</h2>
+    </div>
+    <figure class="fig bare reveal">
+      <img src="assets/design system images/05-three-phases 1.png" alt="Timeline of the three phases over one quarter: Foundations, Audit &amp; rebuild, and Storybook." loading="lazy" style="width:100%;height:auto;display:block">
+    </figure>
+    <div class="prose">
+      <h3 class="reveal"><span class="tag">01</span>Foundations</h3>
+      <p class="reveal">We started with the layer everything else depends on: a proper variable and token system built in two tiers, primitives (the raw values) feeding semantic tokens (how those values are used). This took many rounds of discussion and hard decisions that I led with my team, until we had a structure we trusted enough to build the rest of the system on.</p>
+    </div>
+    <figure class="fig bare reveal">
+      <img src="assets/design system images/04-token-structure.png" alt="Two-tier token foundation: primitives feed semantic tokens, which feed components." loading="lazy" style="width:100%;height:auto;display:block">
+    </figure>
+    <figure class="reveal" style="margin:14px 0 8px">
+      <div class="fig" style="margin:0"><img src="assets/design system images/Figma variables panel.png" alt="Figma variables panel showing 133 primitives and 151 semantic tokens, with the agora_orange brand ramp expanded from 100 to 1000." loading="lazy" style="width:100%;height:auto;display:block"></div>
+      <figcaption>The real foundation in Figma: 133 primitives feeding 151 semantic tokens, organised into brand, neutral and supporting ramps. This is the layer every component is built on.</figcaption>
+    </figure>
+    <div class="prose">
+      <h3 class="reveal"><span class="tag">02</span>Audit &amp; rebuild</h3>
+      <p class="reveal">With variables in place, we took every existing component, rebuilt it on the new tokens, and refined it visually so it finally looked the way it should. Around 65 components in all, audited and rebuilt.</p>
+      <h3 class="reveal"><span class="tag">03</span>Storybook</h3>
+      <p class="reveal">Every component now lives in Storybook as well as Figma, with all of its states, use cases, and properties wired into the controls panel so anyone can stress-test it live. The goal was never just coverage. It was a Storybook that is easy to read and genuinely useful, not a dumping ground of one-off examples.</p>
+    </div>
+    <figure class="reveal" style="margin:14px 0 8px">
+      <div class="fig" style="margin:0"><img src="assets/design system images/Component sheet.png" alt="Figma component sheet for the Field and Input Fields family: base component, a flow chart of field types, and a full matrix of states across sizes." loading="lazy" style="width:100%;height:auto;display:block"></div>
+      <figcaption>A single component family in Figma. Each one was rebuilt as a full sheet: base structure, a flow of every variant, and a matrix of states across sizes, default through disabled.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="prose">
+      <p class="eyebrow reveal">The shift</p>
+      <h2 class="reveal">How the system changed</h2>
+    </div>
+    <figure class="fig reveal">
+      <img src="assets/design system images/02-before-after.png" alt="Before and after: how the design system changed the product." loading="lazy" style="width:100%;height:auto;display:block">
+    </figure>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="prose">
+      <p class="eyebrow reveal">How I led it</p>
+      <h2 class="reveal">One tracked path, my review at the center</h2>
+      <p class="reveal">This is the part I owned most directly. I organized the whole initiative in a single Notion tracker, every component with its status and owner, split across the team of four. Each component moved through a loop I ran end to end, and I worked side by side with the Frontend Lead every day to keep it moving, made the calls that needed a decision-maker, and built a number of the components myself.</p>
+    </div>
+    <figure class="fig bare reveal">
+      <img src="assets/design system images/06-leadership-loop 2.png" alt="The review loop run on every component, with my review at the center." loading="lazy" style="width:100%;height:auto;display:block">
+    </figure>
+    <figure class="reveal" style="margin:14px 0 8px">
+      <div class="fig" style="margin:0"><img src="assets/design system images/notion.png" alt="The Notion tracker &lsquo;DS Components 2025-26&rsquo;: every component as a row with design owner, developer, Storybook state, component status and product status." loading="lazy" style="width:100%;height:auto;display:block"></div>
+      <figcaption>The Notion tracker I ran the whole initiative from. Every component is a row with a design owner, a developer, and its status across Figma, Storybook and product, so nothing fell through the cracks. (Names blurred.)</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="prose">
+      <p class="eyebrow reveal">Adoption &amp; migration</p>
+      <h2 class="reveal">A system only matters if people use it</h2>
+      <p class="reveal">New screens are now built only from the refined components, so everything ships consistent and visually stronger by default. For the existing product, each team member owns their domain and is migrating old components to the new ones, prioritized sprint by sprint, with PMs fully aligned on the process. The system is spreading across the product, not sitting in a file.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="prose">
+      <p class="eyebrow reveal">Impact</p>
+      <h2 class="reveal">What the system changed</h2>
+    </div>
+    <figure class="fig reveal"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" font-family="Inter, 'SF Pro Display', 'Segoe UI', system-ui, -apple-system, sans-serif">
+<defs><marker id="arw" markerWidth="10" markerHeight="10" refX="7" refY="3.2" orient="auto"><path d="M0,0 L7,3.2 L0,6.4 Z" fill="#9AA1B2"/></marker><marker id="arwI" markerWidth="10" markerHeight="10" refX="7" refY="3.2" orient="auto"><path d="M0,0 L7,3.2 L0,6.4 Z" fill="#5B5BF0"/></marker><marker id="arwG" markerWidth="10" markerHeight="10" refX="7" refY="3.2" orient="auto"><path d="M0,0 L7,3.2 L0,6.4 Z" fill="#12B981"/></marker></defs>
+<rect x="1" y="1" width="1198" height="398" rx="22" ry="22" fill="#FFFFFF" stroke="#E7E8EF" stroke-width="1.5"/>
+<text x="48" y="60" font-size="25" fill="#0F1633" font-weight="700" text-anchor="start">Impact</text>
+<text x="48" y="86" font-size="15" fill="#9AA1B2" font-weight="400" text-anchor="start">What the system changed, across four fronts.</text>
+<rect x="42.0" y="120" width="264" height="210" rx="18" ry="18" fill="#FFFFFF" stroke="#E7E8EF" stroke-width="1.5"/>
+<rect x="42.0" y="120" width="264" height="8" rx="0" ry="0" fill="#ECECFE"/>
+<rect x="42.0" y="120" width="8" height="210" rx="0" ry="0" fill="#ECECFE"/>
+<text x="70.0" y="216" font-size="58" fill="#5B5BF0" font-weight="800" text-anchor="start">~65</text>
+<text x="70.0" y="250" font-size="15" fill="#0F1633" font-weight="700" text-anchor="start">components</text>
+<text x="70.0" y="278" font-size="12.5" fill="#4B5563" font-weight="400" text-anchor="start">rebuilt on one token</text>
+<text x="70.0" y="296" font-size="12.5" fill="#4B5563" font-weight="400" text-anchor="start">foundation in a single quarter</text>
+<rect x="326.0" y="120" width="264" height="210" rx="18" ry="18" fill="#FFFFFF" stroke="#E7E8EF" stroke-width="1.5"/>
+<rect x="326.0" y="120" width="264" height="8" rx="0" ry="0" fill="#E4F7F0"/>
+<rect x="326.0" y="120" width="8" height="210" rx="0" ry="0" fill="#E4F7F0"/>
+<text x="354.0" y="216" font-size="58" fill="#12B981" font-weight="800" text-anchor="start">1</text>
+<text x="354.0" y="250" font-size="15" fill="#0F1633" font-weight="700" text-anchor="start">source of truth</text>
+<text x="354.0" y="278" font-size="12.5" fill="#4B5563" font-weight="400" text-anchor="start">design and code match;</text>
+<text x="354.0" y="296" font-size="12.5" fill="#4B5563" font-weight="400" text-anchor="start">duplicated components gone</text>
+<rect x="610.0" y="120" width="264" height="210" rx="18" ry="18" fill="#FFFFFF" stroke="#E7E8EF" stroke-width="1.5"/>
+<rect x="610.0" y="120" width="264" height="8" rx="0" ry="0" fill="#FDF0DB"/>
+<rect x="610.0" y="120" width="8" height="210" rx="0" ry="0" fill="#FDF0DB"/>
+<text x="638.0" y="216" font-size="58" fill="#F5A623" font-weight="800" text-anchor="start">4</text>
+<text x="638.0" y="250" font-size="15" fill="#0F1633" font-weight="700" text-anchor="start">owners</text>
+<text x="638.0" y="278" font-size="12.5" fill="#4B5563" font-weight="400" text-anchor="start">a governed process with</text>
+<text x="638.0" y="296" font-size="12.5" fill="#4B5563" font-weight="400" text-anchor="start">review, QA and clear ownership</text>
+<rect x="894.0" y="120" width="264" height="210" rx="18" ry="18" fill="#FFFFFF" stroke="#E7E8EF" stroke-width="1.5"/>
+<rect x="894.0" y="120" width="264" height="8" rx="0" ry="0" fill="#EEF0F7"/>
+<rect x="894.0" y="120" width="8" height="210" rx="0" ry="0" fill="#EEF0F7"/>
+<text x="922.0" y="216" font-size="58" fill="#0F1633" font-weight="800" text-anchor="start">∞</text>
+<text x="922.0" y="250" font-size="15" fill="#0F1633" font-weight="700" text-anchor="start">foundation</text>
+<text x="922.0" y="278" font-size="12.5" fill="#4B5563" font-weight="400" text-anchor="start">easier onboarding, and the</text>
+<text x="922.0" y="296" font-size="12.5" fill="#4B5563" font-weight="400" text-anchor="start">base for AI prototyping</text>
+</svg>
+</figure>
+    <div class="impact-grid">
+      <div class="reveal"><b>Faster shipping.</b> Developers assemble screens from tested, reusable components instead of building from scratch. Around 65 components were rebuilt on the new foundation in a single quarter.</div>
+      <div class="reveal"><b>Consistency.</b> One source of truth means design and code match. Duplicated components are gone, and the product looks unified and more polished.</div>
+      <div class="reveal"><b>Adoption &amp; ownership.</b> A governed process (tracker, review, visual QA, documented handoff) with clear owners and buy-in from design, dev, and product.</div>
+      <div class="reveal"><b>Scale.</b> Onboarding is easier, and the system is now the foundation the rest of our work stands on.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="callout reveal">
+      <p class="eyebrow">An unexpected payoff</p>
+      <h2>A foundation for AI prototyping</h2>
+      <p>With a real design system in place, prototyping with AI got dramatically better. We built a skill that carries the full design system, its connectors and its knowledge, so AI-generated prototypes come out looking like the real product, built from real components. The system did not just clean up today's UI. It made a faster way of designing possible.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="prose">
+      <p class="eyebrow reveal">What's next</p>
+      <h2 class="reveal">A living system, not a finished artifact</h2>
+      <p class="reveal">The system is intentionally still growing. Next is expanding component coverage, and because we work agile, refining existing components as we learn what works and what doesn't. Every variable change goes through the frontend team so Storybook stays perfectly in sync.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot">
+    <h2>Let&rsquo;s build something.</h2>
+    <p class="fsub">Currently looking for my next opportunity to help teams ship better products.</p>
+    <div class="flinks">
+      <a href="#">Resume</a>
+      <a href="https://www.linkedin.com/in/tal-yanay/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="mailto:talyanay10@gmail.com">Email</a>
+    </div>
+    <p class="fcopy">&copy; <span id="yr"></span> Tal Yanay</p>
+    <p class="fbuilt">Built with
+      <svg viewBox="0 0 24 22" width="15" height="14" role="img" aria-label="love">
+        <path d="M12 20.5C11.6 20.2 3.2 14.3 2 8.7 1.2 5 3.4 2.2 6.4 2.1c2.1-.1 4 1.4 5.4 3.4 1.2-2 3.2-3.6 5.5-3.4 3 .2 5 3 4.2 6.7-1.1 5.4-9.3 11.4-9.9 11.7z" />
+      </svg>
+      with Claude</p>
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+document.getElementById('yr').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
