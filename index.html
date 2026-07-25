@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&family=Lora:ital,wght@0,400..600;1,400..600&display=swap" />
+<style>
+  body { margin: 0; background: #f7f5ef; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: #FF5432; color: #fff; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  @keyframes caretOut { 0%,18% { opacity: 1; } 30%,52% { opacity: 0; } 64%,80% { opacity: 1; } 100% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+</style>
+</helmet>
+
+<div style="font-family: 'Inter', -apple-system, sans-serif; color: #17150f; background: #f7f5ef; min-height: 100vh;">
+
+  <header style="position: sticky; top: 0; z-index: 20; background: rgba(247,245,239,0.82); backdrop-filter: blur(12px); border-bottom: 1px solid #ece8de;">
+    <nav style="max-width: 1160px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 18px 40px;">
+      <a href="#top" style="font-size: 15px; font-weight: 600; letter-spacing: -0.01em;">Tal Yanay</a>
+      <div style="display: flex; gap: 30px; font-size: 14px;">
+        <a href="#work" style="color: #17150f; border-bottom: 2px solid #FF5432; padding-bottom: 3px;">Work</a>
+        <a href="about.html" style="color: #6b675d;" style-hover="color: #17150f;">About</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- HERO (1A) -->
+    <section style="max-width: 1160px; margin: 0 auto; padding: 128px 40px 132px;">
+      <p style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #9a968b; font-weight: 600; margin: 0 0 28px; animation: fadeUp .7s cubic-bezier(.2,.7,.2,1) both;">Product Designer</p>
+      <h1 style="font-family: 'Lora', serif; font-weight: 500; font-size: clamp(2.6rem, 6.6vw, 72px); line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 32px; max-width: 15ch; animation: fadeUp .75s cubic-bezier(.2,.7,.2,1) .08s both;">I&rsquo;m Tal, a product designer who <em style="font-style: italic; color: #FF5432; position: relative; display: inline-block; white-space: nowrap;"><span aria-hidden="true" style="visibility: hidden;">builds</span><span id="type-word" style="position: absolute; left: 0; top: 0;">builds</span><span id="type-caret" style="display: none; position: absolute; top: 0.14em; bottom: 0.16em; width: 2px; background: #FF5432; opacity: 0;"></span></em>.</h1>
+      <p style="font-size: clamp(1rem, 1.7vw, 19px); line-height: 1.6; color: #57534a; margin: 0 0 44px; max-width: 58ch; text-wrap: pretty; animation: fadeUp .8s cubic-bezier(.2,.7,.2,1) .16s both;">I turn messy, complex product problems into clear, usable experiences. I ask a lot of questions, get into the details, and work closely with PMs and engineers throughout the process.</p>
+      <a href="#work" data-magnetic style="display: inline-flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; cursor: pointer; will-change: transform; animation: fadeUp .85s cubic-bezier(.2,.7,.2,1) .24s both;">
+        <span style="border-bottom: 2px solid #FF5432; padding-bottom: 3px;">View my work</span>
+        <span style="color: #FF5432;">&darr;</span>
+      </a>
+    </section>
+
+    <!-- WORK -->
+    <section id="work" style="max-width: 1160px; margin: 0 auto; padding: 0 40px 40px;">
+      <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding-top: 30px; border-top: 1px solid #e3ded2; margin-bottom: 72px;">
+        <h2 style="font-family: 'Lora', serif; font-weight: 500; font-size: clamp(1.7rem, 3vw, 2.2rem); letter-spacing: -0.02em; margin: 0;">Selected Work</h2>
+        <p style="font-size: 15px; color: #6b675d; margin: 0; max-width: 30ch; text-align: right;">A few problems I&rsquo;ve enjoyed untangling, from first sketch to what shipped.</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 104px;">
+        <sc-for list="{{ cases }}" as="c" hint-placeholder-count="3">
+          <a href="{{ c.href }}" target="_blank" rel="noopener noreferrer" class="case" style="display: block; cursor: pointer;" aria-label="{{ c.aria }}">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 20px; margin-bottom: 20px;">
+              <span style="font-family: 'Lora', serif; font-size: 15px; color: #9a968b; font-weight: 500;">{{ c.num }}</span>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end;">
+                <sc-for list="{{ c.tags }}" as="t" hint-placeholder-count="3">
+                  <span style="font-size: 12px; color: #6b675d; border: 1px solid #ddd8cc; border-radius: 999px; padding: 4px 12px;">{{ t }}</span>
+                </sc-for>
+              </div>
+            </div>
+            <div class="case__media" style="position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; background: #16264a; transition: transform .45s cubic-bezier(.2,.7,.2,1), box-shadow .45s;">
+              <img src="{{ c.image }}" alt="{{ c.imageAlt }}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2,.7,.2,1);" class="case__img" />
+              <span class="case__badge" style="position: absolute; top: 16px; right: 16px; width: 42px; height: 42px; display: grid; place-items: center; border-radius: 999px; background: rgba(255,255,255,0.92); color: #17150f; font-size: 16px; transition: transform .35s ease; will-change: transform;">&nearr;</span>
+            </div>
+            <div class="case__text" style="margin-top: 24px; max-width: 88ch;">
+              <h3 style="font-family: 'Lora', serif; font-weight: 500; font-size: clamp(1.5rem, 2.6vw, 32px); line-height: 1.18; letter-spacing: -0.015em; margin: 0 0 12px;">{{ c.title }}</h3>
+              <p style="font-size: 17px; line-height: 1.6; color: #57534a; margin: 0;">{{ c.description }}</p>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+
+  </main>
+
+  <footer style="border-top: 1px solid #e3ded2; margin-top: 128px;">
+    <div style="max-width: 1160px; margin: 0 auto; padding: 72px 40px 80px; text-align: center;">
+      <p style="font-family: 'Lora', serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 500; letter-spacing: -0.02em; margin: 0 0 8px;">Let&rsquo;s build something.</p>
+      <p style="font-size: 15px; color: #6b675d; margin: 0 0 32px;">Currently looking for my next opportunity to help teams ship better products.</p>
+      <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 40px;">
+        <a href="#" style="font-size: 14px; font-weight: 500; border: 1px solid #ddd8cc; border-radius: 999px; padding: 10px 22px; transition: border-color .2s, color .2s;" style-hover="border-color: #FF5432; color: #FF5432;">Resume</a>
+        <a href="https://www.linkedin.com/in/tal-yanay/" target="_blank" rel="noopener noreferrer" style="font-size: 14px; font-weight: 500; border: 1px solid #ddd8cc; border-radius: 999px; padding: 10px 22px; transition: border-color .2s, color .2s;" style-hover="border-color: #FF5432; color: #FF5432;">LinkedIn</a>
+        <a href="mailto:talyanay10@gmail.com" style="font-size: 14px; font-weight: 500; border: 1px solid #ddd8cc; border-radius: 999px; padding: 10px 22px; transition: border-color .2s, color .2s;" style-hover="border-color: #FF5432; color: #FF5432;">Email</a>
+      </div>
+      <p style="font-size: 13px; color: #9a968b; margin: 0 0 10px;">&copy; {{ year }} Tal Yanay</p>
+      <p style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #9a968b; margin: 0;">
+        Built with
+        <svg viewBox="0 0 24 22" width="15" height="14" role="img" aria-label="love" style="fill: #FF5432; stroke: #FF5432; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transform: rotate(-8deg); vertical-align: middle;">
+          <path d="M12 20.5C11.6 20.2 3.2 14.3 2 8.7 1.2 5 3.4 2.2 6.4 2.1c2.1-.1 4 1.4 5.4 3.4 1.2-2 3.2-3.6 5.5-3.4 3 .2 5 3 4.2 6.7-1.1 5.4-9.3 11.4-9.9 11.7z" />
+        </svg>
+        with Claude
+      </p>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;},&quot;caseTextWidth&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:88,&quot;min&quot;:50,&quot;max&quot;:110,&quot;step&quot;:2,&quot;unit&quot;:&quot;ch&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Case studies&quot;}}">
+class Component extends DCLogic {
+  cases = [
+    {
+      num: "01",
+      title: "Import Experience",
+      description: "Helping teams import complex data with more control, confidence, and fewer mistakes.",
+      impact: "Fewer failed imports and support tickets by giving teams control before their data lands.",
+      tags: ["UI/UX", "UX Research", "User Testing"],
+      image: "assets/ImportExperience- thumbnail.png",
+      imageAlt: "Preview of the Import Experience case study",
+      href: "https://www.figma.com/proto/7P5aqn9a7O2yC875AsKbrv/%F0%9F%8E%A8-Portfolio-design?page-id=308%3A1651&node-id=1701-15362&viewport=5214%2C75%2C0.19&t=JU3SU9oyW0ihEQv9-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1701%3A15362&show-proto-sidebar=1",
+    },
+    {
+      num: "02",
+      title: "Custom Metrics: a KPI system you can trust",
+      description: "Turning inconsistent, per-property KPIs into consistent portfolio numbers, without falling back to Excel.",
+      impact: "Replaced spreadsheet workarounds with portfolio KPIs teams actually trust.",
+      tags: ["Product Design", "Financial Data", "UX Flows"],
+      image: "assets/Custom metrics - thumbnail.png",
+      imageAlt: "Preview of the Custom Metrics case study",
+      href: "https://www.figma.com/proto/7P5aqn9a7O2yC875AsKbrv/%F0%9F%8E%A8-Portfolio-design?page-id=308%3A1651&node-id=1947-53513&viewport=12939%2C-9706%2C0.3&t=O3gqF4hnWTQw6NCf-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=607%3A16155&show-proto-sidebar=1",
+    },
+    {
+      num: "03",
+      title: "Investor Portal: a modular data experience",
+      description: "Turning complex investment data into a modular dashboard that adapts to how each investor works.",
+      impact: "A modular dashboard investors can shape around how they actually read their data.",
+      tags: ["UX Research", "Data Visualization", "Modular Design"],
+      image: "assets/Investor portal - Thumbnail.png",
+      imageAlt: "Preview of the Investor Portal case study",
+      href: "https://www.figma.com/proto/7P5aqn9a7O2yC875AsKbrv/%F0%9F%8E%A8-Portfolio-design?page-id=308%3A1651&node-id=607-16155&viewport=19441%2C-4615%2C0.44&t=0j5tb5i1vIM3Wdwq-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=607%3A16155&show-proto-sidebar=1",
+    },
+  ];
+
+  applyTextWidth() {
+    const w = this.props.caseTextWidth ?? 88;
+    document.querySelectorAll(".case__text").forEach((el) => { el.style.maxWidth = w + "ch"; });
+  }
+
+  componentDidUpdate() { this.applyTextWidth(); }
+
+  typeHeroWord(reduce) {
+    const word = document.getElementById("type-word");
+    const caret = document.getElementById("type-caret");
+    if (!word) return;
+    const full = "builds";
+    if (reduce) { word.textContent = full; return; }
+
+    word.textContent = "";
+    if (caret) { caret.style.display = "block"; caret.style.left = "0px"; caret.style.opacity = "1"; }
+
+    const step = 100; // 6 letters ≈ 600ms
+    let i = 0;
+    setTimeout(() => {
+      const tick = () => {
+        i += 1;
+        word.textContent = full.slice(0, i);
+        if (caret) caret.style.left = word.getBoundingClientRect().width + 2 + "px";
+        if (i < full.length) {
+          this._typeTimer = setTimeout(tick, step);
+        } else if (caret) {
+          caret.style.animation = "caretOut 1.1s steps(1,end) forwards";
+          setTimeout(() => { caret.style.display = "none"; }, 1200);
+        }
+      };
+      tick();
+    }, 400);
+  }
+
+  componentDidMount() {
+    this.applyTextWidth();
+    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    this.typeHeroWord(reduce);
+
+    // Smooth, header-aware scroll to the work section
+    document.querySelectorAll('a[href="#work"]').forEach((link) => {
+      link.addEventListener("click", (e) => {
+        const target = document.getElementById("work");
+        if (!target) return;
+        e.preventDefault();
+        const top = target.getBoundingClientRect().top + window.scrollY - 84;
+        window.scrollTo({ top, behavior: reduce ? "auto" : "smooth" });
+      });
+    });
+
+    if (reduce) return;
+
+    document.querySelectorAll("[data-magnetic]").forEach((el) => {
+      el.addEventListener("pointermove", (e) => {
+        const r = el.getBoundingClientRect();
+        const x = (e.clientX - (r.left + r.width / 2)) * 0.25;
+        const y = (e.clientY - (r.top + r.height / 2)) * 0.4;
+        el.style.transition = "transform .08s linear";
+        el.style.transform = `translate(${x}px, ${y}px)`;
+      });
+      el.addEventListener("pointerleave", () => {
+        el.style.transition = "transform .4s cubic-bezier(.2,.7,.2,1)";
+        el.style.transform = "translate(0,0)";
+      });
+    });
+
+    document.querySelectorAll(".case").forEach((card) => {
+      const media = card.querySelector(".case__media");
+      const img = card.querySelector(".case__img");
+      const badge = card.querySelector(".case__badge");
+      card.addEventListener("pointerenter", () => {
+        if (media) { media.style.transform = "translateY(-6px)"; media.style.boxShadow = "0 30px 60px -34px rgba(23,21,15,0.5)"; }
+        if (img) img.style.transform = "scale(1.03)";
+        if (badge) badge.style.transform = "translate(3px,-3px)";
+      });
+      card.addEventListener("pointerleave", () => {
+        if (media) { media.style.transform = "none"; media.style.boxShadow = "none"; }
+        if (img) img.style.transform = "none";
+        if (badge) badge.style.transform = "none";
+      });
+    });
+  }
+
+  renderVals() {
+    return { cases: this.cases, year: new Date().getFullYear() };
+  }
+}
+</script>
+</body>
+</html>

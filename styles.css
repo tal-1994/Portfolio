@@ -1,0 +1,595 @@
+/* ==========================================================================
+   TAL YANAY — PORTFOLIO STYLES · Modern editorial direction
+   --------------------------------------------------------------------------
+   ALL the knobs you'll want to tweak live in the :root block below.
+   Change a variable once and it updates everywhere.
+   ========================================================================== */
+
+:root {
+  /* ----- COLORS ---------------------------------------------------------- */
+  --color-bg: #ffffff;            /* page background — warm near-white       */
+  --color-surface: #ffffff;       /* cards                                   */
+  --color-band: #fafafa;          /* about-section background band           */
+  --color-text: #141414;          /* main text — near-black ink              */
+  --color-text-muted: #5c5c57;    /* secondary text                          */
+  --color-text-faint: #8a8a85;    /* tertiary text (tags, small labels)      */
+  --color-accent: #FF5432;        /* electric blue — the single pop of color */
+  --color-accent-soft: #eceefc;   /* accent tint — subtle hover fills        */
+  --color-border: #e4e4e0;        /* hairline borders                        */
+  --color-border-dark: #c9c9c4;   /* hover borders                           */
+  --color-media-bg: #e9e9e5;      /* image placeholder blocks                */
+
+  /* ----- TYPOGRAPHY ------------------------------------------------------ */
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, "Helvetica Neue", Arial, sans-serif;
+  --text-base: 1.0625rem;         /* 17px body text                          */
+  --text-headline: clamp(2.4rem, 6vw, 64px);        /* hero headline         */
+  --text-section-title: clamp(1.6rem, 3vw, 2.1rem);
+  --line-height: 1.65;
+  --tracking-tight: -0.035em;     /* headline letter-spacing                 */
+
+  /* ----- SPACING ---------------------------------------------------------- */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 7rem;               /* vertical rhythm between sections        */
+  --card-gap: 1.5rem;             /* gap between case study cards            */
+
+  /* ----- LAYOUT ----------------------------------------------------------- */
+  --max-width: 1160px;            /* page content width                      */
+  --radius: 12px;                 /* card corner rounding                    */
+  --radius-sm: 8px;               /* images inside cards, hero image         */
+  --radius-pill: 999px;           /* tags & footer buttons                   */
+
+  /* ----- SHADOWS ---------------------------------------------------------- */
+  --shadow-rest: none;                              /* cards sit flat        */
+  --shadow-hover: 0 6px 24px rgba(20, 20, 20, 0.07);/* gentle hover lift     */
+}
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--line-height);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: var(--color-accent); }
+
+/* Visible focus for keyboard users */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Shared inner container */
+.hero__inner,
+.work__inner,
+.about__inner,
+.footer__inner,
+.nav {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
+}
+
+/* ==========================================================================
+   HEADER / NAV
+   ========================================================================== */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--color-bg) 90%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding-top: 1.05rem;
+  padding-bottom: 1.05rem;
+}
+
+.nav__logo {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  text-decoration: none;
+  margin-right: auto;
+}
+
+.nav__links { display: flex; gap: 1.75rem; }
+
+.nav__link {
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--color-text-faint);
+  padding: 0.2rem 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.nav__link:hover { color: var(--color-text); }
+
+.nav__link.is-active {
+  color: var(--color-text);
+  border-bottom-color: var(--color-accent);
+}
+
+/* ==========================================================================
+   INTRO OVERLAY  (one-time load-in animation)
+   --------------------------------------------------------------------------
+   Hidden by default — only rendered while <html> carries .intro-active,
+   which is added by a head script and removed by script.js once the
+   sequence finishes. No-JS and reduced-motion visitors never see it.
+   ========================================================================== */
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;                    /* shown only when .intro-active is set */
+  place-items: center;
+  background: var(--color-text);    /* dark ink panel */
+}
+
+html.intro-active .intro { display: grid; }
+
+/* Lock scrolling while the intro plays */
+html.intro-active,
+html.intro-active body { overflow: hidden; }
+
+.intro[hidden] { display: none !important; }
+
+/* Once the name has landed, the whole panel simply fades away — no sweep */
+html.intro-done .intro {
+  opacity: 0;
+  transition: opacity 0.6s ease 0.15s;
+}
+
+.intro__center {
+  text-align: center;
+  padding: var(--space-md);
+}
+
+.intro__name {
+  margin: 0;
+  color: var(--color-bg);           /* off-white on the accent panel */
+  font-size: clamp(2.4rem, 8vw, 5rem);
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+/* Each letter fades + rises into place, one after another.
+   Per-letter animation-delay (the cadence) is set inline by script.js. */
+.intro__letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.5em);
+  animation: intro-letter-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.intro__letter--space { width: 0.28em; animation: none; opacity: 1; transform: none; }
+
+@keyframes intro-letter-in {
+  to { opacity: 1; transform: none; }
+}
+
+/* Role: fades up softly after the last letter lands */
+.intro__role {
+  margin: 1rem 0 0;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: intro-role-in 0.6s ease both;
+}
+
+@keyframes intro-role-in {
+  to { opacity: 0.85; transform: none; }
+}
+
+/* Hero content waits behind the panel, then eases in as it lifts */
+html.intro-active .hero__eyebrow,
+html.intro-active .hero__headline,
+html.intro-active .hero__support,
+html.intro-active .hero__cta {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+html.intro-done .hero__eyebrow,
+html.intro-done .hero__headline,
+html.intro-done .hero__support,
+html.intro-done .hero__cta {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.7s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+html.intro-done .hero__eyebrow  { transition-delay: 0.15s; }
+html.intro-done .hero__headline { transition-delay: 0.25s; }
+html.intro-done .hero__support  { transition-delay: 0.38s; }
+html.intro-done .hero__cta      { transition-delay: 0.50s; }
+
+/* Reduced-motion safety net: never render the overlay */
+@media (prefers-reduced-motion: reduce) {
+  .intro { display: none !important; }
+}
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+
+.hero { padding: var(--space-xl) 0 var(--space-lg); }
+
+.hero__headline { max-width: 12em; }   /* lets long headlines break nicely */
+
+/* Lead + sub stack vertically under the headline */
+.hero__support {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  align-items: start;
+  margin-bottom: var(--space-md);
+}
+
+.hero__eyebrow {
+  margin: 0 0 var(--space-sm);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.hero__headline {
+  margin: 0 0 var(--space-md);
+  font-family: "Lora", Georgia, "Times New Roman", serif;
+  font-size: var(--text-headline);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.hero__headline em { font-style: italic; }
+
+.hero__lead {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.55;
+  color: #434343;
+  max-width: 32em;
+}
+
+.hero__sub {
+  margin: 0;
+  font-size: 16px;
+  color: #434343;
+  max-width: 34em;
+}
+
+.hero__cta {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  border-bottom: 2px solid var(--color-accent);
+  padding-bottom: 3px;
+  transition: color 0.2s ease;
+}
+
+.hero__cta:hover { color: var(--color-accent); }
+
+/* ==========================================================================
+   WORK / CASE STUDY CARDS
+   ========================================================================== */
+
+.work { padding: var(--space-lg) 0 var(--space-xl); }
+
+.section-title {
+  font-size: var(--text-section-title);
+  font-weight: 650;
+  letter-spacing: -0.025em;
+  margin: 0 0 var(--space-xs);
+}
+
+.section-intro {
+  margin: 0 0 var(--space-md);
+  color: var(--color-text-muted);
+}
+
+/* Case studies are large, full-width feature sections stacked down the page.
+   Each is a single link: full-width image on top, then title + description. */
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);            /* generous air between features */
+}
+
+/* Load-in: each feature fades + rises in sequence (delay set inline via --d) */
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  opacity: 0;
+  animation: reveal-up 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: var(--d, 0s);
+}
+
+/* Full-width cover image — fixed 16:9 ratio so uploads never crop oddly.
+   Design your thumbnails at this ratio (see image note below). */
+.card__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background-color: #16264a;       /* shows behind any transparent PNG edges */
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Small arrow badge in the image corner */
+.card__badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  color: #ffffff;
+  opacity: 0.85;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .card__media,
+.card:focus-visible .card__media {
+  transform: translateY(-5px);
+}
+
+.card:hover .card__badge,
+.card:focus-visible .card__badge {
+  transform: translate(3px, -3px);
+}
+
+.card__title {
+  margin: 1.25rem 0 0.5rem;
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  line-height: 1.3;
+}
+
+.card__description {
+  margin: 0 0 0.9rem;
+  color: var(--color-text-muted);
+  font-size: 16px;
+  line-height: 1.5;
+  white-space: nowrap;   /* one line on wide screens; wraps at breakpoints below */
+}
+
+.card__cta {
+  font-weight: 600;
+  font-size: 0.98rem;
+  color: var(--color-accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: gap 0.2s ease;
+}
+
+.card:hover .card__cta,
+.card:focus-visible .card__cta {
+  gap: 0.7rem;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .card { opacity: 1; animation: none; }
+  .card__media, .card__cta, .card__badge, .nav__link, .hero__cta { transition: none; }
+  .card:hover .card__media { transform: none; }
+}
+
+/* ==========================================================================
+   ABOUT
+   ========================================================================== */
+
+.about {
+  padding: var(--space-xl) 0;   /* clean page background, no band/borders */
+}
+
+.about__inner {
+  max-width: 1000px;
+  display: grid;
+  grid-template-columns: 320px 1fr;   /* portrait | text */
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+.about__media img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+}
+
+.about__content { max-width: 34em; }
+
+/* "About" reads as a small eyebrow label above the intro */
+.about .section-title {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  color: var(--color-text-faint);
+  margin-bottom: var(--space-md);
+}
+
+/* First paragraph is the lead — larger, in the serif that ties to the hero */
+.about__content p:first-of-type {
+  font-family: "Lora", Georgia, "Times New Roman", serif;
+  font-size: clamp(1.3rem, 2.2vw, 1.6rem);
+  line-height: 1.4;
+  font-weight: 500;
+  color: var(--color-text);
+  margin: 0 0 var(--space-md);
+}
+
+.about__content p {
+  margin: 0 0 var(--space-sm);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+.site-footer {
+  padding: var(--space-lg) 0;
+  border-top: 1px solid var(--color-border);   /* divides work from footer */
+  margin-top: var(--space-xl);
+}
+
+.footer__inner { text-align: center; }
+
+.footer__note {
+  margin: 0 0 var(--space-sm);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-size: 1.1rem;
+}
+
+.footer__links {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: var(--space-md);
+}
+
+.footer__link {
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  padding: 0.5rem 1.3rem;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.footer__link:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.footer__copyright {
+  margin: 0;
+  color: var(--color-text-faint);
+  font-size: 0.85rem;
+}
+
+.footer__built {
+  margin: 0.4rem 0 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  color: var(--color-text-faint);
+  font-size: 0.85rem;
+}
+
+.footer__heart {
+  /* Hand-drawn look: uneven stroke, no fill, a slight tilt */
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transform: rotate(-8deg);
+  vertical-align: middle;
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS
+   --------------------------------------------------------------------------
+   ≤ 1024px  tablet   — 2-column cards, tighter spacing
+   ≤ 640px   mobile   — stacked hero (text first), 1-column cards
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  :root {
+    --space-xl: 5rem;
+    --space-lg: 3rem;
+    --card-gap: 1.15rem;
+  }
+
+  .about__inner {
+    grid-template-columns: 260px 1fr;
+    gap: var(--space-md);
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --space-xl: 3.5rem;
+    --space-lg: 2.5rem;
+  }
+
+  /* Card descriptions may wrap to 2 rows when the width gets tight */
+  .card__description { white-space: normal; }
+
+  /* About stacks: photo first, text below */
+  .about__inner {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .about__media img {
+    aspect-ratio: 4 / 5;
+    max-width: 240px;
+  }
+
+  /* Hero support row stacks on mobile */
+  .hero__support { grid-template-columns: 1fr; }
+}

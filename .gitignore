@@ -1,0 +1,6 @@
+# Older/backup copies — not part of the live site
+backup-original/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" role="img" aria-label="Import Experience placeholder">
+  <rect width="480" height="300" fill="#efeeeb"></rect>
+  <rect x="60" y="60" width="360" height="40" rx="8" fill="#ffffff"></rect>
+  <rect x="60" y="116" width="360" height="40" rx="8" fill="#ffffff"></rect>
+  <rect x="60" y="172" width="240" height="40" rx="8" fill="#ffffff"></rect>
+  <rect x="76" y="74" width="120" height="12" rx="6" fill="#d8d8d3"></rect>
+  <rect x="76" y="130" width="180" height="12" rx="6" fill="#d8d8d3"></rect>
+  <rect x="76" y="186" width="140" height="12" rx="6" fill="#d8d8d3"></rect>
+  <circle cx="396" cy="192" r="26" fill="#2545ee"></circle>
+  <path d="M388 192 l6 7 l14 -14" stroke="#ffffff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+  <text x="60" y="250" font-family="Inter, Arial, sans-serif" font-size="14" fill="#8a8a85">Import Experience</text>
+</svg>

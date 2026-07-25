@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" role="img" aria-label="HubSpot Integration placeholder">
+  <rect width="480" height="300" fill="#ececea"></rect>
+  <rect x="70" y="90" width="120" height="90" rx="10" fill="#ffffff"></rect>
+  <rect x="290" y="90" width="120" height="90" rx="10" fill="#ffffff"></rect>
+  <circle cx="130" cy="135" r="22" fill="#d8d8d3"></circle>
+  <circle cx="350" cy="135" r="22" fill="#c9c9c4"></circle>
+  <path d="M200 122 h70" stroke="#2545ee" stroke-width="4" stroke-linecap="round"></path>
+  <path d="M262 114 l12 8 l-12 8" fill="none" stroke="#2545ee" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path d="M280 152 h-70" stroke="#9a9a95" stroke-width="4" stroke-linecap="round"></path>
+  <path d="M218 144 l-12 8 l12 8" fill="none" stroke="#9a9a95" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+  <text x="70" y="250" font-family="Inter, Arial, sans-serif" font-size="14" fill="#8a8a85">HubSpot Integration</text>
+</svg>
