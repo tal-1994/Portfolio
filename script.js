@@ -75,7 +75,7 @@ const portfolioData = {
     imageAlt: "Portrait of Tal Yanay",
   },
   about: [
-    "Hi, I’m Tal Yanay. I’m a product designer who genuinely enjoys the messy middle of building software.",
+    "Hi, I’m Tal. I’m a product designer who genuinely enjoys the messy middle of building software.",
     "I care about the details, ask a lot of questions, and like working closely with PMs and engineers. These days I take an idea from a messy whiteboard all the way to something that actually runs, with AI as a real part of how I work. Over the past 4+ years I’ve designed SaaS products with complex workflows, multiple stakeholders, and plenty of edge cases.",
     "I’m endlessly curious and always picking up a new tool or skill. Away from the screen, I love trying things that are new and a little exciting. That itch got me surfing for a while. Right now it’s tennis, and I’m completely hooked.",
     "I’m currently looking for my next opportunity to help teams ship better products.",
