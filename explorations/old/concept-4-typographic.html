@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tal Yanay, Product Designer</title>
+<meta name="description" content="Tal Yanay, a product designer who builds. Complex product flows designed and shipped." />
+<link rel="icon" href="../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Space+Grotesk:wght@300..700&family=Space+Mono&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper: #f2f0e9;
+    --ink: #141414;
+    --accent: #FF5432;
+    --accent-ink: #BC2B0B;
+    --ink-70: rgba(20, 20, 20, 0.62);
+    --ink-15: rgba(20, 20, 20, 0.14);
+    --serif: "Fraunces", Georgia, serif;
+    --sans: "Space Grotesk", system-ui, sans-serif;
+    --mono: "Space Mono", ui-monospace, monospace;
+    --pad: clamp(1.25rem, 5vw, 5.5rem);
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 400;
+    line-height: 1.5;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  a { color: inherit; }
+
+  ::selection { background: var(--accent); color: var(--paper); }
+
+  :focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+
+  .wrap { padding-left: var(--pad); padding-right: var(--pad); }
+
+  /* ---------- Skip link ---------- */
+  .skip {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0.75rem 1.25rem;
+    z-index: 100;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+  }
+  .skip:focus { left: 1rem; top: 1rem; }
+
+  /* ---------- Top bar ---------- */
+  header.topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 1.1rem var(--pad);
+    mix-blend-mode: normal;
+    pointer-events: none;
+  }
+  header.topbar > * { pointer-events: auto; }
+  .brand {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .brand b { font-weight: 400; }
+  .topnav {
+    display: flex;
+    gap: clamp(1rem, 3vw, 2.25rem);
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .topnav a {
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 2px;
+  }
+  .topnav a::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 100%; height: 1px;
+    background: var(--ink);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s var(--ease);
+  }
+  .topnav a:hover::after,
+  .topnav a:focus-visible::after { transform: scaleX(1); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: clamp(6rem, 14vh, 9rem);
+    padding-bottom: clamp(2rem, 6vh, 4rem);
+    position: relative;
+  }
+
+  .hero-statement {
+    font-weight: 400;
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    font-size: clamp(3.3rem, 13.5vw, 12.5rem);
+    max-width: 16ch;
+  }
+  .hero-statement .line { display: block; }
+  .hero-statement .serif {
+    font-family: var(--serif);
+    font-style: italic;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  .hero-statement .sans {
+    font-family: var(--sans);
+    font-weight: 500;
+    text-transform: none;
+  }
+  .hero-statement .builds {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--accent-ink);
+    font-weight: 500;
+  }
+  /* kinetic weight pulse on "builds" */
+  .builds-kinetic {
+    display: inline-block;
+    animation: weightPulse 5.5s var(--ease) infinite;
+  }
+  @keyframes weightPulse {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-0.04em) rotate(-1.2deg); }
+  }
+
+  .hero-lead {
+    margin-top: clamp(1.8rem, 4vw, 3rem);
+    max-width: 34ch;
+    font-size: clamp(1.1rem, 2.1vw, 1.6rem);
+    line-height: 1.32;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  .hero-lead .em { font-family: var(--serif); font-style: italic; }
+
+  .hero-foot {
+    margin-top: clamp(1.6rem, 5vh, 3.5rem);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem 2.5rem;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  .hero-sub {
+    max-width: 48ch;
+    font-size: clamp(0.92rem, 1.4vw, 1.05rem);
+    line-height: 1.45;
+    color: var(--ink-70);
+  }
+  .scroll-cue {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    color: var(--ink-70);
+  }
+  .scroll-cue .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent);
+    animation: bob 1.8s ease-in-out infinite;
+  }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); opacity: 1; }
+    50% { transform: translateY(4px); opacity: 0.4; }
+  }
+
+  /* ---------- Marquee ---------- */
+  .marquee {
+    border-top: 1px solid var(--ink-15);
+    border-bottom: 1px solid var(--ink-15);
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 0.85rem 0;
+    position: relative;
+  }
+  .marquee-track {
+    display: inline-flex;
+    gap: 0;
+    will-change: transform;
+    animation: scrollX 32s linear infinite;
+  }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+  .marquee-track span {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1.1rem, 2.4vw, 1.9rem);
+    padding: 0 1.4rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 2.8rem;
+  }
+  .marquee-track span::after {
+    content: "✳";
+    font-family: var(--sans);
+    font-style: normal;
+    color: var(--accent-ink);
+    font-size: 0.7em;
+  }
+  @keyframes scrollX {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ---------- Section label ---------- */
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-70);
+    display: flex;
+    justify-content: space-between;
+    padding-top: clamp(3.5rem, 8vh, 6rem);
+    padding-bottom: clamp(1.25rem, 3vh, 2rem);
+  }
+  .section-label .accent { color: var(--accent-ink); }
+
+  /* ---------- Work giant list ---------- */
+  .work { position: relative; }
+
+  .work-list { list-style: none; border-top: 1px solid var(--ink); }
+
+  .work-item { border-bottom: 1px solid var(--ink); position: relative; }
+
+  .work-link {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: clamp(0.75rem, 3vw, 2.5rem);
+    padding: clamp(1.1rem, 3.4vw, 2.6rem) 0;
+    text-decoration: none;
+    position: relative;
+    transition: padding 0.5s var(--ease), color 0.35s var(--ease);
+  }
+  .work-index {
+    font-family: var(--mono);
+    font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+    color: var(--ink-70);
+    align-self: start;
+    padding-top: 0.5em;
+    transition: color 0.35s var(--ease);
+  }
+  .work-title {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-style: normal;
+    font-optical-sizing: auto;
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    font-size: clamp(1.75rem, 6.4vw, 5.2rem);
+    transition: transform 0.5s var(--ease), color 0.35s var(--ease);
+  }
+  .work-title .it { font-style: italic; }
+
+  .work-meta {
+    text-align: right;
+    align-self: start;
+    padding-top: 0.6em;
+    max-width: 16ch;
+    justify-self: end;
+  }
+  .work-desc {
+    font-family: var(--sans);
+    font-size: clamp(0.82rem, 1.1vw, 0.98rem);
+    line-height: 1.4;
+    color: var(--ink-70);
+    display: block;
+    margin-bottom: 0.7rem;
+  }
+  .work-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    justify-content: flex-end;
+  }
+  .work-tags span {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border: 1px solid var(--ink-15);
+    padding: 0.2rem 0.5rem;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+  .ext-mark {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--ink-70);
+    margin-left: 0.4rem;
+  }
+
+  /* hover / focus desktop emphasis */
+  @media (hover: hover) and (pointer: fine) {
+    .work-meta { opacity: 0; transition: opacity 0.4s var(--ease); }
+    .work-link:hover .work-meta,
+    .work-link:focus-visible .work-meta { opacity: 1; }
+
+    .work-link:hover .work-title,
+    .work-link:focus-visible .work-title {
+      transform: translateX(clamp(0.5rem, 1.5vw, 1.5rem));
+      color: var(--accent-ink);
+    }
+    .work-link:hover .work-index,
+    .work-link:focus-visible .work-index { color: var(--accent-ink); }
+
+    /* dim siblings when one is hovered */
+    .work-list:hover .work-item:not(:hover) .work-title { color: var(--ink-15); }
+  }
+
+  /* inline image (mobile / touch / reduced-motion fallback) */
+  .work-inline-img {
+    display: none;
+    width: 100%;
+    max-width: 520px;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border: 1px solid var(--ink-15);
+    margin: 0 0 clamp(1.1rem, 3.4vw, 2.6rem);
+    background: #e7e4da;
+  }
+
+  /* ---------- Floating cursor-follow image ---------- */
+  .float-img {
+    position: fixed;
+    top: 0; left: 0;
+    width: clamp(260px, 26vw, 420px);
+    aspect-ratio: 16 / 11;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.92);
+    transition: opacity 0.35s var(--ease), transform 0.5s var(--ease);
+    will-change: transform, opacity;
+    border: 1px solid var(--ink);
+    overflow: hidden;
+    background: #e7e4da;
+  }
+  .float-img.is-visible {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  .float-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ---------- About ---------- */
+  .about {
+    padding-top: clamp(5rem, 12vh, 9rem);
+    padding-bottom: clamp(3rem, 8vh, 6rem);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+  .about-inner { max-width: 22ch; }
+  .about-portrait {
+    width: clamp(140px, 18vw, 230px);
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border: 1px solid var(--ink-15);
+    filter: grayscale(1);
+    transition: filter 0.6s var(--ease);
+    margin-bottom: 1.5rem;
+  }
+  .about-portrait:hover { filter: grayscale(0); }
+
+  .about-headline {
+    font-family: var(--serif);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    font-size: clamp(1.9rem, 5.2vw, 4.2rem);
+    max-width: 18ch;
+  }
+  .about-headline .it { font-style: italic; color: var(--accent-ink); }
+
+  .about-body {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+    gap: clamp(1.25rem, 3vw, 2.5rem);
+    margin-top: clamp(2rem, 5vh, 3.5rem);
+  }
+  .about-body p {
+    font-size: clamp(0.98rem, 1.5vw, 1.18rem);
+    line-height: 1.5;
+  }
+  .about-body p:first-child {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1.15rem, 2vw, 1.5rem);
+    grid-column: 1 / -1;
+    max-width: 24ch;
+  }
+  .about-body .status {
+    color: var(--accent-ink);
+    font-weight: 500;
+  }
+
+  /* ---------- Contact / footer ---------- */
+  .contact {
+    padding-top: clamp(5rem, 14vh, 11rem);
+    padding-bottom: clamp(2.5rem, 6vh, 4rem);
+    border-top: 1px solid var(--ink);
+    margin-top: clamp(3rem, 8vh, 6rem);
+  }
+  .contact-huge {
+    font-family: var(--serif);
+    font-weight: 400;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    font-size: clamp(3rem, 15vw, 14rem);
+  }
+  .contact-huge .it { font-style: italic; color: var(--accent-ink); }
+  .contact-sub {
+    margin-top: clamp(1.25rem, 3vw, 2rem);
+    font-size: clamp(1rem, 1.6vw, 1.25rem);
+    max-width: 40ch;
+    line-height: 1.4;
+  }
+  .contact-links {
+    margin-top: clamp(2.5rem, 6vh, 4.5rem);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem 1.25rem;
+  }
+  .contact-links a {
+    font-family: var(--sans);
+    font-weight: 500;
+    text-decoration: none;
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    border: 1px solid var(--ink);
+    border-radius: 100px;
+    padding: 0.6rem 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.3s var(--ease), color 0.3s var(--ease), transform 0.3s var(--ease);
+  }
+  .contact-links a:hover,
+  .contact-links a:focus-visible {
+    background: var(--ink);
+    color: var(--paper);
+    transform: translateY(-2px);
+  }
+  .contact-links a.primary { background: var(--accent); border-color: var(--accent); color: var(--ink); }
+  .contact-links a.primary:hover,
+  .contact-links a.primary:focus-visible { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+  .contact-links a .arr { font-family: var(--mono); font-size: 0.8em; }
+
+  .colophon {
+    margin-top: clamp(3rem, 8vh, 5rem);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-70);
+  }
+
+  /* ---------- Scroll reveal ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+  }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 860px) {
+    .work-link {
+      grid-template-columns: auto 1fr;
+      row-gap: 0.75rem;
+    }
+    .work-meta {
+      grid-column: 1 / -1;
+      text-align: left;
+      justify-self: start;
+      max-width: 48ch;
+      padding-top: 0;
+      opacity: 1 !important;
+    }
+    .work-tags { justify-content: flex-start; }
+    .hero-foot { flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (max-width: 860px), (hover: none), (pointer: coarse) {
+    .work-inline-img { display: block; }
+    .float-img { display: none !important; }
+    .work-meta { opacity: 1 !important; }
+  }
+
+  @media (max-width: 480px) {
+    .topnav { gap: 1rem; }
+    .brand span.full { display: none; }
+    .work-index { padding-top: 0.3em; }
+  }
+
+  /* ---------- Reduced motion ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+    .float-img { display: none !important; }
+    .work-inline-img { display: block; }
+    .work-meta { opacity: 1 !important; }
+    .scroll-cue .dot { animation: none !important; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#work">Skip to work</a>
+
+<header class="topbar">
+  <a class="brand" href="#top"><b>Tal Yanay</b> <span class="full">/ Product Designer</span></a>
+  <nav class="topnav" aria-label="Primary">
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero wrap" aria-labelledby="hero-heading">
+    <h1 class="hero-statement" id="hero-heading">
+      <span class="line sans">I'm Tal,</span>
+      <span class="line serif">a product designer</span>
+      <span class="line sans">who <span class="builds"><span class="builds-kinetic">builds.</span></span></span>
+    </h1>
+    <p class="hero-lead">
+      I design complex product flows and build them into <span class="em">working products</span>, with AI part of how I work.
+    </p>
+    <div class="hero-foot">
+      <p class="hero-sub">
+        Over 4+ years I've worked on products with complex workflows, many stakeholders, and endless edge cases. Now I can take an idea all the way to what ships, and making it real was always the fun part.
+      </p>
+      <a class="scroll-cue" href="#work"><span class="dot" aria-hidden="true"></span> Scroll to the work</a>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track" id="marquee">
+      <span>Product Design</span><span>Design Systems</span><span>UX Research</span><span>Data Visualization</span><span>Design Engineering</span><span>Prototyping</span>
+    </div>
+  </div>
+
+  <!-- WORK -->
+  <section class="work wrap" id="work" aria-labelledby="work-label">
+    <div class="section-label">
+      <span id="work-label">Selected work</span>
+      <span class="accent">(04)</span>
+    </div>
+
+    <ul class="work-list">
+      <!-- 01 -->
+      <li class="work-item reveal">
+        <a class="work-link" href="../design-system-case-study.html"
+           data-img="../assets/Design system - thumbnail.png"
+           aria-label="One Source of Truth: Rebuilding Agora's Design System. Design systems case study.">
+          <span class="work-index" aria-hidden="true">01</span>
+          <span class="work-title">One Source of <span class="it">Truth</span></span>
+          <span class="work-meta">
+            <span class="work-desc">Leading the rebuild of an outdated Figma kit into a living design system shared by design and development.</span>
+            <span class="work-tags"><span>Design Systems</span><span>Design Ops</span><span>Tokens</span></span>
+          </span>
+        </a>
+        <img class="work-inline-img" src="../assets/Design system - thumbnail.png" alt="Cover for the Agora design system rebuild case study." loading="lazy" />
+      </li>
+
+      <!-- 02 -->
+      <li class="work-item reveal">
+        <a class="work-link" href="https://www.figma.com/proto/7P5aqn9a7O2yC875AsKbrv/%F0%9F%8E%A8-Portfolio-design?page-id=308%3A1651&node-id=1701-15362&viewport=5214%2C75%2C0.19&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1701%3A15362"
+           target="_blank" rel="noopener noreferrer"
+           data-img="../assets/ImportExperience- thumbnail.png"
+           aria-label="Import Experience. Opens Figma prototype in a new tab.">
+          <span class="work-index" aria-hidden="true">02</span>
+          <span class="work-title">Import <span class="it">Experience</span><span class="ext-mark" aria-hidden="true">↗</span></span>
+          <span class="work-meta">
+            <span class="work-desc">Helping teams import complex data with more control, confidence, and fewer mistakes.</span>
+            <span class="work-tags"><span>UI/UX</span><span>UX Research</span><span>User Testing</span></span>
+          </span>
+        </a>
+        <img class="work-inline-img" src="../assets/ImportExperience- thumbnail.png" alt="Cover for the Import Experience project." loading="lazy" />
+      </li>
+
+      <!-- 03 -->
+      <li class="work-item reveal">
+        <a class="work-link" href="https://www.figma.com/proto/7P5aqn9a7O2yC875AsKbrv/%F0%9F%8E%A8-Portfolio-design?page-id=308%3A1651&node-id=1947-53513&viewport=12939%2C-9706%2C0.3&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=607%3A16155"
+           target="_blank" rel="noopener noreferrer"
+           data-img="../assets/Custom metrics - thumbnail.png"
+           aria-label="Custom Metrics: a KPI system you can trust. Opens Figma prototype in a new tab.">
+          <span class="work-index" aria-hidden="true">03</span>
+          <span class="work-title">Custom <span class="it">Metrics</span><span class="ext-mark" aria-hidden="true">↗</span></span>
+          <span class="work-meta">
+            <span class="work-desc">Turning inconsistent, per-property KPIs into consistent portfolio numbers, without falling back to Excel.</span>
+            <span class="work-tags"><span>Product Design</span><span>Financial Data</span><span>UX Flows</span></span>
+          </span>
+        </a>
+        <img class="work-inline-img" src="../assets/Custom metrics - thumbnail.png" alt="Cover for the Custom Metrics KPI system project." loading="lazy" />
+      </li>
+
+      <!-- 04 -->
+      <li class="work-item reveal">
+        <a class="work-link" href="https://www.figma.com/proto/7P5aqn9a7O2yC875AsKbrv/%F0%9F%8E%A8-Portfolio-design?page-id=308%3A1651&node-id=607-16155&viewport=19441%2C-4615%2C0.44&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=607%3A16155"
+           target="_blank" rel="noopener noreferrer"
+           data-img="../assets/Investor portal - Thumbnail.png"
+           aria-label="Investor Portal: a modular data experience. Opens Figma prototype in a new tab.">
+          <span class="work-index" aria-hidden="true">04</span>
+          <span class="work-title">Investor <span class="it">Portal</span><span class="ext-mark" aria-hidden="true">↗</span></span>
+          <span class="work-meta">
+            <span class="work-desc">Turning complex investment data into a modular dashboard that adapts to how each investor works.</span>
+            <span class="work-tags"><span>UX Research</span><span>Data Visualization</span><span>Modular Design</span></span>
+          </span>
+        </a>
+        <img class="work-inline-img" src="../assets/Investor portal - Thumbnail.png" alt="Cover for the Investor Portal modular data experience project." loading="lazy" />
+      </li>
+    </ul>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about wrap" id="about" aria-labelledby="about-label">
+    <div class="section-label" style="grid-column:1/-1;padding-top:0;">
+      <span id="about-label">About</span>
+      <span class="accent">(Tal)</span>
+    </div>
+    <div class="about-inner">
+      <img class="about-portrait reveal" src="../assets/portrait.jpg" alt="Portrait of Tal Yanay." loading="lazy" />
+      <h2 class="about-headline reveal">
+        I enjoy the <span class="it">messy middle</span> of building software.
+      </h2>
+    </div>
+    <div class="about-body reveal">
+      <p>Hi, I'm Tal. I'm a product designer who genuinely enjoys the messy middle of building software.</p>
+      <p>I care about the details, ask a lot of questions, and like working closely with PMs and engineers. These days I take an idea from a messy whiteboard all the way to something that actually runs, with AI as a real part of how I work. Over the past 4+ years I've designed SaaS products with complex workflows, multiple stakeholders, and plenty of edge cases.</p>
+      <p>I'm endlessly curious and always picking up a new tool or skill. Away from the screen, I love trying things that are new and a little exciting. That itch got me surfing for a while. Right now it's tennis, and I'm completely hooked.</p>
+      <p class="status">I'm currently looking for my next opportunity to help teams ship better products.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- CONTACT / FOOTER -->
+<footer class="contact wrap" id="contact" aria-labelledby="contact-heading">
+  <h2 class="contact-huge reveal" id="contact-heading">
+    Let's build <span class="it">something.</span>
+  </h2>
+  <p class="contact-sub reveal">Currently looking for my next opportunity to help teams ship better products.</p>
+  <div class="contact-links reveal">
+    <a class="primary" href="mailto:talyanay10@gmail.com">Email <span class="arr">↗</span></a>
+    <a href="https://www.linkedin.com/in/tal-yanay/" target="_blank" rel="noopener noreferrer">LinkedIn <span class="arr">↗</span></a>
+    <a href="#">Resume <span class="arr">↗</span></a>
+  </div>
+  <div class="colophon">
+    <span>© 2025 Tal Yanay</span>
+    <span>Built with care, and a little AI</span>
+  </div>
+</footer>
+
+<!-- cursor-follow reveal image -->
+<div class="float-img" id="floatImg" aria-hidden="true"><img id="floatImgSrc" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" /></div>
+
+<script>
+(function () {
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  /* ---------- Duplicate marquee content for seamless loop ---------- */
+  var mq = document.getElementById("marquee");
+  if (mq && !reduceMotion) {
+    mq.innerHTML = mq.innerHTML + mq.innerHTML;
+  }
+
+  /* ---------- Scroll reveal ---------- */
+  var reveals = document.querySelectorAll(".reveal");
+  if (reduceMotion || !("IntersectionObserver" in window)) {
+    reveals.forEach(function (el) { el.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+    reveals.forEach(function (el) { io.observe(el); });
+  }
+
+  /* ---------- Cursor-follow image reveal (desktop fine pointer only) ---------- */
+  if (finePointer && !reduceMotion) {
+    var floatBox = document.getElementById("floatImg");
+    var floatSrc = document.getElementById("floatImgSrc");
+    var links = document.querySelectorAll(".work-link");
+    var targetX = 0, targetY = 0, curX = 0, curY = 0;
+    var active = false, rafId = null;
+
+    function loop() {
+      curX += (targetX - curX) * 0.14;
+      curY += (targetY - curY) * 0.14;
+      floatBox.style.left = curX + "px";
+      floatBox.style.top = curY + "px";
+      rafId = requestAnimationFrame(loop);
+    }
+
+    function show(src) {
+      if (floatSrc.getAttribute("src") !== src) {
+        floatSrc.setAttribute("src", src);
+      }
+      floatBox.classList.add("is-visible");
+      active = true;
+      if (!rafId) { curX = targetX; curY = targetY; loop(); }
+    }
+    function hide() {
+      floatBox.classList.remove("is-visible");
+      active = false;
+    }
+
+    document.addEventListener("mousemove", function (e) {
+      targetX = e.clientX;
+      targetY = e.clientY;
+    }, { passive: true });
+
+    links.forEach(function (link) {
+      var src = link.getAttribute("data-img");
+      if (!src) return;
+      link.addEventListener("mouseenter", function () { show(src); });
+      link.addEventListener("mouseleave", function () { hide(); });
+      // keyboard focus reveal: anchor centrally since no cursor
+      link.addEventListener("focus", function () {
+        var r = link.getBoundingClientRect();
+        targetX = curX = r.right - Math.min(220, r.width * 0.35);
+        targetY = curY = r.top + r.height / 2;
+        show(src);
+      });
+      link.addEventListener("blur", function () { hide(); });
+    });
+
+    // stop raf when nothing active & idle (lightweight)
+    window.addEventListener("scroll", function () {
+      if (active) hide();
+    }, { passive: true });
+  }
+})();
+</script>
+</body>
+</html>

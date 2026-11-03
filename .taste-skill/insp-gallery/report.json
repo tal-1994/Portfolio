@@ -1,0 +1,2010 @@
+{
+ "url": "explorations/refined-1-gallery.html",
+ "at": "2026-11-01T19:12:01.465Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 6,
+   "filled": [
+    0.23,
+    0.37,
+    0.31,
+    0.67,
+    0.64,
+    0.34
+   ],
+   "motion": {
+    "elements": 35,
+    "css": 0,
+    "transitions": 35,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 5048,
+     "screens": 5.6,
+     "words": 407,
+     "img": 5,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 3,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 5,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "Design%20system%20-%20thumbnail.png",
+      "ImportExperience-%20thumbnail.png",
+      "Custom%20metrics%20-%20thumbnail.png",
+      "Investor%20portal%20-%20Thumbnail.png",
+      "portrait.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "A product designer who builds.",
+     "words": 5,
+     "chars": 30,
+     "lines": 2,
+     "size": 105.1,
+     "vw": 7.3,
+     "font": "Bricolage Grotesque",
+     "weight": 600,
+     "tracking": -0.03,
+     "leading": 0.94,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.79,
+     "top": 222,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "A product designer who builds.",
+     "words": 5,
+     "lines": 2,
+     "size": 105.1,
+     "font": "Bricolage Grotesque"
+    },
+    "headings": [
+     {
+      "text": "A product designer who builds.",
+      "words": 5,
+      "chars": 30,
+      "lines": 2,
+      "size": 105.1,
+      "vw": 7.3,
+      "font": "Bricolage Grotesque",
+      "weight": 600,
+      "tracking": -0.03,
+      "leading": 0.94,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.79,
+      "top": 222,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Selected work",
+      "words": 2,
+      "chars": 13,
+      "lines": 1,
+      "size": 36.8,
+      "vw": 2.6,
+      "font": "Bricolage Grotesque",
+      "weight": 600,
+      "tracking": -0.02,
+      "leading": 1.6,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.16,
+      "top": 837,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Rebuilding Agora's Design System",
+      "words": 4,
+      "chars": 32,
+      "lines": 2,
+      "size": 46.4,
+      "vw": 3.2,
+      "font": "Bricolage Grotesque",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.03,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.33,
+      "top": 1012,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Import Experience",
+      "words": 2,
+      "chars": 17,
+      "lines": 1,
+      "size": 46.4,
+      "vw": 3.2,
+      "font": "Bricolage Grotesque",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.03,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.41,
+      "top": 1557,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Custom Metrics",
+      "words": 2,
+      "chars": 14,
+      "lines": 1,
+      "size": 46.4,
+      "vw": 3.2,
+      "font": "Bricolage Grotesque",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.03,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.33,
+      "top": 2048,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Investor Portal",
+      "words": 2,
+      "chars": 15,
+      "lines": 1,
+      "size": 46.4,
+      "vw": 3.2,
+      "font": "Bricolage Grotesque",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.03,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.41,
+      "top": 2564,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "I enjoy the messy middle of building software.",
+      "words": 8,
+      "chars": 46,
+      "lines": 2,
+      "size": 48,
+      "vw": 3.3,
+      "font": "Bricolage Grotesque",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.08,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.42,
+      "top": 3197,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Let's build something.",
+      "words": 3,
+      "chars": 22,
+      "lines": 2,
+      "size": 176,
+      "vw": 12.2,
+      "font": "Bricolage Grotesque",
+      "weight": 600,
+      "tracking": -0.035,
+      "leading": 0.9,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.79,
+      "top": 4168,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Tal Yanay",
+      "words": 2,
+      "chars": 9,
+      "lines": 1,
+      "size": 112,
+      "vw": 7.8,
+      "font": "Bricolage Grotesque",
+      "weight": 600,
+      "tracking": -0.03,
+      "leading": 0.9,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.79,
+      "top": 4813,
+      "tag": "div",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 9,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": 2,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Inter",
+       "share": 0.91,
+       "mono": false
+      },
+      {
+       "family": "Bricolage Grotesque",
+       "share": 0.09,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      15,
+      16,
+      17,
+      19,
+      21,
+      23,
+      24,
+      37,
+      46,
+      48,
+      105,
+      112,
+      176
+     ],
+     "sizeCount": 14,
+     "notLoaded": [],
+     "body": {
+      "font": "Inter",
+      "size": 19.2,
+      "leading": 1.5,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 9.3
+     },
+     "measureChars": 67,
+     "max": {
+      "size": 176,
+      "vw": 12.2,
+      "font": "Bricolage Grotesque",
+      "text": "Let's build something."
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#0d0d0f",
+     "bodyBgHsl": {
+      "h": 240,
+      "s": 0.07,
+      "l": 0.05
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#151518",
+       "top": 3057,
+       "hsl": {
+        "h": 240,
+        "s": 0.07,
+        "l": 0.09
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#b6b3aa",
+       "share": 0.49
+      },
+      {
+       "color": "#f2f1ec",
+       "share": 0.38
+      },
+      {
+       "color": "#86847c",
+       "share": 0.11
+      },
+      {
+       "color": "#0d0d0f",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#f2f1ec",
+      "hsl": {
+       "h": 50,
+       "s": 0.19,
+       "l": 0.94
+      },
+      "fg": "#0d0d0f"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 4,
+     "inHero": 1,
+     "radius": "pill",
+     "height": 54,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Skip to selected work"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 5,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 4,
+     "fixed": true,
+     "height": 72,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "bricolage grotesque",
+     "inter"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 5048,
+    "margins": {
+     "left": 148,
+     "right": 148
+    },
+    "sections": [
+     {
+      "sel": "section.hero.shell",
+      "tag": "section",
+      "top": 72,
+      "height": 679,
+      "words": 42,
+      "media": 0,
+      "middle": 130,
+      "heading": {
+       "text": "A product designer",
+       "size": 105,
+       "tag": "h1"
+      },
+      "left": 152,
+      "right": 152,
+      "textLeft": 152,
+      "textRight": 152,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "a.exhibit",
+      "tag": "a",
+      "top": 926,
+      "height": 541,
+      "words": 50,
+      "media": 1,
+      "middle": 68,
+      "heading": {
+       "text": "Rebuilding Agora's Design System",
+       "size": 46,
+       "tag": "h3"
+      },
+      "left": 148,
+      "right": 192,
+      "textLeft": 809,
+      "textRight": 192,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "a.exhibit.flip",
+      "tag": "a",
+      "top": 1467,
+      "height": 472,
+      "words": 24,
+      "media": 1,
+      "middle": 163,
+      "heading": {
+       "text": "Import Experience",
+       "size": 46,
+       "tag": "h3"
+      },
+      "left": 152,
+      "right": 148,
+      "textLeft": 152,
+      "textRight": 797,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "a.exhibit",
+      "tag": "a",
+      "top": 1939,
+      "height": 539,
+      "words": 44,
+      "media": 1,
+      "middle": 68,
+      "heading": {
+       "text": "Custom Metrics",
+       "size": 46,
+       "tag": "h3"
+      },
+      "left": 148,
+      "right": 159,
+      "textLeft": 809,
+      "textRight": 159,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "a.exhibit.flip",
+      "tag": "a",
+      "top": 2477,
+      "height": 493,
+      "words": 43,
+      "media": 1,
+      "middle": 165,
+      "heading": {
+       "text": "Investor Portal",
+       "size": 46,
+       "tag": "h3"
+      },
+      "left": 152,
+      "right": 148,
+      "textLeft": 152,
+      "textRight": 800,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.about-wrap",
+      "tag": "div",
+      "top": 3057,
+      "height": 941,
+      "words": 142,
+      "media": 1,
+      "middle": 86,
+      "heading": {
+       "text": "I enjoy the messy middle of building software.",
+       "size": 48,
+       "tag": "h2"
+      },
+      "left": 152,
+      "right": 152,
+      "textLeft": 658,
+      "textRight": 152,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": true
+     },
+     {
+      "sel": "footer#contact.contact.shell",
+      "tag": "footer",
+      "top": 3998,
+      "height": 1051,
+      "words": 33,
+      "media": 0,
+      "middle": 135,
+      "heading": {
+       "text": "Let's build something.",
+       "size": 176,
+       "tag": "h2"
+      },
+      "left": 152,
+      "right": 152,
+      "textLeft": 152,
+      "textRight": 152,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "A product designer who builds.",
+      "size": 105,
+      "top": 222,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 152,
+      "n": 7
+     },
+     {
+      "x": 658,
+      "n": 5
+     },
+     {
+      "x": 809,
+      "n": 4
+     },
+     {
+      "x": 829,
+      "n": 2
+     },
+     {
+      "x": 172,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 19,
+    "bodySize": 19,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0.27,
+    "voidBox": {
+     "x": 0,
+     "y": 660,
+     "w": 1440,
+     "h": 240
+    }
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 6,
+   "filled": [
+    0.53,
+    0.51,
+    0.54,
+    0.61,
+    0.76,
+    0.52
+   ],
+   "motion": {
+    "elements": 36,
+    "css": 0,
+    "transitions": 36,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 5416,
+     "screens": 5.3,
+     "words": 407,
+     "img": 5,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 3,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 5,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "Design%20system%20-%20thumbnail.png",
+      "ImportExperience-%20thumbnail.png",
+      "Custom%20metrics%20-%20thumbnail.png",
+      "Investor%20portal%20-%20Thumbnail.png",
+      "portrait.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "A product designer who builds.",
+     "words": 5,
+     "chars": 30,
+     "lines": 2,
+     "size": 56.1,
+     "vw": 7.3,
+     "font": "Bricolage Grotesque",
+     "weight": 600,
+     "tracking": -0.03,
+     "leading": 0.94,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.9,
+     "top": 144,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "A product designer who builds.",
+     "words": 5,
+     "lines": 2,
+     "size": 56.1,
+     "font": "Bricolage Grotesque"
+    },
+    "headings": [
+     {
+      "text": "A product designer who builds.",
+      "words": 5,
+      "chars": 30,
+      "lines": 2,
+      "size": 56.1,
+      "vw": 7.3,
+      "font": "Bricolage Grotesque",
+      "weight": 600,
+      "tracking": -0.03,
+      "leading": 0.94,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 144,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Rebuilding Agora's Design System",
+      "words": 4,
+      "chars": 32,
+      "lines": 1,
+      "size": 27.2,
+      "vw": 3.5,
+      "font": "Bricolage Grotesque",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.03,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 1098,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Import Experience",
+      "words": 2,
+      "chars": 17,
+      "lines": 1,
+      "size": 27.2,
+      "vw": 3.5,
+      "font": "Bricolage Grotesque",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.03,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 1935,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Custom Metrics",
+      "words": 2,
+      "chars": 14,
+      "lines": 1,
+      "size": 27.2,
+      "vw": 3.5,
+      "font": "Bricolage Grotesque",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.03,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 2748,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Investor Portal",
+      "words": 2,
+      "chars": 15,
+      "lines": 1,
+      "size": 27.2,
+      "vw": 3.5,
+      "font": "Bricolage Grotesque",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.03,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 3585,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "I enjoy the messy middle of building software.",
+      "words": 8,
+      "chars": 46,
+      "lines": 2,
+      "size": 28.8,
+      "vw": 3.8,
+      "font": "Bricolage Grotesque",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.08,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.49,
+      "top": 4043,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Let's build something.",
+      "words": 3,
+      "chars": 22,
+      "lines": 2,
+      "size": 99.8,
+      "vw": 13,
+      "font": "Bricolage Grotesque",
+      "weight": 600,
+      "tracking": -0.035,
+      "leading": 0.9,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 4851,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Tal Yanay",
+      "words": 2,
+      "chars": 9,
+      "lines": 1,
+      "size": 69.1,
+      "vw": 9,
+      "font": "Bricolage Grotesque",
+      "weight": 600,
+      "tracking": -0.03,
+      "leading": 0.9,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 5267,
+      "tag": "div",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 8,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": 2,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Inter",
+       "share": 0.91,
+       "mono": false
+      },
+      {
+       "family": "Bricolage Grotesque",
+       "share": 0.09,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      24,
+      27,
+      29,
+      56,
+      69,
+      100
+     ],
+     "sizeCount": 12,
+     "notLoaded": [],
+     "body": {
+      "font": "Inter",
+      "size": 16.6,
+      "leading": 1.5,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 9.3
+     },
+     "measureChars": 47,
+     "max": {
+      "size": 99.8,
+      "vw": 13,
+      "font": "Bricolage Grotesque",
+      "text": "Let's build something."
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#0d0d0f",
+     "bodyBgHsl": {
+      "h": 240,
+      "s": 0.07,
+      "l": 0.05
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#151518",
+       "top": 642,
+       "hsl": {
+        "h": 240,
+        "s": 0.07,
+        "l": 0.09
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#b6b3aa",
+       "share": 0.49
+      },
+      {
+       "color": "#f2f1ec",
+       "share": 0.38
+      },
+      {
+       "color": "#86847c",
+       "share": 0.11
+      },
+      {
+       "color": "#0d0d0f",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#f2f1ec",
+      "hsl": {
+       "h": 50,
+       "s": 0.19,
+       "l": 0.94
+      },
+      "fg": "#0d0d0f"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 4,
+     "inHero": 1,
+     "radius": "pill",
+     "height": 54,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Skip to selected work"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 5,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.34
+     }
+    ],
+    "nav": {
+     "links": 4,
+     "fixed": true,
+     "height": 60,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "bricolage grotesque",
+     "inter"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 5416,
+    "margins": {
+     "left": 33,
+     "right": 33
+    },
+    "sections": [
+     {
+      "sel": "section.hero.shell",
+      "tag": "section",
+      "top": 60,
+      "height": 429,
+      "words": 42,
+      "media": 0,
+      "middle": 40,
+      "heading": {
+       "text": "A product designer",
+       "size": 56,
+       "tag": "h1"
+      },
+      "left": 38,
+      "right": 38,
+      "textLeft": 38,
+      "textRight": 38,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "a.exhibit",
+      "tag": "a",
+      "top": 596,
+      "height": 837,
+      "words": 50,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Rebuilding Agora's Design System",
+       "size": 27,
+       "tag": "h3"
+      },
+      "left": 33,
+      "right": 33,
+      "textLeft": 38,
+      "textRight": 290,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "a.exhibit.flip",
+      "tag": "a",
+      "top": 1433,
+      "height": 812,
+      "words": 39,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Import Experience",
+       "size": 27,
+       "tag": "h3"
+      },
+      "left": 33,
+      "right": 33,
+      "textLeft": 38,
+      "textRight": 304,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "a.exhibit",
+      "tag": "a",
+      "top": 2245,
+      "height": 837,
+      "words": 41,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Custom Metrics",
+       "size": 27,
+       "tag": "h3"
+      },
+      "left": 33,
+      "right": 33,
+      "textLeft": 38,
+      "textRight": 291,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "a.exhibit.flip",
+      "tag": "a",
+      "top": 3083,
+      "height": 837,
+      "words": 43,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Investor Portal",
+       "size": 27,
+       "tag": "h3"
+      },
+      "left": 33,
+      "right": 33,
+      "textLeft": 38,
+      "textRight": 298,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.about-wrap",
+      "tag": "div",
+      "top": 3966,
+      "height": 793,
+      "words": 142,
+      "media": 1,
+      "middle": 46,
+      "heading": {
+       "text": "I enjoy the messy middle of building software.",
+       "size": 29,
+       "tag": "h2"
+      },
+      "left": 38,
+      "right": 39,
+      "textLeft": 343,
+      "textRight": 39,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer#contact.contact.shell",
+      "tag": "footer",
+      "top": 4759,
+      "height": 657,
+      "words": 33,
+      "media": 0,
+      "middle": 19,
+      "heading": {
+       "text": "Let's build something.",
+       "size": 100,
+       "tag": "h2"
+      },
+      "left": 38,
+      "right": 38,
+      "textLeft": 38,
+      "textRight": 38,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "A product designer who builds.",
+      "size": 56,
+      "top": 144,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 38,
+      "n": 12
+     },
+     {
+      "x": 343,
+      "n": 5
+     },
+     {
+      "x": 58,
+      "n": 4
+     }
+    ],
+    "leftBlocks": 21,
+    "bodySize": 17,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 7,
+   "filled": [
+    0.42,
+    0.39,
+    0.52,
+    0.56,
+    0.96,
+    0.59,
+    0.5
+   ],
+   "motion": {
+    "elements": 37,
+    "css": 0,
+    "transitions": 37,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 5119,
+     "screens": 6.1,
+     "words": 403,
+     "img": 5,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 3,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 5,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "Design%20system%20-%20thumbnail.png",
+      "ImportExperience-%20thumbnail.png",
+      "Custom%20metrics%20-%20thumbnail.png",
+      "Investor%20portal%20-%20Thumbnail.png",
+      "portrait.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "A product designer who builds.",
+     "words": 5,
+     "chars": 30,
+     "lines": 2,
+     "size": 29.6,
+     "vw": 7.6,
+     "font": "Bricolage Grotesque",
+     "weight": 600,
+     "tracking": -0.03,
+     "leading": 0.94,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.89,
+     "top": 116,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "A product designer who builds.",
+     "words": 5,
+     "lines": 2,
+     "size": 29.6,
+     "font": "Bricolage Grotesque"
+    },
+    "headings": [
+     {
+      "text": "A product designer who builds.",
+      "words": 5,
+      "chars": 30,
+      "lines": 2,
+      "size": 29.6,
+      "vw": 7.6,
+      "font": "Bricolage Grotesque",
+      "weight": 600,
+      "tracking": -0.03,
+      "leading": 0.94,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.89,
+      "top": 116,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Selected work",
+      "words": 2,
+      "chars": 13,
+      "lines": 1,
+      "size": 24,
+      "vw": 6.2,
+      "font": "Bricolage Grotesque",
+      "weight": 600,
+      "tracking": -0.02,
+      "leading": 1.6,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.4,
+      "top": 581,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Rebuilding Agora's Design System",
+      "words": 4,
+      "chars": 32,
+      "lines": 2,
+      "size": 27.2,
+      "vw": 7,
+      "font": "Bricolage Grotesque",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.03,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.89,
+      "top": 929,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Import Experience",
+      "words": 2,
+      "chars": 17,
+      "lines": 1,
+      "size": 27.2,
+      "vw": 7,
+      "font": "Bricolage Grotesque",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.03,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.89,
+      "top": 1567,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Custom Metrics",
+      "words": 2,
+      "chars": 14,
+      "lines": 1,
+      "size": 27.2,
+      "vw": 7,
+      "font": "Bricolage Grotesque",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.03,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.89,
+      "top": 2200,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Investor Portal",
+      "words": 2,
+      "chars": 15,
+      "lines": 1,
+      "size": 27.2,
+      "vw": 7,
+      "font": "Bricolage Grotesque",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.03,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.89,
+      "top": 2834,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "I enjoy the messy middle of building software.",
+      "words": 8,
+      "chars": 46,
+      "lines": 2,
+      "size": 28.8,
+      "vw": 7.4,
+      "font": "Bricolage Grotesque",
+      "weight": 600,
+      "tracking": -0.025,
+      "leading": 1.08,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.89,
+      "top": 3722,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Let's build something.",
+      "words": 3,
+      "chars": 22,
+      "lines": 2,
+      "size": 50.7,
+      "vw": 13,
+      "font": "Bricolage Grotesque",
+      "weight": 600,
+      "tracking": -0.035,
+      "leading": 0.9,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.89,
+      "top": 4581,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Tal Yanay",
+      "words": 2,
+      "chars": 9,
+      "lines": 1,
+      "size": 41.6,
+      "vw": 10.7,
+      "font": "Bricolage Grotesque",
+      "weight": 600,
+      "tracking": -0.03,
+      "leading": 0.9,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.89,
+      "top": 4957,
+      "tag": "div",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 9,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": 2,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Inter",
+       "share": 0.91,
+       "mono": false
+      },
+      {
+       "family": "Bricolage Grotesque",
+       "share": 0.09,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      24,
+      27,
+      29,
+      30,
+      42,
+      51
+     ],
+     "sizeCount": 12,
+     "notLoaded": [],
+     "body": {
+      "font": "Inter",
+      "size": 16.6,
+      "leading": 1.5,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 9.3
+     },
+     "measureChars": 42,
+     "max": {
+      "size": 50.7,
+      "vw": 13,
+      "font": "Bricolage Grotesque",
+      "text": "Let's build something."
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#0d0d0f",
+     "bodyBgHsl": {
+      "h": 240,
+      "s": 0.07,
+      "l": 0.05
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#151518",
+       "top": 3253,
+       "hsl": {
+        "h": 240,
+        "s": 0.07,
+        "l": 0.09
+       }
+      },
+      {
+       "color": "#d9c7e6",
+       "top": 3319,
+       "hsl": {
+        "h": 275,
+        "s": 0.38,
+        "l": 0.84
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#b6b3aa",
+       "share": 0.49
+      },
+      {
+       "color": "#f2f1ec",
+       "share": 0.38
+      },
+      {
+       "color": "#86847c",
+       "share": 0.11
+      },
+      {
+       "color": "#0d0d0f",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#f2f1ec",
+      "hsl": {
+       "h": 50,
+       "s": 0.19,
+       "l": 0.94
+      },
+      "fg": "#0d0d0f"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 4,
+     "inHero": 1,
+     "radius": "pill",
+     "height": 54,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Skip to selected work"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 5,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.17
+     }
+    ],
+    "nav": {
+     "links": 2,
+     "fixed": true,
+     "height": 60,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "bricolage grotesque",
+     "inter"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 5119,
+    "margins": {
+     "left": 19,
+     "right": 19
+    },
+    "sections": [
+     {
+      "sel": "section.hero.shell",
+      "tag": "section",
+      "top": 60,
+      "height": 491,
+      "words": 42,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "A product designer",
+       "size": 30,
+       "tag": "h1"
+      },
+      "left": 22,
+      "right": 28,
+      "textLeft": 22,
+      "textRight": 28,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "a.exhibit",
+      "tag": "a",
+      "top": 649,
+      "height": 637,
+      "words": 50,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Rebuilding Agora's Design System",
+       "size": 27,
+       "tag": "h3"
+      },
+      "left": 19,
+      "right": 19,
+      "textLeft": 22,
+      "textRight": 26,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "a.exhibit.flip",
+      "tag": "a",
+      "top": 1286,
+      "height": 633,
+      "words": 39,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Import Experience",
+       "size": 27,
+       "tag": "h3"
+      },
+      "left": 19,
+      "right": 19,
+      "textLeft": 22,
+      "textRight": 42,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "a.exhibit",
+      "tag": "a",
+      "top": 1920,
+      "height": 634,
+      "words": 44,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Custom Metrics",
+       "size": 27,
+       "tag": "h3"
+      },
+      "left": 19,
+      "right": 19,
+      "textLeft": 22,
+      "textRight": 23,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "a.exhibit.flip",
+      "tag": "a",
+      "top": 2554,
+      "height": 659,
+      "words": 43,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Investor Portal",
+       "size": 27,
+       "tag": "h3"
+      },
+      "left": 19,
+      "right": 19,
+      "textLeft": 22,
+      "textRight": 23,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div.about-wrap",
+      "tag": "div",
+      "top": 3253,
+      "height": 1254,
+      "words": 142,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "I enjoy the messy middle of building software.",
+       "size": 29,
+       "tag": "h2"
+      },
+      "left": 22,
+      "right": 22,
+      "textLeft": 22,
+      "textRight": 22,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer#contact.contact.shell",
+      "tag": "footer",
+      "top": 4507,
+      "height": 612,
+      "words": 33,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Let's build something.",
+       "size": 51,
+       "tag": "h2"
+      },
+      "left": 22,
+      "right": 25,
+      "textLeft": 22,
+      "textRight": 25,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "A product designer who builds.",
+      "size": 30,
+      "top": 116,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 22,
+      "n": 17
+     },
+     {
+      "x": 42,
+      "n": 4
+     }
+    ],
+    "leftBlocks": 21,
+    "bodySize": 17,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "WARN",
+   "id": "palette-cream",
+   "width": 1440,
+   "message": "Yellow-cream background (button #f2f1ec, text #f2f1ec).",
+   "fix": "Use the drawn palette. If you want warmth, take a low-chroma stone or bone, not a yellow cream.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "size-count",
+   "width": 1440,
+   "message": "14 different font sizes (14, 15, 16, 17, 19, 21, 23, 24, 37, 46, 48, 105, 112, 176).",
+   "fix": "A page needs about five: display, heading, lead, body, small.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "no-footage",
+   "width": 1440,
+   "message": "No video anywhere on the page.",
+   "fix": "Look for one honest clip with scripts/assets.mjs --video (the place, the material, the process) and use it as a muted loop with a poster frame. Defend its absence only if no clip fits the subject."
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "/Users/talyanay/Documents/Tal's personal/Portfolio - Tal Y/.taste-skill/insp-gallery/desktop-fold.jpg",
+   "pages": [
+    "/Users/talyanay/Documents/Tal's personal/Portfolio - Tal Y/.taste-skill/insp-gallery/desktop-page-01.jpg",
+    "/Users/talyanay/Documents/Tal's personal/Portfolio - Tal Y/.taste-skill/insp-gallery/desktop-page-02.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "/Users/talyanay/Documents/Tal's personal/Portfolio - Tal Y/.taste-skill/insp-gallery/tablet-fold.jpg",
+   "pages": [
+    "/Users/talyanay/Documents/Tal's personal/Portfolio - Tal Y/.taste-skill/insp-gallery/tablet-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "/Users/talyanay/Documents/Tal's personal/Portfolio - Tal Y/.taste-skill/insp-gallery/mobile-fold.jpg",
+   "pages": [
+    "/Users/talyanay/Documents/Tal's personal/Portfolio - Tal Y/.taste-skill/insp-gallery/mobile-page-01.jpg"
+   ],
+   "film": []
+  }
+ ]
+}

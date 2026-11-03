@@ -1,0 +1,71 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "italic-serif-display",
+        "value": "*",
+        "files": [
+          "explorations/**"
+        ],
+        "createdAt": "2026-11-01T18:38:21.443Z",
+        "reason": "Editorial (The Journal) and experimental (Type-Led) registers deliberately use oversized display serif"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "explorations/**"
+        ],
+        "createdAt": "2026-11-01T18:38:22.229Z",
+        "reason": "Editorial concept intentionally uses warm paper stock"
+      },
+      {
+        "rule": "marquee",
+        "value": "*",
+        "files": [
+          "explorations/**"
+        ],
+        "createdAt": "2026-11-01T18:38:22.654Z",
+        "reason": "Deliberate kinetic device in studio and type-led concepts; pausable where relevant"
+      },
+      {
+        "rule": "overused-font",
+        "value": "*",
+        "files": [
+          "explorations/**"
+        ],
+        "createdAt": "2026-11-01T18:38:23.343Z",
+        "reason": "Faces fixed by exploration brief; characterful alternatives are a refinement for the chosen direction"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "explorations/**"
+        ],
+        "createdAt": "2026-11-01T18:40:30.371Z",
+        "reason": "False positive: section-divider borders whose padded child elements inset the content (e.g. work-link padding clamp 1.1-2.6rem); text is not actually flush"
+      },
+      {
+        "rule": "tight-leading",
+        "value": "*",
+        "files": [
+          "explorations/refined-2-reading-room.html"
+        ],
+        "createdAt": "2026-11-01T19:16:41.515Z",
+        "reason": "designer decision: large display headings (hero/entry-title/contact) intentionally use 0.92-1.08 leading per display-type craft; body text is >=1.35"
+      },
+      {
+        "rule": "buried-raster",
+        "value": "*",
+        "files": [
+          "explorations/refined-3-studio.html"
+        ],
+        "createdAt": "2026-11-01T19:16:41.529Z",
+        "reason": "false positive: inactive crossfade work-viewer images are opacity:0 by design and animate to opacity:1 on scroll (and show inline on mobile/no-JS); functional component, not a buried token"
+      }
+    ]
+  }
+}

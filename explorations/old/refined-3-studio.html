@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tal Yanay, Product Designer</title>
+<meta name="description" content="Tal Yanay, a product designer who builds. Selected work in complex SaaS, design systems and data products.">
+<link rel="icon" href="../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..700&display=swap" rel="stylesheet">
+<style>
+  /* =====================================================================
+     STUDIO: the portfolio behaves like a working product.
+     A sticky work-viewer on the left reacts live as the case notes are
+     read on the right. One grotesk voice. Cool, precise, product-grade.
+     The electric-blue accent (Tal's own) marks only live state + actions.
+     Colour otherwise comes only from the real product shots.
+     ===================================================================== */
+  :root{
+    --bg:      #ffffff;
+    --bg-2:    #f3f4f6;   /* cool panel / about */
+    --ink:     #0f1012;
+    --ink-2:   #55585f;   /* secondary body, AA */
+    --ink-3:   #6c6f77;   /* small meta, AA */
+    --accent:  #2545ee;   /* electric blue, Tal's brand */
+    --media:   #eceef1;
+
+    --font: "Schibsted Grotesk", system-ui, sans-serif;
+
+    --maxw: 1280px;
+    --gutter: clamp(22px, 5vw, 76px);
+    --ease: cubic-bezier(.22,.9,.26,1);
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font);
+    font-size:17px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    overflow-x:hidden;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+
+  ::selection{ background:var(--accent); color:#fff; }
+  ::-webkit-scrollbar{ width:11px; height:11px; }
+  ::-webkit-scrollbar-track{ background:var(--bg); }
+  ::-webkit-scrollbar-thumb{ background:#d4d7dd; border:3px solid var(--bg); border-radius:99px; }
+  ::-webkit-scrollbar-thumb:hover{ background:#b9bdc6; }
+
+  :focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:3px; }
+
+  .shell{ width:100%; max-width:var(--maxw); margin:0 auto; padding-inline:var(--gutter); }
+
+  .skip{ position:absolute; left:-9999px; top:0; background:var(--ink); color:#fff; padding:.7rem 1.1rem; z-index:200; font-weight:600; border-radius:0 0 6px 0; }
+  .skip:focus{ left:0; }
+
+  /* ---------- nav ---------- */
+  .nav{ position:sticky; top:0; z-index:100; background:var(--bg); }
+  .nav-in{ display:flex; align-items:center; justify-content:space-between; gap:1rem; padding-block:clamp(14px,1.8vw,20px); }
+  .wordmark{ font-weight:700; font-size:1.05rem; letter-spacing:-.02em; }
+  .wordmark span{ color:var(--ink-3); font-weight:400; font-size:.86rem; margin-left:.55rem; letter-spacing:0; }
+  .nav-links{ display:flex; align-items:center; gap:clamp(.9rem,2.4vw,1.8rem); }
+  .nav-links a{ color:var(--ink-2); font-size:.95rem; transition:color .25s var(--ease); }
+  .nav-links a:hover{ color:var(--ink); }
+  .nav-links a.cta{ color:#fff; background:var(--ink); padding:.5rem 1rem; border-radius:99px; font-weight:500; transition:background .25s var(--ease); }
+  .nav-links a.cta:hover{ background:var(--accent); }
+  @media (max-width:560px){ .wordmark span{ display:none; } .nav-links a.hidephone{ display:none; } }
+
+  /* ---------- hero ---------- */
+  .hero{ padding-top:clamp(52px,10vw,138px); padding-bottom:clamp(44px,7vw,96px); }
+  .hero h1{
+    font-weight:800;
+    font-size:clamp(1.8rem,7vw,7.5rem);
+    line-height:.92;
+    letter-spacing:-.045em;
+    margin:0;
+  }
+  .hero-row{ display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:end; gap:clamp(24px,5vw,64px); margin-top:clamp(32px,4vw,58px); }
+  .hero-lead{ font-size:clamp(1.15rem,1.9vw,1.5rem); line-height:1.38; max-width:34ch; margin:0 0 1.7rem; letter-spacing:-.01em; }
+  .hero-act{ display:inline-flex; align-items:center; gap:.7rem; font-weight:600; font-size:1.02rem; color:var(--accent); }
+  .hero-act .bar{ width:42px; height:2px; background:var(--accent); transition:width .4s var(--ease); }
+  .hero-act:hover .bar{ width:66px; }
+  .hero-note{ text-align:right; color:var(--ink-3); font-size:.92rem; line-height:1.7; }
+  .hero-note b{ color:var(--ink-2); font-weight:500; display:block; }
+  @media (max-width:720px){ .hero-row{ grid-template-columns:1fr; align-items:start; } .hero-note{ text-align:left; } }
+
+  /* ---------- section heading ---------- */
+  .sec-head{ display:flex; align-items:baseline; justify-content:space-between; gap:1rem; flex-wrap:wrap; margin-bottom:clamp(20px,2.6vw,36px); }
+  .sec-head h2{ font-weight:800; font-size:clamp(1.5rem,3vw,2.3rem); letter-spacing:-.03em; margin:0; }
+  .sec-head .count{ color:var(--ink-3); font-size:.95rem; }
+
+  /* ---------- work : split stage ---------- */
+  .work{ padding-top:clamp(28px,4vw,52px); }
+  .split{ display:block; }
+
+  /* viewer: enabled only with JS on wide screens */
+  .viewer{ display:none; }
+  .viewer-frame{ position:relative; width:100%; aspect-ratio:16/10; background:var(--media); overflow:hidden; border-radius:10px; }
+  .viewer-frame img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transform:scale(1.03); transition:opacity .6s var(--ease), transform .9s var(--ease); }
+  .viewer-frame img.on{ opacity:1; transform:scale(1); }
+  .viewer-cap{ margin-top:1rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; color:var(--ink-3); font-size:.92rem; }
+  .viewer-prog{ display:flex; gap:6px; }
+  .viewer-prog i{ width:26px; height:3px; border-radius:99px; background:#d9dce2; transition:background .3s var(--ease); }
+  .viewer-prog i.on{ background:var(--accent); }
+
+  .stream{ display:flex; flex-direction:column; }
+  .panel{ display:block; color:inherit; padding-block:clamp(30px,4vw,48px); }
+  .panel-img{ width:100%; aspect-ratio:16/10; object-fit:cover; background:var(--media); border-radius:10px; margin-bottom:1.2rem; }
+  .panel-title{ font-weight:800; font-size:clamp(1.55rem,3vw,2.3rem); line-height:1.04; letter-spacing:-.03em; margin:0 0 .5rem; transition:color .3s var(--ease); }
+  .panel-mark{ width:0; height:3px; background:var(--accent); border-radius:99px; margin:0 0 1rem; transition:width .5s var(--ease); }
+  .panel-stand{ font-size:clamp(1.02rem,1.4vw,1.16rem); line-height:1.5; color:var(--ink); margin:0 0 1.1rem; max-width:46ch; }
+  .panel-impact{ font-size:.99rem; line-height:1.5; color:var(--ink-2); margin:0 0 1.2rem; max-width:48ch; }
+  .panel-impact b{ color:var(--ink); font-weight:600; }
+  .panel-disc{ color:var(--ink-3); font-size:.95rem; margin:0 0 1.3rem; }
+  .panel-cta{ display:inline-flex; align-items:center; gap:.5rem; font-weight:600; color:var(--accent); }
+  .panel-cta .arrow{ transition:transform .4s var(--ease); }
+  .panel:hover .panel-cta .arrow,
+  .panel:focus-visible .panel-cta .arrow{ transform:translate(5px,-5px); }
+
+  /* with JS + wide: real split stage */
+  body.js .split{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(32px,5vw,80px); align-items:start; }
+  @media (max-width:900px){ body.js .split{ display:block; } }
+
+  @media (min-width:901px){
+    body.js .viewer{ display:block; position:sticky; top:96px; align-self:start; }
+    body.js .panel-img{ display:none; }
+    body.js .panel{ min-height:66vh; display:flex; flex-direction:column; justify-content:center; }
+    body.js .panel:first-child{ padding-top:0; }
+    body.js .panel-title{ color:var(--ink-3); }
+    body.js .panel.active .panel-title{ color:var(--ink); }
+    body.js .panel.active .panel-mark{ width:48px; }
+  }
+
+  /* ---------- about ---------- */
+  .about-wrap{ background:var(--bg-2); margin-top:clamp(36px,5vw,72px); }
+  .about{ padding-block:clamp(64px,9vw,128px); display:grid; grid-template-columns:.8fr 1.2fr; gap:clamp(32px,6vw,92px); align-items:start; }
+  .about-portrait{ background:#d9c7e6; overflow:hidden; aspect-ratio:4/5; border-radius:12px; position:sticky; top:96px; }
+  .about-portrait img{ width:100%; height:100%; object-fit:cover; object-position:top center; }
+  .about h2{ font-weight:800; font-size:clamp(1.8rem,3.6vw,3rem); line-height:1.07; letter-spacing:-.03em; margin:0 0 1.5rem; max-width:20ch; }
+  .about p{ font-size:clamp(1.04rem,1.4vw,1.18rem); line-height:1.6; color:var(--ink-2); margin:0 0 1.1rem; max-width:60ch; }
+  .about p.lead{ color:var(--ink); font-size:clamp(1.2rem,1.8vw,1.44rem); line-height:1.4; font-weight:500; letter-spacing:-.01em; max-width:30ch; }
+  .about p.status{ color:var(--ink); font-weight:600; }
+  @media (max-width:760px){ .about{ grid-template-columns:1fr; gap:28px; } .about-portrait{ position:relative; top:0; max-width:300px; } }
+
+  /* ---------- contact / footer ---------- */
+  .contact{ padding-top:clamp(70px,11vw,156px); padding-bottom:clamp(40px,5vw,72px); }
+  .contact h2{ font-weight:800; font-size:clamp(3rem,13vw,11rem); line-height:.88; letter-spacing:-.05em; margin:0; }
+  .contact h2 a{ transition:color .3s var(--ease); }
+  .contact h2 a:hover{ color:var(--accent); }
+  .contact-lead{ margin:clamp(22px,3vw,36px) 0 0; font-size:clamp(1.1rem,1.5vw,1.3rem); color:var(--ink-2); max-width:42ch; line-height:1.45; }
+  .contact-links{ margin-top:clamp(32px,4vw,52px); display:flex; flex-wrap:wrap; gap:.8rem; }
+  .contact-links a{ display:inline-flex; align-items:center; gap:.5rem; padding:.85rem 1.5rem; font-weight:600; border-radius:99px; color:var(--ink); background:var(--bg-2); transition:background .3s var(--ease), color .3s var(--ease), transform .3s var(--ease); }
+  .contact-links a:hover{ transform:translateY(-2px); }
+  .contact-links a.primary{ background:var(--accent); color:#fff; }
+  .contact-links a.primary:hover{ background:#1b36cc; }
+
+  .foot-name{ font-weight:800; font-size:clamp(2.6rem,9vw,7rem); line-height:.88; letter-spacing:-.04em; color:var(--ink-2); margin-top:clamp(52px,9vw,112px); user-select:none; }
+  .foot-meta{ margin-top:clamp(22px,3vw,38px); display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; color:var(--ink-3); font-size:.88rem; }
+
+  /* ---------- reveal ---------- */
+  .rise{ opacity:0; transform:translateY(22px); transition:opacity .8s var(--ease), transform .8s var(--ease); }
+  .rise.in{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none!important; transition:none!important; }
+    .rise{ opacity:1; transform:none; }
+    .viewer-frame img{ transition:opacity .001s; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#work">Skip to selected work</a>
+
+<header class="nav">
+  <div class="shell nav-in">
+    <a class="wordmark" href="#top">Tal Yanay <span>Product Designer</span></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a class="hidephone" href="#work">Work</a>
+      <a class="hidephone" href="#about">About</a>
+      <a class="cta" href="mailto:talyanay10@gmail.com">Get in touch</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero shell" aria-labelledby="hero-h">
+    <h1 id="hero-h" class="rise">A product designer<br>who builds.</h1>
+    <div class="hero-row">
+      <div class="rise">
+        <p class="hero-lead">I'm Tal. I design complex product flows and build them into working products, with AI part of how I work.</p>
+        <a class="hero-act" href="#work"><span class="bar" aria-hidden="true"></span> See the work</a>
+      </div>
+      <p class="hero-note rise">
+        <b>Selected work</b>
+        Four projects, 2021 to 2025
+        <b style="margin-top:.6rem">Based in Tel Aviv</b>
+        Open to new work
+      </p>
+    </div>
+  </section>
+
+  <!-- WORK : split stage -->
+  <section class="work shell" id="work" aria-labelledby="work-h">
+    <div class="sec-head rise">
+      <h2 id="work-h">Selected work</h2>
+      <span class="count">Four projects</span>
+    </div>
+
+    <div class="split">
+      <!-- sticky viewer (desktop + JS) -->
+      <div class="viewer" aria-hidden="true">
+        <div class="viewer-frame" id="viewerFrame">
+          <img data-i="0" class="on" src="../assets/Design system - thumbnail.png" alt="">
+          <img data-i="1" src="../assets/ImportExperience- thumbnail.png" alt="">
+          <img data-i="2" src="../assets/Custom metrics - thumbnail.png" alt="">
+          <img data-i="3" src="../assets/Investor portal - Thumbnail.png" alt="">
+        </div>
+        <div class="viewer-cap">
+          <span id="viewerLabel">One Source of Truth</span>
+          <span class="viewer-prog" id="viewerProg">
+            <i class="on"></i><i></i><i></i><i></i>
+          </span>
+        </div>
+      </div>
+
+      <!-- reading stream -->
+      <div class="stream" id="stream">
+        <!-- Design system -->
+        <a class="panel" data-i="0" href="../design-system-case-study.html"
+           aria-label="Read the case study: One Source of Truth, Rebuilding Agora's Design System">
+          <img class="panel-img" src="../assets/Design system - thumbnail.png" alt="The rebuilt Agora design system, a Button component documented in Agorabook." loading="lazy">
+          <h3 class="panel-title rise">Rebuilding Agora's Design System</h3>
+          <div class="panel-mark" aria-hidden="true"></div>
+          <p class="panel-stand rise">One source of truth: leading the rebuild of an outdated Figma kit into a living design system shared by design and development.</p>
+          <p class="panel-impact rise"><b>Impact.</b> One source of truth in Figma and Storybook that design and code build on.</p>
+          <p class="panel-disc rise">Design Systems, Design Ops, Tokens</p>
+          <span class="panel-cta rise">Read the case study <span class="arrow" aria-hidden="true">&#8599;</span></span>
+        </a>
+
+        <!-- Import -->
+        <a class="panel" data-i="1" href="https://www.figma.com/proto/7P5aqn9a7O2yC875AsKbrv/%F0%9F%8E%A8-Portfolio-design?page-id=308%3A1651&node-id=1701-15362&viewport=5214%2C75%2C0.19&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1701%3A15362"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Open the Figma prototype: Import Experience (opens in a new tab)">
+          <img class="panel-img" src="../assets/ImportExperience- thumbnail.png" alt="The Import Experience, two data-import review tables floating on a blue field." loading="lazy">
+          <h3 class="panel-title rise">Import Experience</h3>
+          <div class="panel-mark" aria-hidden="true"></div>
+          <p class="panel-stand rise">Helping teams import complex data with more control, confidence, and fewer mistakes.</p>
+          <p class="panel-impact rise"><b>Impact.</b> Fewer failed imports and support tickets by giving teams control before their data lands.</p>
+          <p class="panel-disc rise">UI/UX, UX Research, User Testing</p>
+          <span class="panel-cta rise">Open the prototype <span class="arrow" aria-hidden="true">&#8599;</span></span>
+        </a>
+
+        <!-- Custom metrics -->
+        <a class="panel" data-i="2" href="https://www.figma.com/proto/7P5aqn9a7O2yC875AsKbrv/%F0%9F%8E%A8-Portfolio-design?page-id=308%3A1651&node-id=1947-53513&viewport=12939%2C-9706%2C0.3&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=607%3A16155"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Open the Figma prototype: Custom Metrics, a KPI system you can trust (opens in a new tab)">
+          <img class="panel-img" src="../assets/Custom metrics - thumbnail.png" alt="The Custom Metrics KPI table, financial figures on a yellow field." loading="lazy">
+          <h3 class="panel-title rise">Custom Metrics</h3>
+          <div class="panel-mark" aria-hidden="true"></div>
+          <p class="panel-stand rise">A KPI system you can trust. Turning inconsistent, per-property KPIs into consistent portfolio numbers, without falling back to Excel.</p>
+          <p class="panel-impact rise"><b>Impact.</b> Replaced spreadsheet workarounds with portfolio KPIs teams actually trust.</p>
+          <p class="panel-disc rise">Product Design, Financial Data, UX Flows</p>
+          <span class="panel-cta rise">Open the prototype <span class="arrow" aria-hidden="true">&#8599;</span></span>
+        </a>
+
+        <!-- Investor portal -->
+        <a class="panel" data-i="3" href="https://www.figma.com/proto/7P5aqn9a7O2yC875AsKbrv/%F0%9F%8E%A8-Portfolio-design?page-id=308%3A1651&node-id=607-16155&viewport=19441%2C-4615%2C0.44&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=607%3A16155"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Open the Figma prototype: Investor Portal, a modular data experience (opens in a new tab)">
+          <img class="panel-img" src="../assets/Investor portal - Thumbnail.png" alt="The Investor Portal dashboard, cashflow chart and a live offering card on a teal field." loading="lazy">
+          <h3 class="panel-title rise">Investor Portal</h3>
+          <div class="panel-mark" aria-hidden="true"></div>
+          <p class="panel-stand rise">A modular data experience. Turning complex investment data into a modular dashboard that adapts to how each investor works.</p>
+          <p class="panel-impact rise"><b>Impact.</b> A modular dashboard investors can shape around how they actually read their data.</p>
+          <p class="panel-disc rise">UX Research, Data Visualization, Modular Design</p>
+          <span class="panel-cta rise">Open the prototype <span class="arrow" aria-hidden="true">&#8599;</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <div class="about-wrap">
+    <section class="about shell" id="about" aria-labelledby="about-h">
+      <figure class="about-portrait rise" style="margin:0">
+        <img src="../assets/portrait.jpg" alt="Illustrated portrait of Tal Yanay." loading="lazy">
+      </figure>
+      <div>
+        <h2 id="about-h" class="rise">I enjoy the messy middle of building software.</h2>
+        <p class="lead rise">Hi, I'm Tal. I'm a product designer who genuinely enjoys the messy middle of building software.</p>
+        <p class="rise">I care about the details, ask a lot of questions, and like working closely with PMs and engineers. These days I take an idea from a messy whiteboard all the way to something that actually runs, with AI as a real part of how I work. Over the past 4+ years I've designed SaaS products with complex workflows, multiple stakeholders, and plenty of edge cases.</p>
+        <p class="rise">I'm endlessly curious and always picking up a new tool or skill. Away from the screen, I love trying things that are new and a little exciting. That itch got me surfing for a while. Right now it's tennis, and I'm completely hooked.</p>
+        <p class="status rise">I'm currently looking for my next opportunity to help teams ship better products.</p>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<!-- CONTACT / FOOTER -->
+<footer class="contact shell" id="contact" aria-labelledby="contact-h">
+  <h2 id="contact-h" class="rise"><a href="mailto:talyanay10@gmail.com">Let's build something.</a></h2>
+  <p class="contact-lead rise">Currently looking for my next opportunity to help teams ship better products.</p>
+  <div class="contact-links rise">
+    <a class="primary" href="mailto:talyanay10@gmail.com">Email me</a>
+    <a href="https://www.linkedin.com/in/tal-yanay/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href="#">Resume</a>
+  </div>
+  <div class="foot-name" aria-hidden="true">Tal Yanay</div>
+  <div class="foot-meta">
+    <span>&copy; 2025 Tal Yanay</span>
+    <span>Designed and built by Tal Yanay</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* reveals */
+  var items = document.querySelectorAll(".rise");
+  if (reduce || !("IntersectionObserver" in window)){
+    items.forEach(function(el){ el.classList.add("in"); });
+  } else {
+    document.querySelectorAll(".panel, .hero-row > div, .about > div").forEach(function(group){
+      group.querySelectorAll(".rise").forEach(function(el,i){ el.style.transitionDelay = (i*60)+"ms"; });
+    });
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold:.12, rootMargin:"0px 0px -8% 0px" });
+    items.forEach(function(el){ io.observe(el); });
+  }
+
+  /* enable the split stage (progressive enhancement) */
+  if (!("IntersectionObserver" in window)) return;
+  document.body.classList.add("js");
+
+  var panels = Array.prototype.slice.call(document.querySelectorAll(".panel"));
+  var viewImgs = document.querySelectorAll("#viewerFrame img");
+  var progs = document.querySelectorAll("#viewerProg i");
+  var label = document.getElementById("viewerLabel");
+  var labels = ["One Source of Truth","Import Experience","Custom Metrics","Investor Portal"];
+  var activeI = -1;
+
+  function setActive(i){
+    if (i === activeI) return;
+    activeI = i;
+    panels.forEach(function(p,idx){ p.classList.toggle("active", idx===i); });
+    viewImgs.forEach(function(im){ im.classList.toggle("on", +im.dataset.i===i); });
+    progs.forEach(function(d,idx){ d.classList.toggle("on", idx===i); });
+    if (label) label.textContent = labels[i];
+  }
+
+  var spy = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) setActive(panels.indexOf(e.target));
+    });
+  }, { rootMargin:"-45% 0px -45% 0px", threshold:0 });
+  panels.forEach(function(p){ spy.observe(p); });
+  setActive(0);
+})();
+</script>
+</body>
+</html>
