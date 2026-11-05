@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Case study cover template — 1600×1000</title>
+<style>
+  /* Editable source for the case-study cover guide.
+     Render to PNG with headless Chrome at exactly 1600×1000:
+       chrome --headless --force-device-scale-factor=1 --window-size=1600,1000 \
+         --screenshot=case-study-cover-template_1600x1000.png \
+         file://.../case-study-cover-template.html
+  */
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ width:1600px; height:1000px; }
+  body{
+    position:relative;
+    background:#141c2e;               /* opaque navy guide chrome */
+    color:#e8ecf6;
+    font-family:"Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow:hidden;
+  }
+
+  /* corner crop marks on the full 16:10 frame */
+  .mark{ position:absolute; width:34px; height:34px; border:0 solid #e8ecf6; opacity:.85; }
+  .mark.tl{ top:18px;    left:18px;    border-top-width:2px;    border-left-width:2px; }
+  .mark.tr{ top:18px;    right:18px;   border-top-width:2px;    border-right-width:2px; }
+  .mark.bl{ bottom:18px; left:18px;    border-bottom-width:2px; border-left-width:2px; }
+  .mark.br{ bottom:18px; right:18px;   border-bottom-width:2px; border-right-width:2px; }
+
+  /* heading block, top-left */
+  .head{ position:absolute; top:30px; left:40px; }
+  .size{ font-size:40px; font-weight:700; letter-spacing:.5px; }
+  .meta{ margin-top:6px; font-size:19px; font-weight:500; color:#9fb0d4; letter-spacing:.3px; }
+
+  /* generous safe area — near-full-frame, inset to clear the header/caption */
+  .safe{
+    position:absolute; inset:124px 64px 112px 64px;   /* top clears header, bottom clears caption */
+    border:2px dashed #5b76ff;
+    border-radius:10px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+  }
+  .safe .label{ color:#9fb0d4; font-size:26px; font-weight:700; letter-spacing:1px; }
+  .safe .sub{ margin-top:10px; color:#8294bd; font-size:18px; font-weight:500; line-height:1.5; max-width:620px; }
+
+  /* bottom caption */
+  .caption{
+    position:absolute; left:40px; right:40px; bottom:30px;
+    color:#8294bd; font-size:17px; line-height:1.5; font-weight:500;
+  }
+  .caption b{ color:#cbd6f0; font-weight:600; }
+</style>
+</head>
+<body>
+  <span class="mark tl"></span><span class="mark tr"></span>
+  <span class="mark bl"></span><span class="mark br"></span>
+
+  <div class="head">
+    <div class="size">1600 × 1000 px</div>
+    <div class="meta">16:10 · OPAQUE (no transparency)</div>
+  </div>
+
+  <div class="safe">
+    <div class="label">SAFE AREA · FILL THE WHOLE FRAME</div>
+    <div class="sub">The entire 16:10 frame is always visible — desktop and mobile show it identically. Just keep key UI / text inside this box, off the outer edge.</div>
+  </div>
+
+  <div class="caption">
+    <b>16:10 shows the same on every screen — no edge cropping.</b> Export your cover exactly 1600×1000 and fill the whole frame. Anything that isn't exactly 16:10 gets center-cropped (object-fit: cover) to fit, so match the ratio to avoid surprises.
+  </div>
+</body>
+</html>
