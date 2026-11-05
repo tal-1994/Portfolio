@@ -1,6 +1,9 @@
 # Older/backup copies — not part of the live site
 backup-original/
 
+# Legacy files & design explorations — kept on disk, not published
+archive/
+
 # OS / editor cruft
 .DS_Store
 Thumbs.db

@@ -1,22 +1,45 @@
 # Tal Yanay — Personal Portfolio
 
-Personal portfolio landing page for Tal Yanay, Product Designer. Plain HTML/CSS/JS — no framework, no build step. Open index.html directly in a browser to preview.
+Personal portfolio for Tal Yanay, Product Designer. Plain HTML/CSS/JS — no
+framework, no build step. Open `index.html` directly in a browser to preview.
+Hosted on GitHub Pages (`tal-1994/Portfolio`), served from the repo root.
 
 ## Design direction
-"Modern editorial": Inter (Google Fonts, weights 400–700), near-black ink (#141414) on warm off-white (#fafaf8), a single electric-blue accent (#2545ee), hairline-bordered flat cards that lift subtly on hover, outlined tag chips, generous whitespace. Keep it minimal and calm — no gradients, no flashy animation. It should feel personal, not corporate.
+"Gallery (light)": a bright white-cube feel. Display type is **Bricolage
+Grotesque**, body is **Inter** (both Google Fonts). Near-black ink (#141414) on a
+cool soft white (#f6f7f7); monochrome shell — the only colour comes from the work
+thumbnails themselves. Hairline borders, generous whitespace, subtle reveal
+motion (content "unveiled," not announced). Keep it minimal and calm — no
+gradients, no flashy animation. `prefers-reduced-motion` is respected.
 
-## Files
-- `index.html` — home page (hero + case studies). Semantic structure only; most visible text is fallback content overwritten by script.js on load.
-- `about.html` — standalone About page (portrait + about paragraphs). Shares `styles.css` and `script.js` with the home page. The "About" nav item links here; "Work" links back to `index.html#work`. Content still comes from the `portfolioData` object in script.js (`aboutPhoto`, `about`).
-- `script.js` — **single source of truth for all content**, loaded by both `index.html` and `about.html`. The `portfolioData` object at the top holds name, role, hero text, case studies (title/description/tags/image/figmaLink), about paragraphs, and footer links. Edit content here, not in the HTML. Rendering code below the object is guarded so the same script runs safely on either page (it only touches elements that exist on the current page); it shouldn't need changes.
-- `styles.css` — all design tokens (colors, type, spacing, radii, shadows) are CSS variables in `:root` at the top. Tweak there first before touching rules. Breakpoints: ≤1024px tablet (2-col cards), ≤640px mobile (stacked hero, 1-col cards).
-- `assets/` — placeholder SVGs awaiting real images (hero photo + 4 case study covers).
+## Files (what's live)
+- `index.html` — **THE main file.** The entire live homepage: hero, selected
+  work (4 exhibits), About section, and Contact footer, all on one page. It is
+  **self-contained** — all CSS and JS are inline. Edit content, styling, and
+  behaviour directly in this file (design tokens live in the `:root` block near
+  the top of its `<style>`).
+- `design-system-case-study.html` — the one subpage, linked from work card #01.
+  Also self-contained (its own inline CSS/JS). Its nav links back to
+  `index.html#work` and `index.html#about`.
+- `assets/` — images used by the live pages (work thumbnails, portrait, favicon,
+  `tal dark image.png`). Also holds some unused placeholder SVGs from the old
+  design.
+
+## archive/ (not published — kept on disk only)
+Git-ignored, so it stays locally for reference but is not deployed:
+- `archive/old-design/` — the previous design: old `about.html` plus its
+  `script.js` / `styles.css` / `support.js`. No longer used by the live site.
+- `archive/explorations/` — past design explorations, including
+  `portfolio-v1.html` (the source the current `index.html` was built from) and
+  `old/` concept experiments.
 
 ## Conventions
-- Case study cards are single `<a>` elements opening Figma prototypes in a new tab (`figmaLink` in portfolioData — currently "#" placeholders).
-- The About nav button target is `portfolioData.nav.aboutHref` — "about.html" now; can be swapped to an external Figma URL (external links open in a new tab automatically).
-- Keep accessibility intact: semantic HTML, aria-labels on cards, alt text on images, visible focus states, `prefers-reduced-motion` respected.
+- Work cards are single `<a>` elements. Card #01 opens the case study page in the
+  same tab; the other three open Figma prototypes in a new tab
+  (`target="_blank" rel="noopener noreferrer"`).
+- Keep accessibility intact: semantic HTML, aria-labels on cards, alt text on
+  images, visible focus states, `prefers-reduced-motion` respected.
 
 ## Open items
-- Replace "#" placeholders: 4 Figma links, Resume link, LinkedIn URL, real email in `social`.
-- Replace placeholder SVGs with real imagery.
+- The "Resume" link in the contact footer is still a `#` placeholder.
+- Contact email is the personal `talyanay10@gmail.com` (consistent across pages).
