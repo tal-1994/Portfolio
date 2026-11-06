@@ -65,6 +65,12 @@
         ],
         "createdAt": "2026-11-01T19:16:41.529Z",
         "reason": "false positive: inactive crossfade work-viewer images are opacity:0 by design and animate to opacity:1 on scroll (and show inline on mobile/no-JS); functional component, not a buried token"
+      },
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-11-06T11:12:58.997Z",
+        "reason": "project design system: CLAUDE.md specifies Inter as the body face paired with Bricolage Grotesque display"
       }
     ]
   }

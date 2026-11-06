@@ -98,7 +98,11 @@
   @media (max-width:560px){ .wordmark span{ display:none; } .nav-links a.hidephone{ display:none; } }
 
   /* ---------- hero ---------- */
-  .hero{ min-height:100svh; display:flex; flex-direction:column; justify-content:flex-end; padding-top:clamp(80px,12vw,140px); padding-bottom:clamp(72px,10vw,120px); }
+  .hero{ position:relative; min-height:100svh; display:flex; flex-direction:column; justify-content:flex-end; padding-top:clamp(80px,12vw,140px); padding-bottom:clamp(72px,10vw,120px); }
+  /* content always sits above the dot-field layer */
+  .hero > .greet,
+  .hero > h1,
+  .hero > .hero-act{ position:relative; z-index:2; }
   .hero h1{
     font-family:var(--display);
     font-optical-sizing:auto;
@@ -110,13 +114,59 @@
     text-wrap:balance;
   }
   .greet{ display:flex; align-items:center; gap:clamp(14px,1.4vw,20px); margin-bottom:clamp(26px,4vw,52px); }
-  .greet-photo{ width:clamp(64px,6vw,88px); aspect-ratio:4/5; height:auto; object-fit:cover; object-position:top center; border-radius:14px; border:1px solid var(--line); filter:grayscale(1); background:var(--media); transform:rotate(-7deg); box-shadow:0 12px 26px rgba(20,20,20,.16); }
+  .greet-photo{ width:clamp(64px,6vw,88px); aspect-ratio:1/1.1; height:auto; object-fit:cover; object-position:top center; border-radius:14px; border:1px solid var(--line); filter:grayscale(1); background:var(--media); transform:rotate(-7deg); box-shadow:0 12px 26px rgba(20,20,20,.16); }
   .greet-text{ margin:0; font-size:clamp(1.15rem,1.7vw,1.5rem); line-height:1.18; color:var(--ink); }
   /* "See the work" — the clickable cue that anchors the bottom of the intro
      and signals the case studies are a scroll/click away */
   .hero-act{ display:inline-flex; align-items:center; gap:.7rem; font-weight:500; font-size:1.02rem; color:var(--ink); transition:transform .14s var(--ease-out); }
   .hero-act .bar{ width:42px; height:1.5px; background:var(--ink); transition:width .4s var(--ease-out); }
   .hero .hero-act{ margin-top:clamp(32px,5vw,64px); align-self:flex-start; }
+
+  /* ---------- dot-field ---------- */
+  /* Full-bleed canvas pinned to the hero. Breaks out of the .shell max-width
+     so dots span the viewport, but its height is bounded to the hero only. */
+  .dotfield{
+    position:absolute; top:0; bottom:0;
+    left:50%; width:100vw; margin-left:-50vw;
+    z-index:0; pointer-events:none;
+  }
+
+  /* ---------- custom circle cursor ---------- */
+  /* A hairline ring that trails the pointer across the whole homepage, so the
+     "circle" reads as the cursor everywhere — not just over the dots. The
+     native cursor stays as a companion: a plain arrow, or a hand over
+     clickable elements (see the cursor normalization below). */
+  .cursor-ring{
+    position:fixed; left:0; top:0;
+    width:36px; height:36px; margin:-18px 0 0 -18px;
+    border:1px solid rgba(20,20,20,.32);
+    border-radius:50%;
+    pointer-events:none;
+    z-index:9999;
+    opacity:0;
+    transform:translate3d(-100px,-100px,0);
+    transition:opacity .3s var(--ease-out),
+               width .28s var(--ease-out), height .28s var(--ease-out),
+               margin .28s var(--ease-out), border-color .28s var(--ease-out);
+    will-change:transform;
+  }
+  .cursor-ring.is-visible{ opacity:1; }
+  /* grows over clickable things, pairing with the hand cursor below */
+  .cursor-ring.is-hover{
+    width:56px; height:56px; margin:-28px 0 0 -28px;
+    border-color:rgba(20,20,20,.5);
+  }
+  /* normalize the native cursor: a plain arrow by default (no I-beam flicker over
+     text), but a hand/pointer on clickable things so they read as clickable.
+     The `… *` on each clickable also covers its children (e.g. the image and
+     text inside a case-study card), so the whole card shows the hand — not just
+     its bare edges. Only applied once JS confirms a fine pointer + motion. */
+  html.cursor-custom, html.cursor-custom *{ cursor:default; }
+  html.cursor-custom a, html.cursor-custom a *,
+  html.cursor-custom button, html.cursor-custom button *,
+  html.cursor-custom [role=button], html.cursor-custom [role=button] *,
+  html.cursor-custom label, html.cursor-custom label *,
+  html.cursor-custom summary, html.cursor-custom summary *{ cursor:pointer; }
 
   /* ---------- section heading ---------- */
   .sec-head{ display:flex; align-items:baseline; justify-content:space-between; gap:1rem; flex-wrap:wrap; margin-bottom:clamp(22px,3vw,38px); }
@@ -205,6 +255,20 @@
 
   /* ---------- hover & press (pointer devices only) ---------- */
   @media (hover:hover) and (pointer:fine){
+    /* the greet photo rests as a faded black-and-white portrait; hovering it
+       reveals the image in full colour and scales it up a touch */
+    .greet-photo{
+      opacity:.7;
+      transition:filter .55s var(--ease-out), transform .55s var(--ease-out),
+                 opacity .55s var(--ease-out), box-shadow .55s var(--ease-out);
+    }
+    .greet-photo:hover{
+      opacity:1;
+      filter:grayscale(0);
+      transform:rotate(-3deg) scale(1.1);
+      box-shadow:0 22px 46px rgba(20,20,20,.26);
+    }
+
     .nav-links a.cta:hover::after{ transform:scaleX(1); }
     .hero-act:hover .bar{ width:66px; }
     .exhibit:hover .ex-media img{ transform:scale(1.045); }
@@ -229,6 +293,8 @@
     .rise{ opacity:1; transform:none; }
     .rise-clip img{ clip-path:none; }
     .ex-media img{ transform:none; }
+    /* dot-field renders static; greet photo stays at its full, unfaded state */
+    .cursor-ring{ display:none; }
   }
 </style>
 </head>
@@ -250,8 +316,9 @@
 
   <!-- HERO -->
   <section class="hero shell" aria-labelledby="hero-h">
+    <canvas class="dotfield" aria-hidden="true"></canvas>
     <div class="greet rise">
-      <img class="greet-photo" src="assets/tal%20dark%20image.png" width="88" height="106"
+      <img class="greet-photo" src="assets/tal-greet-color.png" width="88" height="97"
            alt="Portrait of Tal Yanay." decoding="async">
       <p class="greet-text">Hey,<br>I&#8217;m Tal</p>
     </div>
@@ -336,8 +403,7 @@
     <section class="about shell" id="about" aria-labelledby="about-h">
       <div class="about-grid">
         <figure class="about-portrait rise-clip" style="margin:0">
-          <div class="about-frame"><img src="assets/portrait.jpg" width="1200" height="1500" alt="Illustrated portrait of Tal Yanay." loading="lazy" decoding="async"></div>
-          <figcaption>Something I sketched a while back</figcaption>
+          <div class="about-frame"><img src="assets/tal%20portrait%20about.png" width="1122" height="1402" alt="Portrait of Tal Yanay." loading="lazy" decoding="async"></div>
         </figure>
 
         <div>
@@ -398,9 +464,263 @@
       entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
     }, { threshold:.12, rootMargin:"0px 0px -8% 0px" });
     items.forEach(function(el){ io.observe(el); });
+
+    /* The hero is above the fold, and its "See the work" CTA sits pinned to the
+       bottom of the viewport — right in the observer's -8% bottom dead-zone, so
+       it would never reveal (and there's no scroll to trigger it). Reveal the
+       hero on load instead; two frames in so the fade still plays. */
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){
+      document.querySelectorAll(".hero .rise").forEach(function(el){ el.classList.add("in"); });
+    }); });
   } catch (err){
     document.documentElement.classList.remove("reveal-ready");  // fail visible
   }
+})();
+</script>
+
+<!-- ===================================================================
+     Interactive dot-field — hero only. The dots respond to the cursor
+     (darken + enlarge with a smooth radial falloff) and settle back when it
+     leaves. Static on touch / reduced-motion. Self-contained.
+     =================================================================== -->
+<script>
+(function(){
+  var canvas = document.querySelector(".hero .dotfield");
+  if (!canvas) return;
+  var hero = canvas.parentElement;
+  var ctx = canvas.getContext("2d");
+
+  var mqReduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var mqFine   = window.matchMedia("(hover:hover) and (pointer:fine)");
+
+  /* --- tunables --- */
+  var GAP = 26;        // grid spacing (css px)
+  var R_BASE = 1.0;    // dot radius at rest
+  var R_MAX  = 2.6;    // dot radius at the cursor centre
+  var A_BASE = 0.14;   // dot alpha at rest (low contrast)
+  var A_MAX  = 0.85;   // dot alpha at the cursor centre
+  var INFLUENCE = 120; // px radius the cursor reaches
+  var LERP = 0.18;     // pointer smoothing per frame
+
+  var dpr = 1, W = 0, H = 0, cols = 0, rows = 0, offX = 0, offY = 0;
+
+  function readDpr(){ dpr = Math.min(window.devicePixelRatio || 1, 2); }
+
+  function size(){
+    var rect = canvas.getBoundingClientRect();
+    W = Math.max(1, rect.width); H = Math.max(1, rect.height);
+    canvas.width  = Math.round(W * dpr);
+    canvas.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cols = Math.ceil(W / GAP) + 1;
+    rows = Math.ceil(H / GAP) + 1;
+    offX = (W - (cols - 1) * GAP) / 2;   // centre the grid for even edges
+    offY = (H - (rows - 1) * GAP) / 2;
+  }
+
+  function smoothstep(t){ return t * t * (3 - 2 * t); }
+
+  /* static grid — used for reduced-motion, touch, and the initial paint */
+  function drawStatic(){
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = "rgba(20,20,20," + A_BASE + ")";
+    for (var r = 0; r < rows; r++){
+      var y = offY + r * GAP;
+      for (var c = 0; c < cols; c++){
+        ctx.beginPath();
+        ctx.arc(offX + c * GAP, y, R_BASE, 0, 6.2832);
+        ctx.fill();
+      }
+    }
+  }
+
+  /* --- interactive state --- */
+  var tx = -9999, ty = -9999;   // target pointer (canvas-relative)
+  var px = -9999, py = -9999;   // smoothed pointer
+  var active = false, raf = 0;
+
+  function draw(){
+    px += (tx - px) * LERP;
+    py += (ty - py) * LERP;
+
+    // base layer — one fillStyle, cheap
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = "rgba(20,20,20," + A_BASE + ")";
+    for (var r = 0; r < rows; r++){
+      var yb = offY + r * GAP;
+      for (var c = 0; c < cols; c++){
+        ctx.beginPath();
+        ctx.arc(offX + c * GAP, yb, R_BASE, 0, 6.2832);
+        ctx.fill();
+      }
+    }
+
+    // influence layer — only the dots inside the cursor's reach get redrawn
+    if (px > -9000){
+      var c0 = Math.max(0, Math.floor((px - INFLUENCE - offX) / GAP));
+      var c1 = Math.min(cols - 1, Math.ceil((px + INFLUENCE - offX) / GAP));
+      var r0 = Math.max(0, Math.floor((py - INFLUENCE - offY) / GAP));
+      var r1 = Math.min(rows - 1, Math.ceil((py + INFLUENCE - offY) / GAP));
+      for (var rr = r0; rr <= r1; rr++){
+        var yi = offY + rr * GAP, dy = yi - py;
+        for (var cc = c0; cc <= c1; cc++){
+          var xi = offX + cc * GAP, dx = xi - px;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist >= INFLUENCE) continue;
+          var f = smoothstep(1 - dist / INFLUENCE);
+          ctx.fillStyle = "rgba(20,20,20," + (A_BASE + (A_MAX - A_BASE) * f).toFixed(3) + ")";
+          ctx.beginPath();
+          ctx.arc(xi, yi, R_BASE + (R_MAX - R_BASE) * f, 0, 6.2832);
+          ctx.fill();
+        }
+      }
+    }
+
+    var settled = Math.abs(tx - px) < 0.4 && Math.abs(ty - py) < 0.4;
+    if (active || !settled){
+      raf = requestAnimationFrame(draw);
+    } else {
+      drawStatic();   // land on a clean static grid, then idle
+      raf = 0;
+    }
+  }
+
+  function kick(){ if (!raf) raf = requestAnimationFrame(draw); }
+
+  function onMove(e){
+    var rect = canvas.getBoundingClientRect();
+    tx = e.clientX - rect.left;
+    ty = e.clientY - rect.top;
+    if (px < -9000){ px = tx; py = ty; }   // no first-frame sweep from infinity
+    active = true;
+    kick();
+  }
+
+  function onLeave(){
+    active = false;
+    tx = -9999; ty = -9999;   // pull the influence off-grid; dots ease back
+    kick();
+  }
+
+  var bound = false;
+  function bindPointer(){
+    if (bound) return;
+    bound = true;
+    hero.addEventListener("pointermove", onMove, { passive:true });
+    hero.addEventListener("pointerleave", onLeave);
+  }
+  function unbindPointer(){
+    if (!bound) return;
+    bound = false;
+    hero.removeEventListener("pointermove", onMove);
+    hero.removeEventListener("pointerleave", onLeave);
+    onLeave();
+  }
+
+  function applyMode(){
+    readDpr();
+    size();
+    var interactive = mqFine.matches && !mqReduce.matches;
+    if (interactive){
+      drawStatic();
+      bindPointer();
+    } else {
+      unbindPointer();
+      drawStatic();            // calm, static dotted texture on touch / reduced-motion
+    }
+  }
+
+  // react to resize and to live changes in the media queries
+  var rt;
+  window.addEventListener("resize", function(){
+    clearTimeout(rt);
+    rt = setTimeout(function(){
+      readDpr(); size();
+      if (!(mqFine.matches && !mqReduce.matches) || !active) drawStatic();
+    }, 150);
+  });
+  function onMq(){ applyMode(); }
+  (mqReduce.addEventListener ? mqReduce.addEventListener("change", onMq) : mqReduce.addListener(onMq));
+  (mqFine.addEventListener   ? mqFine.addEventListener("change", onMq)   : mqFine.addListener(onMq));
+
+  applyMode();
+})();
+</script>
+
+<!-- ===================================================================
+     Global circle cursor — a hairline ring trails the pointer across the
+     whole page. The native cursor is normalized to a plain arrow (no I-beam
+     over text) and a hand over clickable elements. Touch / reduced-motion opt
+     out entirely (native cursor left untouched).
+     =================================================================== -->
+<script>
+(function(){
+  var mqReduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var mqFine   = window.matchMedia("(hover:hover) and (pointer:fine)");
+  var root = document.documentElement;
+
+  var ring = document.createElement("div");
+  ring.className = "cursor-ring";
+  ring.setAttribute("aria-hidden", "true");
+  document.body.appendChild(ring);
+
+  var INTERACTIVE = "a,button,[role=button],input,textarea,select,label,summary";
+  var LERP = 0.2;
+
+  var tx = -100, ty = -100;   // target (viewport coords)
+  var x = -100, y = -100;     // smoothed
+  var visible = false, raf = 0, primed = false;
+
+  function loop(){
+    x += (tx - x) * LERP;
+    y += (ty - y) * LERP;
+    ring.style.transform = "translate3d(" + x.toFixed(1) + "px," + y.toFixed(1) + "px,0)";
+    if (Math.abs(tx - x) > 0.3 || Math.abs(ty - y) > 0.3){
+      raf = requestAnimationFrame(loop);
+    } else {
+      raf = 0;
+    }
+  }
+  function kick(){ if (!raf) raf = requestAnimationFrame(loop); }
+
+  function onMove(e){
+    tx = e.clientX; ty = e.clientY;
+    if (!primed){ x = tx; y = ty; primed = true; }   // no first-frame sweep
+    if (!visible){ visible = true; ring.classList.add("is-visible"); }
+    ring.classList.toggle("is-hover", !!(e.target && e.target.closest && e.target.closest(INTERACTIVE)));
+    kick();
+  }
+  function hide(){ visible = false; ring.classList.remove("is-visible"); }
+
+  var on = false;
+  function enable(){
+    if (on) return;
+    on = true;
+    root.classList.add("cursor-custom");
+    window.addEventListener("pointermove", onMove, { passive:true });
+    document.addEventListener("pointerleave", hide);
+    window.addEventListener("blur", hide);
+  }
+  function disable(){
+    if (!on) return;
+    on = false;
+    root.classList.remove("cursor-custom");
+    window.removeEventListener("pointermove", onMove);
+    document.removeEventListener("pointerleave", hide);
+    window.removeEventListener("blur", hide);
+    hide();
+    primed = false;
+  }
+
+  function apply(){
+    if (mqFine.matches && !mqReduce.matches) enable();
+    else disable();
+  }
+  function bindMq(mq, fn){ mq.addEventListener ? mq.addEventListener("change", fn) : mq.addListener(fn); }
+  bindMq(mqReduce, apply);
+  bindMq(mqFine, apply);
+
+  apply();
 })();
 </script>
 </body>
