@@ -99,10 +99,11 @@
 
   /* ---------- hero ---------- */
   .hero{ position:relative; min-height:100svh; display:flex; flex-direction:column; justify-content:flex-end; padding-top:clamp(80px,12vw,140px); padding-bottom:clamp(72px,10vw,120px); }
-  /* content always sits above the dot-field layer */
-  .hero > .greet,
-  .hero > h1,
-  .hero > .hero-act{ position:relative; z-index:2; }
+  /* hero copy sits above the dot-field. Readability behind the text is handled at
+     the source: the dot-field canvas suppresses its cursor-darkening over the hero
+     copy (per-line text mask), so the grid stays faint and un-crowded right up to
+     the letters without any plate or halo. See the dot-field script's computeMask. */
+  .hero > .hero-copy{ position:relative; z-index:2; }
   .hero h1{
     font-family:var(--display);
     font-optical-sizing:auto;
@@ -317,14 +318,16 @@
   <!-- HERO -->
   <section class="hero shell" aria-labelledby="hero-h">
     <canvas class="dotfield" aria-hidden="true"></canvas>
-    <div class="greet rise">
-      <img class="greet-photo" src="assets/tal-greet-color.png" width="88" height="97"
-           alt="Portrait of Tal Yanay." decoding="async">
-      <p class="greet-text">Hey,<br>I&#8217;m Tal</p>
-    </div>
-    <h1 id="hero-h" class="rise">Senior Product Designer <br>&amp; Builder.</h1>
+    <div class="hero-copy">
+      <div class="greet rise">
+        <img class="greet-photo" src="assets/tal-greet-color.png" width="88" height="97"
+             alt="Portrait of Tal Yanay." decoding="async">
+        <p class="greet-text">Hey,<br>I&#8217;m Tal</p>
+      </div>
+      <h1 id="hero-h" class="rise">Senior Product Designer <br>&amp; Builder.</h1>
 
-    <a class="hero-act rise" href="#work"><span class="bar" aria-hidden="true"></span> See the work</a>
+      <a class="hero-act rise" href="#work"><span class="bar" aria-hidden="true"></span> See the work</a>
+    </div>
   </section>
 
   <!-- WORK -->
@@ -501,6 +504,8 @@
   var A_MAX  = 0.85;   // dot alpha at the cursor centre
   var INFLUENCE = 120; // px radius the cursor reaches
   var LERP = 0.18;     // pointer smoothing per frame
+  var MASK_PAD = 6;    // px the text mask extends past each line box
+  var MASK_FEATHER = 30; // px over which the darkening fades back in past the text
 
   var dpr = 1, W = 0, H = 0, cols = 0, rows = 0, offX = 0, offY = 0;
 
@@ -519,6 +524,52 @@
   }
 
   function smoothstep(t){ return t * t * (3 - 2 * t); }
+
+  /* --- text mask ---
+     Per-line boxes of the hero copy, in canvas-local px. The cursor's darkening
+     is suppressed inside these (with a feathered margin), so the dots never crowd
+     the letters while the rest of the field reacts normally. getClientRects on a
+     Range over each element yields one tight box per rendered line, so the mask
+     hugs the actual text — not the element's full width — and reflows with it. */
+  var maskRects = [];
+  function computeMask(){
+    var next = [];
+    var crect = canvas.getBoundingClientRect();
+    var els = hero.querySelectorAll(".greet-text, h1, .hero-act");
+    for (var e = 0; e < els.length; e++){
+      var range = document.createRange();
+      range.selectNodeContents(els[e]);
+      var rs = range.getClientRects();
+      for (var i = 0; i < rs.length; i++){
+        var r = rs[i];
+        if (r.width < 2 || r.height < 2) continue;
+        next.push({
+          x: r.left - crect.left - MASK_PAD,
+          y: r.top  - crect.top  - MASK_PAD,
+          w: r.width  + MASK_PAD * 2,
+          h: r.height + MASK_PAD * 2
+        });
+      }
+    }
+    maskRects = next;
+  }
+  /* 1 = dot sits over the text (fully suppress darkening), 0 = clear of it,
+     feathered over MASK_FEATHER px so there is no hard edge in the dot field. */
+  function maskAt(x, y){
+    var best = 0;
+    for (var i = 0; i < maskRects.length; i++){
+      var m = maskRects[i];
+      var dx = Math.max(m.x - x, x - (m.x + m.w), 0);
+      var dy = Math.max(m.y - y, y - (m.y + m.h), 0);
+      if (dx === 0 && dy === 0) return 1;
+      var d = Math.sqrt(dx * dx + dy * dy);
+      if (d < MASK_FEATHER){
+        var cov = 1 - smoothstep(d / MASK_FEATHER);
+        if (cov > best){ best = cov; if (best >= 1) break; }
+      }
+    }
+    return best;
+  }
 
   /* static grid — used for reduced-motion, touch, and the initial paint */
   function drawStatic(){
@@ -568,6 +619,8 @@
           var dist = Math.sqrt(dx * dx + dy * dy);
           if (dist >= INFLUENCE) continue;
           var f = smoothstep(1 - dist / INFLUENCE);
+          if (maskRects.length){ f *= 1 - maskAt(xi, yi); }   // let the text part the field
+          if (f <= 0.002) continue;                           // masked dot stays at its faint base
           ctx.fillStyle = "rgba(20,20,20," + (A_BASE + (A_MAX - A_BASE) * f).toFixed(3) + ")";
           ctx.beginPath();
           ctx.arc(xi, yi, R_BASE + (R_MAX - R_BASE) * f, 0, 6.2832);
@@ -588,9 +641,13 @@
   function kick(){ if (!raf) raf = requestAnimationFrame(draw); }
 
   function onMove(e){
+    // Listener is on window (not the max-width hero) so the effect reaches the full
+    // viewport width. Coords are canvas-relative; the canvas is full-bleed 100vw.
     var rect = canvas.getBoundingClientRect();
-    tx = e.clientX - rect.left;
-    ty = e.clientY - rect.top;
+    var y = e.clientY - rect.top;
+    if (y < 0 || y > H){ onLeave(); return; }   // pointer not over the hero band → ease back
+    tx = e.clientX - rect.left;                  // 0..W across the whole viewport
+    ty = y;
     if (px < -9000){ px = tx; py = ty; }   // no first-frame sweep from infinity
     active = true;
     kick();
@@ -606,20 +663,25 @@
   function bindPointer(){
     if (bound) return;
     bound = true;
-    hero.addEventListener("pointermove", onMove, { passive:true });
-    hero.addEventListener("pointerleave", onLeave);
+    window.addEventListener("pointermove", onMove, { passive:true });
+    document.addEventListener("pointerleave", onLeave);   // cursor leaves the window
+    window.addEventListener("blur", onLeave);
+    hero.addEventListener("pointerenter", computeMask);   // refresh text boxes on arrival (post-reveal/fonts)
   }
   function unbindPointer(){
     if (!bound) return;
     bound = false;
-    hero.removeEventListener("pointermove", onMove);
-    hero.removeEventListener("pointerleave", onLeave);
+    window.removeEventListener("pointermove", onMove);
+    document.removeEventListener("pointerleave", onLeave);
+    window.removeEventListener("blur", onLeave);
+    hero.removeEventListener("pointerenter", computeMask);
     onLeave();
   }
 
   function applyMode(){
     readDpr();
     size();
+    computeMask();
     var interactive = mqFine.matches && !mqReduce.matches;
     if (interactive){
       drawStatic();
@@ -635,7 +697,7 @@
   window.addEventListener("resize", function(){
     clearTimeout(rt);
     rt = setTimeout(function(){
-      readDpr(); size();
+      readDpr(); size(); computeMask();
       if (!(mqFine.matches && !mqReduce.matches) || !active) drawStatic();
     }, 150);
   });
@@ -644,6 +706,10 @@
   (mqFine.addEventListener   ? mqFine.addEventListener("change", onMq)   : mqFine.addListener(onMq));
 
   applyMode();
+  // the hero copy reveals (translateY) and web fonts may reflow it — recompute the
+  // mask once both have settled, and whenever fonts finish loading.
+  setTimeout(computeMask, 1000);
+  if (document.fonts && document.fonts.ready){ document.fonts.ready.then(computeMask); }
 })();
 </script>
 

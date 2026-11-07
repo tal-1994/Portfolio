@@ -71,6 +71,15 @@
         "value": "inter",
         "createdAt": "2026-11-06T11:12:58.997Z",
         "reason": "project design system: CLAUDE.md specifies Inter as the body face paired with Bricolage Grotesque display"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-07T07:31:18.593Z",
+        "reason": "false positive on .about-wrap: it has a ground-2 background but its content is amply inset by the inner .about.shell (padding-block clamp 66-138px + gutter padding); text is nowhere near flush. Rule has no narrower per-element scope."
       }
     ]
   }
