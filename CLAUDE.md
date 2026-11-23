@@ -21,9 +21,20 @@ gradients, no flashy animation. `prefers-reduced-motion` is respected.
 - `design-system-case-study.html` — the one subpage, linked from work card #01.
   Also self-contained (its own inline CSS/JS). Its nav links back to
   `index.html#work` and `index.html#about`.
-- `assets/` — images used by the live pages (work thumbnails, portrait, favicon,
-  `tal dark image.png`). Also holds some unused placeholder SVGs from the old
-  design.
+- `assets/` — images used by the live pages, organized by purpose:
+  - `assets/favicon.svg` — site favicon.
+  - `assets/thumbnails/` — homepage work-card covers (`import-experience.png`,
+    `custom-metrics.png`, `investor-portal.png`). Card #01's cover is the design
+    system hero (`design system images/hero/full-hero.webp`).
+  - `assets/portrait/` — personal photos (`greet-color.png` for the hero greeting,
+    `about.png` for the About section).
+  - `assets/design system images/` — case-study imagery, grouped by chapter
+    (`hero/`, `foundations/`, `components/`, `collaboration/`, `outcome/`). Each
+    chapter serves a `.webp` to the page and keeps the lossless PNG master in a
+    sibling `source/` folder.
+  - `assets/templates/` — the case-study cover template used to render card covers.
+  - `assets/Screen Recording 2026-11-06 .mov` — stray screen recording, not
+    referenced by the site (left in place pending review).
 
 ## archive/ (not published — kept on disk only)
 Git-ignored, so it stays locally for reference but is not deployed:
@@ -32,6 +43,14 @@ Git-ignored, so it stays locally for reference but is not deployed:
 - `archive/explorations/` — past design explorations, including
   `portfolio-v1.html` (the source the current `index.html` was built from) and
   `old/` concept experiments.
+- `archive/old-assets/` — superseded standalone images: the old design-system
+  thumbnail, retired case-cover SVGs (`case-*.svg`), the `hero-placeholder.svg`,
+  the unused B/W greet photo, old portrait iterations, and `portrait.jpg` (now
+  only referenced by `archive/old-design/about.html`).
+- `archive/design-system-images/` — earlier hero experiments and the superseded
+  flat PNGs replaced by the chaptered `assets/design system images/` structure.
+- `archive/review-screenshots/` — QA/inspector screenshots, never part of the
+  live site.
 
 ## Conventions
 - Work cards are single `<a>` elements. Card #01 opens the case study page in the

@@ -184,6 +184,17 @@
   .ex-media{ background:var(--media); overflow:hidden; aspect-ratio:16/10; position:relative; }
   .ex-media img{ width:100%; height:100%; object-fit:cover; object-position:center; transform:scale(1.015); transition:transform 1s var(--ease-out), clip-path .95s var(--ease-out); }
 
+  /* Design-system exhibit (#01): the transparent hero artwork composed on a
+     soft lavender-gray field instead of a baked screenshot. The artwork fills
+     most of the frame; its layered shadows and the lower panel crop a little
+     at the bottom edge, which is intentional. */
+  .ex-media--ds{ background:#eeeaf5; }
+  .ex-media--ds img{
+    position:absolute; left:50%; top:9.5%;
+    width:84%; height:auto; object-fit:contain; object-position:top center;
+    transform:translateX(-50%) scale(1); transform-origin:top center;
+  }
+
   /* wall label */
   .ex-label{ display:flex; align-items:baseline; gap:.9rem; margin:0 0 1.1rem; }
   .ex-no{ font-family:var(--display); font-weight:600; font-size:1.12rem; color:var(--ink); font-variant-numeric:tabular-nums; letter-spacing:-.01em; }
@@ -284,6 +295,9 @@
   .exhibit:focus-visible .ex-media img{ transform:scale(1.045); }
   .exhibit:focus-visible .ex-cta::after{ transform:scaleX(1); }
   .exhibit:focus-visible .ex-cta .arrow{ transform:translate(5px,-5px); }
+  /* keep the composed artwork centred while it scales on hover/focus */
+  .exhibit:hover .ex-media--ds img,
+  .exhibit:focus-visible .ex-media--ds img{ transform:translateX(-50%) scale(1.03); }
 
   /* press feedback */
   .hero-act:active{ transform:scale(.98); }
@@ -320,7 +334,7 @@
     <canvas class="dotfield" aria-hidden="true"></canvas>
     <div class="hero-copy">
       <div class="greet rise">
-        <img class="greet-photo" src="assets/tal-greet-color.png" width="88" height="97"
+        <img class="greet-photo" src="assets/portrait/greet-color.png" width="88" height="97"
              alt="Portrait of Tal Yanay." decoding="async">
         <p class="greet-text">Hey,<br>I&#8217;m Tal</p>
       </div>
@@ -341,7 +355,7 @@
     <a class="exhibit" href="design-system-case-study.html"
        aria-label="Read the case study: One Source of Truth, Rebuilding Agora's Design System">
       <div class="ex-grid">
-        <div class="ex-media rise-clip"><img src="assets/Design system - thumbnail.png" width="1600" height="1000" alt="The rebuilt Agora design system, a Button component documented in Agorabook." loading="lazy" decoding="async"></div>
+        <div class="ex-media ex-media--ds rise-clip"><img src="assets/design system images/hero/full-hero.webp" width="1600" height="1250" alt="The rebuilt Agora design system: a matrix of Input component states in Figma, its properties panel, and the component documented in Storybook." loading="lazy" decoding="async"></div>
         <div class="ex-body">
           <div class="ex-label rise"><span class="ex-no">01</span><span class="ex-cat">Design Systems, Design Ops, Tokens</span></div>
           <h3 class="ex-title rise">Rebuilding Agora&#8217;s Design System</h3>
@@ -357,7 +371,7 @@
        target="_blank" rel="noopener noreferrer"
        aria-label="Open the Figma prototype: Import Experience (opens in a new tab)">
       <div class="ex-grid">
-        <div class="ex-media rise-clip"><img src="assets/ImportExperience- thumbnail.png" width="1600" height="1000" alt="The Import Experience, two data-import review tables floating on a blue field." loading="lazy" decoding="async"></div>
+        <div class="ex-media rise-clip"><img src="assets/thumbnails/import-experience.png" width="1600" height="1000" alt="The Import Experience, two data-import review tables floating on a blue field." loading="lazy" decoding="async"></div>
         <div class="ex-body">
           <div class="ex-label rise"><span class="ex-no">02</span><span class="ex-cat">UI/UX, UX Research, User Testing</span></div>
           <h3 class="ex-title rise">Import Experience</h3>
@@ -373,7 +387,7 @@
        target="_blank" rel="noopener noreferrer"
        aria-label="Open the Figma prototype: Custom Metrics, a KPI system you can trust (opens in a new tab)">
       <div class="ex-grid">
-        <div class="ex-media rise-clip"><img src="assets/Custom metrics - thumbnail.png" width="1600" height="1000" alt="The Custom Metrics KPI table, financial figures on a yellow field." loading="lazy" decoding="async"></div>
+        <div class="ex-media rise-clip"><img src="assets/thumbnails/custom-metrics.png" width="1600" height="1000" alt="The Custom Metrics KPI table, financial figures on a yellow field." loading="lazy" decoding="async"></div>
         <div class="ex-body">
           <div class="ex-label rise"><span class="ex-no">03</span><span class="ex-cat">Product Design, Financial Data, UX Flows</span></div>
           <h3 class="ex-title rise">Custom Metrics</h3>
@@ -389,7 +403,7 @@
        target="_blank" rel="noopener noreferrer"
        aria-label="Open the Figma prototype: Investor Portal, a modular data experience (opens in a new tab)">
       <div class="ex-grid">
-        <div class="ex-media rise-clip"><img src="assets/Investor portal - Thumbnail.png" width="1600" height="1000" alt="The Investor Portal dashboard, cashflow chart and a live offering card on a teal field." loading="lazy" decoding="async"></div>
+        <div class="ex-media rise-clip"><img src="assets/thumbnails/investor-portal.png" width="1600" height="1000" alt="The Investor Portal dashboard, cashflow chart and a live offering card on a teal field." loading="lazy" decoding="async"></div>
         <div class="ex-body">
           <div class="ex-label rise"><span class="ex-no">04</span><span class="ex-cat">UX Research, Data Visualization, Modular Design</span></div>
           <h3 class="ex-title rise">Investor Portal</h3>
@@ -406,7 +420,7 @@
     <section class="about shell" id="about" aria-labelledby="about-h">
       <div class="about-grid">
         <figure class="about-portrait rise-clip" style="margin:0">
-          <div class="about-frame"><img src="assets/tal%20portrait%20about.png" width="1122" height="1402" alt="Portrait of Tal Yanay." loading="lazy" decoding="async"></div>
+          <div class="about-frame"><img src="assets/portrait/about.png" width="1122" height="1402" alt="Portrait of Tal Yanay." loading="lazy" decoding="async"></div>
         </figure>
 
         <div>

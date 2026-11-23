@@ -7,3 +7,7 @@ archive/
 # OS / editor cruft
 .DS_Store
 Thumbs.db
+
+# Design-tool working dirs (inspector screenshots, hook state) — not published
+.taste-skill/
+.impeccable/

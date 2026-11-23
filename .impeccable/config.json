@@ -80,6 +80,78 @@
         ],
         "createdAt": "2026-11-07T07:31:18.593Z",
         "reason": "false positive on .about-wrap: it has a ground-2 background but its content is amply inset by the inner .about.shell (padding-block clamp 66-138px + gutter padding); text is nowhere near flush. Rule has no narrower per-element scope."
+      },
+      {
+        "rule": "hero-eyebrow-chip",
+        "value": "*",
+        "files": [
+          "design-system-case-study.html"
+        ],
+        "createdAt": "2026-11-21T18:30:16.332Z",
+        "reason": "approved finalized hero: cs-label kicker is do-not-modify; chapter kickers deliberately mirror it for brand consistency (hero approved in Part 1)"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "design-system-case-study.html"
+        ],
+        "createdAt": "2026-11-21T18:30:16.354Z",
+        "reason": "approved finalized hero: bordered Figma screenshot panels (cs-art) fill their frame edge-to-edge by design; do-not-modify hero"
+      },
+      {
+        "rule": "tight-leading",
+        "value": "*",
+        "files": [
+          "design-system-case-study.html"
+        ],
+        "createdAt": "2026-11-21T18:30:16.372Z",
+        "reason": "display type only (h2/h3/.statement/hero h1) uses intentional tight leading per gallery-light system; body copy is 1.6"
+      },
+      {
+        "rule": "buried-raster",
+        "value": "*",
+        "files": [
+          "design-system-case-study.html"
+        ],
+        "createdAt": "2026-11-23T17:09:13.857Z",
+        "reason": "Claude: opacity:0 on .compare-img--before is a mobile Before/After toggle state, not a buried raster; it renders at opacity:1 when 'Before' is selected (verified in both states)."
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "archive/old-design/about.html"
+        ],
+        "createdAt": "2026-11-23T17:38:37.418Z",
+        "reason": "archived non-live old-design page (git-ignored, not published); only an image path was edited during asset cleanup, contrast is pre-existing and out of scope"
+      },
+      {
+        "rule": "italic-serif-display",
+        "value": "*",
+        "files": [
+          "archive/old-design/about.html"
+        ],
+        "createdAt": "2026-11-23T17:41:41.249Z",
+        "reason": "archived non-live old-design page (git-ignored, not published); predates this session, only an image path was edited during asset cleanup — out of scope"
+      },
+      {
+        "rule": "hero-eyebrow-chip",
+        "value": "*",
+        "files": [
+          "archive/old-design/about.html"
+        ],
+        "createdAt": "2026-11-23T17:41:41.266Z",
+        "reason": "archived non-live old-design page (git-ignored, not published); predates this session, only an image path was edited during asset cleanup — out of scope"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "archive/old-design/about.html"
+        ],
+        "createdAt": "2026-11-23T17:41:41.281Z",
+        "reason": "archived non-live old-design page (git-ignored, not published); predates this session, only an image path was edited during asset cleanup — out of scope"
       }
     ]
   }
