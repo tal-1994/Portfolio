@@ -1,6 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <rect width="100" height="100" rx="20" fill="#f7f5ef"/>
-  <text x="50" y="50" text-anchor="middle" dominant-baseline="central"
-        font-family="Inter, -apple-system, sans-serif" font-weight="700"
-        font-size="70" fill="#FF5432">T</text>
+  <style>
+    .tile{ fill:#141414; }
+    .letter{ fill:#f6f7f7; }
+    @media (prefers-color-scheme: dark){
+      .tile{ fill:#f6f7f7; }
+      .letter{ fill:#141414; }
+    }
+  </style>
+  <rect class="tile" width="100" height="100" rx="18"/>
+  <path class="letter" d="M28 29 H72 V43 H57 V71 H43 V43 H28 Z"/>
 </svg>
