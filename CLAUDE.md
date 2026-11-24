@@ -14,13 +14,27 @@ gradients, no flashy animation. `prefers-reduced-motion` is respected.
 
 ## Files (what's live)
 - `index.html` — **THE main file.** The entire live homepage: hero, selected
-  work (4 exhibits), About section, and Contact footer, all on one page. It is
-  **self-contained** — all CSS and JS are inline. Edit content, styling, and
-  behaviour directly in this file (design tokens live in the `:root` block near
-  the top of its `<style>`).
+  work (4 exhibits), About section, and Contact footer, all on one page. CSS and
+  behaviour (JS) are inline; the **written copy is externalized** to `content/`
+  (see below) and injected on load, so the body text here is empty elements
+  carrying `data-c="…"` hooks. Edit styling/behaviour here (design tokens live in
+  the `:root` block near the top of its `<style>`); edit **copy in `content/`**.
 - `design-system-case-study.html` — the one subpage, linked from work card #01.
-  Also self-contained (its own inline CSS/JS). Its nav links back to
-  `index.html#work` and `index.html#about`.
+  Same arrangement (inline CSS/JS, copy injected from `content/`). Its nav links
+  back to `index.html#work` and `index.html#about`.
+
+## content/ (centralized, editable website copy)
+Plain commented JS loaded as classic `<script>`s (no build step; works under
+`file://`). Edit copy here, refresh the page, done. See `content/README.md`.
+- `content/home.js` — homepage copy (hero, 4 work cards, About).
+- `content/case-studies/design-system.js` — the case study's copy (hero, My role,
+  5 chapters, slider captions/labels).
+- `content/shared.js` — nav + contact/footer copy (shown on both pages, written once).
+- `content/inject.js` — the shared injector that writes each value into the element
+  whose `data-c` attribute points at it. (Infrastructure — not copy.)
+- Exceptions kept in the page JS on purpose: the before/after slider's live
+  "% before/after" read-out, the lightbox's full-size image descriptions, and the
+  slider's inline "Enlarge" label (tied to a control/icon, not editorial copy).
 - `assets/` — images used by the live pages, organized by purpose:
   - `assets/favicon.svg` — site favicon.
   - `assets/thumbnails/` — homepage work-card covers (`import-experience.png`,

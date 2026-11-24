@@ -224,13 +224,13 @@
   .about{ padding-block:clamp(66px,10vw,138px); }
   .about-grid{ display:grid; grid-template-columns:.78fr 1.22fr; gap:clamp(32px,6vw,96px); align-items:start; }
   .about-portrait{ position:sticky; top:96px; }
-  .about-frame{ background:#d9c7e6; overflow:hidden; aspect-ratio:4/5; }
+  .about-frame{ background:var(--media); overflow:hidden; aspect-ratio:4/5; }
   .about-portrait img{ width:100%; height:100%; object-fit:cover; object-position:top center; }
   .about-portrait figcaption{ margin-top:.75rem; color:var(--ink-3); font-size:.85rem; line-height:1.4; }
 
   .about h2{ font-family:var(--display); font-weight:600; font-size:clamp(1.8rem,3.6vw,3rem); line-height:1.08; letter-spacing:-.025em; margin:0 0 1.6rem; max-width:20ch; text-wrap:balance; }
   .about p{ font-size:clamp(1.04rem,1.4vw,1.18rem); line-height:1.6; color:var(--ink-2); margin:0 0 1.1rem; max-width:58ch; text-wrap:pretty; }
-  .about p.lead{ color:var(--ink); font-size:clamp(1.18rem,1.8vw,1.42rem); line-height:1.45; max-width:30ch; }
+  .about p.lead{ color:var(--ink); font-size:clamp(1.18rem,1.8vw,1.42rem); line-height:1.45; max-width:35ch; }
   .about p.status{ color:var(--ink); font-weight:500; }
   @media (max-width:760px){
     .about-grid{ grid-template-columns:1fr; gap:34px; }
@@ -258,7 +258,10 @@
      the IntersectionObserver watches — a fully clipped target stops firing. */
   .rise-clip img{ clip-path:inset(0 0 100% 0); }
   .rise-clip.in img{ clip-path:inset(0 0 0 0); }
-  .about-portrait img{ transition:clip-path .95s var(--ease-out); }
+  .about-portrait img{ transition:clip-path .95s var(--ease-out), opacity .25s var(--ease-out); }
+  /* portrait fades up over the neutral matte once decoded; JS only hides it
+     while it's genuinely still loading, so cached hits show with no flash. */
+  .about-portrait img.img-loading{ opacity:0; }
 
   /* progressive enhancement: everything is visible unless JS arms the reveal,
      so a script failure or no-JS can never leave the page hidden. */
@@ -318,11 +321,11 @@
 
 <header class="nav">
   <div class="shell nav-in">
-    <a class="wordmark" href="#top">Tal Yanay <span>Product Designer</span></a>
+    <a class="wordmark" href="#top" data-c="shared.nav.wordmark"></a>
     <nav class="nav-links" aria-label="Primary">
-      <a class="hidephone" href="#work">Work</a>
-      <a class="hidephone" href="#about">About</a>
-      <a class="cta" href="mailto:talyanay10@gmail.com">Get in touch</a>
+      <a class="hidephone" href="#work" data-c="shared.nav.work"></a>
+      <a class="hidephone" href="#about" data-c="shared.nav.about"></a>
+      <a class="cta" href="mailto:talyanay10@gmail.com" data-c="shared.nav.getInTouch;@href:shared.contact.email"></a>
     </nav>
   </div>
 </header>
@@ -335,33 +338,33 @@
     <div class="hero-copy">
       <div class="greet rise">
         <img class="greet-photo" src="assets/portrait/greet-color.png" width="88" height="97"
-             alt="Portrait of Tal Yanay." decoding="async">
-        <p class="greet-text">Hey,<br>I&#8217;m Tal</p>
+             data-c="@alt:home.hero.portraitAlt" decoding="async">
+        <p class="greet-text" data-c="home.hero.greeting"></p>
       </div>
-      <h1 id="hero-h" class="rise">Senior Product Designer <br>&amp; Builder.</h1>
+      <h1 id="hero-h" class="rise" data-c="home.hero.headline"></h1>
 
-      <a class="hero-act rise" href="#work"><span class="bar" aria-hidden="true"></span> See the work</a>
+      <a class="hero-act rise" href="#work" data-c="home.hero.seeWork"></a>
     </div>
   </section>
 
   <!-- WORK -->
   <section class="work shell" id="work" aria-labelledby="work-h">
     <div class="sec-head rise">
-      <h2 id="work-h">Selected work</h2>
-      <p class="note">Design systems, complex SaaS, and data products.</p>
+      <h2 id="work-h" data-c="home.work.heading"></h2>
+      <p class="note" data-c="home.work.note"></p>
     </div>
 
     <!-- Design system -->
     <a class="exhibit" href="design-system-case-study.html"
-       aria-label="Read the case study: One Source of Truth, Rebuilding Agora's Design System">
+       data-c="@href:home.work.exhibits.designSystem.href;@aria-label:home.work.exhibits.designSystem.ariaLabel">
       <div class="ex-grid">
-        <div class="ex-media ex-media--ds rise-clip"><img src="assets/design system images/hero/full-hero.webp" width="1600" height="1250" alt="The rebuilt Agora design system: a matrix of Input component states in Figma, its properties panel, and the component documented in Storybook." loading="lazy" decoding="async"></div>
+        <div class="ex-media ex-media--ds rise-clip"><img src="assets/design system images/hero/full-hero.webp" width="1600" height="1250" data-c="@alt:home.work.exhibits.designSystem.imageAlt" loading="lazy" decoding="async"></div>
         <div class="ex-body">
-          <div class="ex-label rise"><span class="ex-no">01</span><span class="ex-cat">Design Systems, Design Ops, Tokens</span></div>
-          <h3 class="ex-title rise">Rebuilding Agora&#8217;s Design System</h3>
-          <p class="ex-stand rise">One source of truth: leading the rebuild of an outdated Figma kit into a living design system shared by design and development.</p>
-          <p class="ex-impact rise">One source of truth in Figma and Storybook that design and code build on.</p>
-          <span class="ex-cta rise">Read the case study <span class="arrow" aria-hidden="true">&#8599;</span></span>
+          <div class="ex-label rise"><span class="ex-no" data-c="home.work.exhibits.designSystem.number"></span><span class="ex-cat" data-c="home.work.exhibits.designSystem.category"></span></div>
+          <h3 class="ex-title rise" data-c="home.work.exhibits.designSystem.title"></h3>
+          <p class="ex-stand rise" data-c="home.work.exhibits.designSystem.standfirst"></p>
+          <p class="ex-impact rise" data-c="home.work.exhibits.designSystem.impact"></p>
+          <span class="ex-cta rise" data-c="home.work.exhibits.designSystem.cta"></span>
         </div>
       </div>
     </a>
@@ -369,15 +372,15 @@
     <!-- Import -->
     <a class="exhibit flip" href="https://www.figma.com/proto/7P5aqn9a7O2yC875AsKbrv/%F0%9F%8E%A8-Portfolio-design?page-id=308%3A1651&node-id=1701-15362&viewport=5214%2C75%2C0.19&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1701%3A15362"
        target="_blank" rel="noopener noreferrer"
-       aria-label="Open the Figma prototype: Import Experience (opens in a new tab)">
+       data-c="@href:home.work.exhibits.import.href;@aria-label:home.work.exhibits.import.ariaLabel">
       <div class="ex-grid">
-        <div class="ex-media rise-clip"><img src="assets/thumbnails/import-experience.png" width="1600" height="1000" alt="The Import Experience, two data-import review tables floating on a blue field." loading="lazy" decoding="async"></div>
+        <div class="ex-media rise-clip"><img src="assets/thumbnails/import-experience.png" width="1600" height="1000" data-c="@alt:home.work.exhibits.import.imageAlt" loading="lazy" decoding="async"></div>
         <div class="ex-body">
-          <div class="ex-label rise"><span class="ex-no">02</span><span class="ex-cat">UI/UX, UX Research, User Testing</span></div>
-          <h3 class="ex-title rise">Import Experience</h3>
-          <p class="ex-stand rise">Helping teams import complex data with more control, confidence, and fewer mistakes.</p>
-          <p class="ex-impact rise">Fewer failed imports and support tickets by giving teams control before their data lands.</p>
-          <span class="ex-cta rise">Open the prototype <span class="arrow" aria-hidden="true">&#8599;</span></span>
+          <div class="ex-label rise"><span class="ex-no" data-c="home.work.exhibits.import.number"></span><span class="ex-cat" data-c="home.work.exhibits.import.category"></span></div>
+          <h3 class="ex-title rise" data-c="home.work.exhibits.import.title"></h3>
+          <p class="ex-stand rise" data-c="home.work.exhibits.import.standfirst"></p>
+          <p class="ex-impact rise" data-c="home.work.exhibits.import.impact"></p>
+          <span class="ex-cta rise" data-c="home.work.exhibits.import.cta"></span>
         </div>
       </div>
     </a>
@@ -385,15 +388,15 @@
     <!-- Custom metrics -->
     <a class="exhibit" href="https://www.figma.com/proto/7P5aqn9a7O2yC875AsKbrv/%F0%9F%8E%A8-Portfolio-design?page-id=308%3A1651&node-id=1947-53513&viewport=12939%2C-9706%2C0.3&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=607%3A16155"
        target="_blank" rel="noopener noreferrer"
-       aria-label="Open the Figma prototype: Custom Metrics, a KPI system you can trust (opens in a new tab)">
+       data-c="@href:home.work.exhibits.customMetrics.href;@aria-label:home.work.exhibits.customMetrics.ariaLabel">
       <div class="ex-grid">
-        <div class="ex-media rise-clip"><img src="assets/thumbnails/custom-metrics.png" width="1600" height="1000" alt="The Custom Metrics KPI table, financial figures on a yellow field." loading="lazy" decoding="async"></div>
+        <div class="ex-media rise-clip"><img src="assets/thumbnails/custom-metrics.png" width="1600" height="1000" data-c="@alt:home.work.exhibits.customMetrics.imageAlt" loading="lazy" decoding="async"></div>
         <div class="ex-body">
-          <div class="ex-label rise"><span class="ex-no">03</span><span class="ex-cat">Product Design, Financial Data, UX Flows</span></div>
-          <h3 class="ex-title rise">Custom Metrics</h3>
-          <p class="ex-stand rise">A KPI system you can trust. Turning inconsistent, per-property KPIs into consistent portfolio numbers, without falling back to Excel.</p>
-          <p class="ex-impact rise">Replaced spreadsheet workarounds with portfolio KPIs teams actually trust.</p>
-          <span class="ex-cta rise">Open the prototype <span class="arrow" aria-hidden="true">&#8599;</span></span>
+          <div class="ex-label rise"><span class="ex-no" data-c="home.work.exhibits.customMetrics.number"></span><span class="ex-cat" data-c="home.work.exhibits.customMetrics.category"></span></div>
+          <h3 class="ex-title rise" data-c="home.work.exhibits.customMetrics.title"></h3>
+          <p class="ex-stand rise" data-c="home.work.exhibits.customMetrics.standfirst"></p>
+          <p class="ex-impact rise" data-c="home.work.exhibits.customMetrics.impact"></p>
+          <span class="ex-cta rise" data-c="home.work.exhibits.customMetrics.cta"></span>
         </div>
       </div>
     </a>
@@ -401,15 +404,15 @@
     <!-- Investor portal -->
     <a class="exhibit flip" href="https://www.figma.com/proto/7P5aqn9a7O2yC875AsKbrv/%F0%9F%8E%A8-Portfolio-design?page-id=308%3A1651&node-id=607-16155&viewport=19441%2C-4615%2C0.44&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=607%3A16155"
        target="_blank" rel="noopener noreferrer"
-       aria-label="Open the Figma prototype: Investor Portal, a modular data experience (opens in a new tab)">
+       data-c="@href:home.work.exhibits.investorPortal.href;@aria-label:home.work.exhibits.investorPortal.ariaLabel">
       <div class="ex-grid">
-        <div class="ex-media rise-clip"><img src="assets/thumbnails/investor-portal.png" width="1600" height="1000" alt="The Investor Portal dashboard, cashflow chart and a live offering card on a teal field." loading="lazy" decoding="async"></div>
+        <div class="ex-media rise-clip"><img src="assets/thumbnails/investor-portal.png" width="1600" height="1000" data-c="@alt:home.work.exhibits.investorPortal.imageAlt" loading="lazy" decoding="async"></div>
         <div class="ex-body">
-          <div class="ex-label rise"><span class="ex-no">04</span><span class="ex-cat">UX Research, Data Visualization, Modular Design</span></div>
-          <h3 class="ex-title rise">Investor Portal</h3>
-          <p class="ex-stand rise">A modular data experience. Turning complex investment data into a modular dashboard that adapts to how each investor works.</p>
-          <p class="ex-impact rise">A modular dashboard investors can shape around how they actually read their data.</p>
-          <span class="ex-cta rise">Open the prototype <span class="arrow" aria-hidden="true">&#8599;</span></span>
+          <div class="ex-label rise"><span class="ex-no" data-c="home.work.exhibits.investorPortal.number"></span><span class="ex-cat" data-c="home.work.exhibits.investorPortal.category"></span></div>
+          <h3 class="ex-title rise" data-c="home.work.exhibits.investorPortal.title"></h3>
+          <p class="ex-stand rise" data-c="home.work.exhibits.investorPortal.standfirst"></p>
+          <p class="ex-impact rise" data-c="home.work.exhibits.investorPortal.impact"></p>
+          <span class="ex-cta rise" data-c="home.work.exhibits.investorPortal.cta"></span>
         </div>
       </div>
     </a>
@@ -420,15 +423,16 @@
     <section class="about shell" id="about" aria-labelledby="about-h">
       <div class="about-grid">
         <figure class="about-portrait rise-clip" style="margin:0">
-          <div class="about-frame"><img src="assets/portrait/about.png" width="1122" height="1402" alt="Portrait of Tal Yanay." loading="lazy" decoding="async"></div>
+          <div class="about-frame"><img src="assets/portrait/about.png" width="1122" height="1402" data-c="@alt:home.about.portraitAlt" loading="lazy" decoding="async"></div>
         </figure>
 
         <div>
-          <h2 id="about-h" class="rise">I enjoy the messy middle of building software.</h2>
-          <p class="lead rise">Hi, I&#8217;m Tal. I&#8217;m a product designer who genuinely enjoys the messy middle of building software.</p>
-          <p class="rise">I care about the details, ask a lot of questions, and like working closely with PMs and engineers. These days I take an idea from a messy whiteboard all the way to something that actually runs, with AI as a real part of how I work. Over the past 4+&nbsp;years I&#8217;ve designed SaaS products with complex workflows, multiple stakeholders, and plenty of edge cases.</p>
-          <p class="rise">I&#8217;m endlessly curious and always picking up a new tool or skill. Away from the screen, I love trying things that are new and a little exciting. That itch got me surfing for a while. Right now it&#8217;s tennis, and I&#8217;m completely hooked.</p>
-          <p class="status rise">I&#8217;m currently looking for my next opportunity to help teams ship better products.</p>
+          <h2 id="about-h" class="rise" data-c="home.about.heading"></h2>
+          <p class="lead rise" data-c="home.about.lead"></p>
+          <p class="rise" data-c="home.about.body.0"></p>
+          <p class="rise" data-c="home.about.body.1"></p>
+          <p class="rise" data-c="home.about.body.2"></p>
+          <p class="status rise" data-c="home.about.status"></p>
         </div>
       </div>
     </section>
@@ -438,18 +442,24 @@
 
 <!-- CONTACT / FOOTER -->
 <footer class="contact shell" id="contact" aria-labelledby="contact-h">
-  <h2 id="contact-h" class="rise"><a href="mailto:talyanay10@gmail.com">Let&#8217;s build something.</a></h2>
-  <p class="contact-lead rise">Currently looking for my next opportunity to help teams ship better products.</p>
+  <h2 id="contact-h" class="rise"><a href="mailto:talyanay10@gmail.com" data-c="shared.contact.heading;@href:shared.contact.email"></a></h2>
+  <p class="contact-lead rise" data-c="shared.contact.lead"></p>
   <div class="contact-links rise">
-    <a class="primary" href="mailto:talyanay10@gmail.com">Email me</a>
-    <a href="https://www.linkedin.com/in/tal-yanay/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-    <a href="#">Resume</a>
+    <a class="primary" href="mailto:talyanay10@gmail.com" data-c="shared.contact.emailLabel;@href:shared.contact.email"></a>
+    <a href="https://www.linkedin.com/in/tal-yanay/" target="_blank" rel="noopener noreferrer" data-c="shared.contact.linkedinLabel;@href:shared.contact.linkedinHref"></a>
+    <a href="#" data-c="shared.contact.resumeLabel;@href:shared.contact.resumeHref"></a>
   </div>
   <div class="colophon">
-    <span><b>Tal Yanay</b>, Product Designer</span>
-    <span>&copy; 2025, Tel Aviv. Designed and built with a little AI.</span>
+    <span data-c="shared.contact.colophonLeft"></span>
+    <span data-c="shared.contact.colophonRight"></span>
   </div>
 </footer>
+
+<!-- Centralized content. Edit the copy in content/*.js (not in the HTML above);
+     these load it and the injector writes it into the page on load. -->
+<script src="content/shared.js"></script>
+<script src="content/home.js"></script>
+<script src="content/inject.js"></script>
 
 <script>
 (function(){
@@ -464,6 +474,17 @@
       if (!ticking){ window.requestAnimationFrame(sync); ticking = true; }
     }, { passive:true });
     sync();
+  }
+
+  /* About portrait: fade in once the image has decoded. Images that are
+     already complete (cache) are left untouched so they paint instantly —
+     only a still-loading image is hidden, then revealed on load/error. */
+  var portrait = document.querySelector(".about-portrait img");
+  if (portrait && !(portrait.complete && portrait.naturalWidth > 0)){
+    portrait.classList.add("img-loading");
+    var showPortrait = function(){ portrait.classList.remove("img-loading"); };
+    portrait.addEventListener("load", showPortrait, { once:true });
+    portrait.addEventListener("error", showPortrait, { once:true });
   }
 
   /* staggered reveal + clip unveil. Content is visible by default (see CSS);
