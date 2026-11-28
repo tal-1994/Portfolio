@@ -14,7 +14,10 @@ gradients, no flashy animation. `prefers-reduced-motion` is respected.
 
 ## Files (what's live)
 - `index.html` — **THE main file.** The entire live homepage: hero, selected
-  work (4 exhibits), About section, and Contact footer, all on one page. CSS and
+  work (sticky project index left + 4 covers right, from workshop option E),
+  About (workshop A3 "Side facts", strip layout on a #f2f2f2 band, with a small
+  green "available" dot, the one non-thumbnail colour), and Contact footer
+  (with the address written out), all on one page. CSS and
   behaviour (JS) are inline; the **written copy is externalized** to `content/`
   (see below) and injected on load, so the body text here is empty elements
   carrying `data-c="…"` hooks. Edit styling/behaviour here (design tokens live in

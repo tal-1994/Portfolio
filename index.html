@@ -25,12 +25,14 @@
     --ink-3:    #646770;   /* small meta, AA */
     --media:    #e7e9ec;   /* image matte */
     --line:     rgba(20,20,20,.10);   /* hairline */
+    --live:     #1d8f4e;   /* the one small "available" dot in About */
 
     --display: "Bricolage Grotesque", Georgia, serif;
     --body:    "Inter", system-ui, sans-serif;
 
     --maxw: 1280px;
     --gutter: clamp(22px, 5vw, 80px);
+    --navh: 66px;          /* sticky nav height, so sticky columns sit below it */
 
     /* motion — stronger than the CSS defaults, with intent */
     --ease:        cubic-bezier(.22,.9,.26,1);
@@ -169,77 +171,94 @@
   html.cursor-custom label, html.cursor-custom label *,
   html.cursor-custom summary, html.cursor-custom summary *{ cursor:pointer; }
 
-  /* ---------- section heading ---------- */
-  .sec-head{ display:flex; align-items:baseline; justify-content:space-between; gap:1rem; flex-wrap:wrap; margin-bottom:clamp(22px,3vw,38px); }
-  .sec-head h2{ font-family:var(--display); font-weight:600; font-size:clamp(1.5rem,3vw,2.3rem); letter-spacing:-.02em; margin:0; text-wrap:balance; }
-  .sec-head .note{ color:var(--ink-3); font-size:.95rem; max-width:40ch; text-align:right; }
+  /* ---------- work : quiet gallery ----------
+     Heading, note and a sticky project index on the left (3 of 12 columns);
+     large covers with one caption each on the right. The index marks the
+     project in view (script below). From 1000px down the projects stack. */
+  .pe{ display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); column-gap:clamp(16px,2vw,28px); align-items:start; padding-top:clamp(44px,5.6vw,80px); padding-bottom:clamp(96px,10vw,152px); }
+  .pe-side{ grid-column:1/4; align-self:stretch; }
+  .pe-stick{ position:sticky; top:calc(var(--navh) + 36px); display:grid; gap:12px; padding-right:12px; }
+  .pe-h{ font-family:var(--display); font-optical-sizing:auto; font-weight:600; font-size:clamp(1.5rem,2.3vw,2.05rem); line-height:1.08; letter-spacing:-.022em; margin:0; text-wrap:balance; }
+  .pe-n{ color:var(--ink-3); font-size:.95rem; line-height:1.5; max-width:24ch; margin:0; }
 
-  /* ---------- work : exhibits ---------- */
-  .work{ padding-top:clamp(56px,9vw,104px); }
-  .exhibit{ display:block; color:inherit; padding-block:clamp(36px,5vw,80px); border-top:1px solid var(--line); transition:transform .14s var(--ease-out); }
-  .ex-grid{ display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(28px,5vw,72px); align-items:center; }
-  .exhibit.flip .ex-media{ order:2; }
-  .exhibit.flip .ex-body{ order:1; }
+  .pe-idx{ margin:30px 0 0; padding:0; list-style:none; display:grid; }
+  .pe-idx a{ display:grid; grid-template-columns:2.3em 1fr; padding:6px 0; font-size:.95rem; line-height:1.35; color:var(--ink-3); transition:color .35s var(--ease); }
+  .pe-no{ font-variant-numeric:tabular-nums; opacity:.55; transition:opacity .35s var(--ease); }
+  .pe-l{ justify-self:start; }
+  .pe-idx a:hover{ color:var(--ink-2); }
+  .pe-idx a.on{ color:var(--ink); }
+  .pe-idx a.on .pe-no{ opacity:1; }
 
-  .ex-media{ background:var(--media); overflow:hidden; aspect-ratio:16/10; position:relative; }
-  .ex-media img{ width:100%; height:100%; object-fit:cover; object-position:center; transform:scale(1.015); transition:transform 1s var(--ease-out), clip-path .95s var(--ease-out); }
+  .pe-list{ grid-column:4/13; display:grid; gap:clamp(96px,10vw,152px); }
+  .pe-p{ display:grid; gap:clamp(22px,2.2vw,30px); scroll-margin-top:calc(var(--navh) + 36px); transition:transform .14s var(--ease-out); }
+  .pe-img{ position:relative; overflow:hidden; aspect-ratio:16/10; background:var(--field,var(--media)); }
+  .pe-img > img{ width:100%; height:100%; object-fit:cover; scale:1.015; transition:scale 1s var(--ease-out), clip-path .95s var(--ease-out), opacity .6s var(--ease-out); }
+  /* Design-system cover (#01): the transparent hero artwork composed on its
+     soft lavender field; it crops a little at the bottom edge, on purpose. */
+  .pe-img--ds > img{ position:absolute; left:50%; top:9.5%; width:84%; height:auto; object-fit:contain; translate:-50% 0; }
 
-  /* Design-system exhibit (#01): the transparent hero artwork composed on a
-     soft lavender-gray field instead of a baked screenshot. The artwork fills
-     most of the frame; its layered shadows and the lower panel crop a little
-     at the bottom edge, which is intentional. */
-  .ex-media--ds{ background:#eeeaf5; }
-  .ex-media--ds img{
-    position:absolute; left:50%; top:9.5%;
-    width:84%; height:auto; object-fit:contain; object-position:top center;
-    transform:translateX(-50%) scale(1); transform-origin:top center;
+  .pe-cap{ display:grid; justify-items:start; max-width:min(100%,34rem); }
+  .pe-t{ font-family:var(--display); font-optical-sizing:auto; font-weight:600; font-size:clamp(1.45rem,2.05vw,1.85rem); line-height:1.1; letter-spacing:-.022em; margin:0; text-wrap:balance; }
+  .pe-s{ margin:12px 0 0; font-size:1.02rem; line-height:1.55; color:var(--ink-2); text-wrap:pretty; }
+  .pe-m{ margin:10px 0 0; font-size:.86rem; line-height:1.45; color:var(--ink-3); }
+  .pe-go{ position:relative; margin-top:22px; display:inline-flex; align-items:center; gap:.5rem; font-size:.95rem; font-weight:500; }
+  .pe-go::after{ content:""; position:absolute; left:0; right:0; bottom:-4px; height:1.5px; background:currentColor; transform:scaleX(0); transform-origin:left; transition:transform .4s var(--ease-out); }
+  .pe-go .ar{ width:.82em; height:.82em; flex:none; transition:transform .4s var(--ease-out); }
+
+  @media (max-width:1000px){
+    .pe-side{ grid-column:1/13; }
+    .pe-stick{ position:static; margin-bottom:clamp(30px,4.5vw,44px); }
+    .pe-n{ max-width:46ch; }
+    .pe-idx{ display:none; }
+    .pe-list{ grid-column:1/13; }
+  }
+  @media (max-width:640px){
+    .pe-list{ gap:72px; }
+    .pe-p{ gap:20px; }
+    .pe-go{ margin-top:18px; }
   }
 
-  /* wall label */
-  .ex-label{ display:flex; align-items:baseline; gap:.9rem; margin:0 0 1.1rem; }
-  .ex-no{ font-family:var(--display); font-weight:600; font-size:1.12rem; color:var(--ink); font-variant-numeric:tabular-nums; letter-spacing:-.01em; }
-  .ex-cat{ font-size:.72rem; font-weight:500; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); }
-
-  .ex-title{ font-family:var(--display); font-weight:600; font-size:clamp(1.7rem,3.4vw,2.9rem); line-height:1.03; letter-spacing:-.025em; margin:0 0 1rem; text-wrap:balance; }
-  .ex-stand{ font-size:clamp(1.04rem,1.5vw,1.2rem); line-height:1.5; color:var(--ink-2); max-width:42ch; margin:0 0 1.3rem; text-wrap:pretty; }
-  .ex-impact{ font-size:1rem; line-height:1.5; color:var(--ink); max-width:44ch; margin:0 0 1.5rem; padding-left:1.1rem; border-left:2px solid var(--ink); text-wrap:pretty; }
-  .ex-cta{ position:relative; display:inline-flex; align-items:center; gap:.6rem; font-weight:500; color:var(--ink); }
-  .ex-cta::after{ content:""; position:absolute; left:0; bottom:-3px; width:100%; height:1.5px; background:currentColor; transform:scaleX(0); transform-origin:left; transition:transform .4s var(--ease-out); }
-  .ex-cta .arrow{ transition:transform .4s var(--ease-out); }
-
-  /* keep the image in the wider (1.1fr) column on flipped rows too,
-     so all four exhibits render at the same size */
-  @media (min-width:821px){
-    .exhibit.flip .ex-grid{ grid-template-columns:.9fr 1.1fr; }
+  /* ---------- about : side facts (strip) ----------
+     Portrait on the left, words on the right, the four facts in a ruled row
+     beneath. Sits on a soft #f2f2f2 band. */
+  .a3-wrap{
+    --a3-bg:#f2f2f2;
+    --a3-txt:color-mix(in srgb, var(--ink) 85%, var(--a3-bg));
+    --a3-ink3:color-mix(in srgb, var(--ink) 62%, var(--a3-bg));
+    --a3-line:color-mix(in srgb, var(--ink) 13%, var(--a3-bg));
+    background:var(--a3-bg);
   }
-
-  @media (max-width:820px){
-    .ex-grid{ grid-template-columns:1fr; gap:24px; }
-    .exhibit.flip .ex-media{ order:1; }
-    .exhibit.flip .ex-body{ order:2; }
-  }
-
-  /* ---------- about ---------- */
-  .about-wrap{ background:var(--ground-2); margin-top:clamp(40px,6vw,90px); }
-  .about{ padding-block:clamp(66px,10vw,138px); }
-  .about-grid{ display:grid; grid-template-columns:.78fr 1.22fr; gap:clamp(32px,6vw,96px); align-items:start; }
-  .about-portrait{ position:sticky; top:96px; }
-  .about-frame{ background:var(--media); overflow:hidden; aspect-ratio:4/5; }
-  .about-portrait img{ width:100%; height:100%; object-fit:cover; object-position:top center; }
-  .about-portrait figcaption{ margin-top:.75rem; color:var(--ink-3); font-size:.85rem; line-height:1.4; }
-
-  .about h2{ font-family:var(--display); font-weight:600; font-size:clamp(1.8rem,3.6vw,3rem); line-height:1.08; letter-spacing:-.025em; margin:0 0 1.6rem; max-width:20ch; text-wrap:balance; }
-  .about p{ font-size:clamp(1.04rem,1.4vw,1.18rem); line-height:1.6; color:var(--ink-2); margin:0 0 1.1rem; max-width:58ch; text-wrap:pretty; }
-  .about p.lead{ color:var(--ink); font-size:clamp(1.18rem,1.8vw,1.42rem); line-height:1.45; max-width:35ch; }
-  .about p.status{ color:var(--ink); font-weight:500; }
-  @media (max-width:760px){
-    .about-grid{ grid-template-columns:1fr; gap:34px; }
-    .about-portrait{ max-width:300px; position:relative; top:0; }
+  .a3{ padding-block:clamp(88px,11vw,168px); }
+  .a3-g{ display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); column-gap:clamp(16px,2vw,28px); align-items:start; }
+  /* the portrait column starts at the label's cap height, so tops line up */
+  .a3-side{ grid-column:1/6; grid-row:1; padding-top:calc(clamp(1.5rem,2.3vw,2.05rem) * .17); }
+  .a3-main{ grid-column:7/13; grid-row:1; }
+  .a3-ph{ aspect-ratio:4/5; margin:0; overflow:hidden; background:var(--media); }
+  .a3-ph img{ width:100%; height:100%; object-fit:cover; object-position:50% 0; transition:clip-path .95s var(--ease-out), opacity .25s var(--ease-out); }
+  .a3-k{ font-family:var(--display); font-optical-sizing:auto; font-weight:600; font-size:clamp(1.5rem,2.3vw,2.05rem); line-height:1.08; letter-spacing:-.022em; margin:0 0 clamp(36px,4vw,60px); }
+  .a3-lead{ font-size:clamp(1.2rem,1.75vw,1.42rem); line-height:1.45; margin:0 0 1.8rem; max-width:34rem; text-wrap:pretty; }
+  .a3-p{ color:var(--a3-txt); font-size:1.0625rem; line-height:1.68; max-width:34rem; margin:0 0 1em; text-wrap:pretty; }
+  .a3-st{ display:flex; align-items:center; gap:.7rem; font-weight:500; margin:1.8rem 0 0; }
+  .dot-live{ width:8px; height:8px; border-radius:50%; background:var(--live); flex:none; align-self:flex-start; margin-top:.55em; }
+  .a3-dl{ grid-column:1/13; grid-row:2; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1.2rem clamp(16px,2vw,28px); margin:clamp(64px,7vw,112px) 0 0; padding-top:clamp(20px,2vw,28px); border-top:1px solid var(--a3-line); }
+  .a3-dl div{ display:grid; gap:.2rem; align-content:start; }
+  .a3-dl dt{ font-size:.85rem; line-height:1.3; color:var(--a3-ink3); }
+  .a3-dl dd{ margin:0; font-size:1rem; line-height:1.42; max-width:24ch; text-wrap:balance; }
+  /* phones: one column, in reading order (label, portrait, lead, facts, story) */
+  @media (max-width:700px){
+    .a3-g{ display:flex; flex-direction:column; }
+    .a3-main, .a3-side{ display:contents; }
+    .a3-k{ order:-1; }
+    .a3-ph{ order:0; width:min(84%,340px); margin-bottom:clamp(32px,8vw,44px); }
+    .a3-lead{ order:2; }
+    .a3-dl{ order:3; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px 20px; margin:0 0 clamp(34px,9vw,44px); padding:0; border:0; }
+    .a3-p{ order:4; }
+    .a3-st{ order:5; }
   }
 
   /* ---------- contact / footer ---------- */
   .contact{ padding-top:clamp(74px,12vw,164px); padding-bottom:clamp(36px,4vw,56px); }
-  .contact h2{ font-family:var(--display); font-weight:600; font-size:clamp(2.4rem,7vw,5.5rem); line-height:.95; letter-spacing:-.03em; margin:0; text-wrap:balance; }
+  .contact h2{ font-family:var(--display); font-weight:600; font-size:clamp(2.4rem,6.5vw,6rem); line-height:.95; letter-spacing:-.03em; margin:0; text-wrap:balance; }
   .contact h2 a{ position:relative; display:inline-block; transition:color .3s var(--ease); }
   .contact h2 a::after{ content:""; position:absolute; left:0; bottom:.06em; width:100%; height:3px; background:currentColor; transform:scaleX(0); transform-origin:left; transition:transform .55s var(--ease-out); }
   .contact-lead{ margin:clamp(22px,3vw,38px) 0 0; font-size:clamp(1.1rem,1.6vw,1.3rem); color:var(--ink-2); max-width:42ch; line-height:1.45; text-wrap:pretty; }
@@ -247,6 +266,8 @@
   .contact-links a{ display:inline-flex; align-items:center; gap:.5rem; padding:.85rem 1.5rem; font-weight:500; border-radius:99px; color:var(--ink); background:var(--ground-2); transition:background .3s var(--ease), color .3s var(--ease), transform .16s var(--ease-out); }
   .contact-links a.primary{ background:var(--ink); color:var(--ground); }
   .contact-links a:active{ transform:scale(.97); }
+  /* the address written out, for people without a mail app; one click selects it */
+  .contact-addr{ margin:1rem 0 0; color:var(--ink-3); user-select:all; }
 
   .colophon{ margin-top:clamp(64px,10vw,128px); display:flex; justify-content:space-between; flex-wrap:wrap; gap:.6rem 1.5rem; color:var(--ink-3); font-size:.9rem; }
   .colophon b{ color:var(--ink); font-weight:500; }
@@ -258,10 +279,9 @@
      the IntersectionObserver watches — a fully clipped target stops firing. */
   .rise-clip img{ clip-path:inset(0 0 100% 0); }
   .rise-clip.in img{ clip-path:inset(0 0 0 0); }
-  .about-portrait img{ transition:clip-path .95s var(--ease-out), opacity .25s var(--ease-out); }
   /* portrait fades up over the neutral matte once decoded; JS only hides it
      while it's genuinely still loading, so cached hits show with no flash. */
-  .about-portrait img.img-loading{ opacity:0; }
+  .a3-ph img.img-loading{ opacity:0; }
 
   /* progressive enhancement: everything is visible unless JS arms the reveal,
      so a script failure or no-JS can never leave the page hidden. */
@@ -286,31 +306,28 @@
 
     .nav-links a.cta:hover::after{ transform:scaleX(1); }
     .hero-act:hover .bar{ width:66px; }
-    .exhibit:hover .ex-media img{ transform:scale(1.045); }
-    .exhibit:hover .ex-cta::after{ transform:scaleX(1); }
-    .exhibit:hover .ex-cta .arrow{ transform:translate(5px,-5px); }
+    .pe-p:hover .pe-img > img{ scale:1.04; }
+    .pe-p:hover .pe-go::after{ transform:scaleX(1); }
+    .pe-p:hover .pe-go .ar{ transform:translate(3px,-3px); }
     .contact h2 a:hover{ color:var(--ink); }
     .contact h2 a:hover::after{ transform:scaleX(1); }
     .contact-links a:hover{ transform:translateY(-2px); background:#e3e5e7; }
     .contact-links a.primary:hover{ background:#000; }
   }
   /* keyboard focus mirrors the hover reveal so it is never pointer-only */
-  .exhibit:focus-visible .ex-media img{ transform:scale(1.045); }
-  .exhibit:focus-visible .ex-cta::after{ transform:scaleX(1); }
-  .exhibit:focus-visible .ex-cta .arrow{ transform:translate(5px,-5px); }
-  /* keep the composed artwork centred while it scales on hover/focus */
-  .exhibit:hover .ex-media--ds img,
-  .exhibit:focus-visible .ex-media--ds img{ transform:translateX(-50%) scale(1.03); }
+  .pe-p:focus-visible .pe-img > img{ scale:1.04; }
+  .pe-p:focus-visible .pe-go::after{ transform:scaleX(1); }
+  .pe-p:focus-visible .pe-go .ar{ transform:translate(3px,-3px); }
 
   /* press feedback */
   .hero-act:active{ transform:scale(.98); }
-  .exhibit:active{ transform:scale(.995); }
+  .pe-p:active{ transform:scale(.995); }
 
   @media (prefers-reduced-motion: reduce){
     *{ animation:none!important; transition:none!important; }
     .rise{ opacity:1; transform:none; }
     .rise-clip img{ clip-path:none; }
-    .ex-media img{ transform:none; }
+    .pe-img > img{ scale:1; }
     /* dot-field renders static; greet photo stays at its full, unfaded state */
     .cursor-ring{ display:none; }
   }
@@ -347,93 +364,93 @@
     </div>
   </section>
 
-  <!-- WORK -->
-  <section class="work shell" id="work" aria-labelledby="work-h">
-    <div class="sec-head rise">
-      <h2 id="work-h" data-c="home.work.heading"></h2>
-      <p class="note" data-c="home.work.note"></p>
+  <!-- WORK : heading, note and sticky project index left; covers right -->
+  <section class="pe shell" id="work" aria-labelledby="work-h">
+    <div class="pe-side">
+      <div class="pe-stick">
+        <h2 class="pe-h rise" id="work-h" data-c="home.work.heading"></h2>
+        <p class="pe-n rise" data-c="home.work.note"></p>
+        <ol class="pe-idx rise" aria-label="Projects">
+        <li><a href="#pe-p1" class="on" aria-current="true"><span class="pe-no" data-c="home.work.exhibits.designSystem.number"></span><span class="pe-l" data-c="home.work.exhibits.designSystem.short"></span></a></li>
+        <li><a href="#pe-p2"><span class="pe-no" data-c="home.work.exhibits.import.number"></span><span class="pe-l" data-c="home.work.exhibits.import.short"></span></a></li>
+        <li><a href="#pe-p3"><span class="pe-no" data-c="home.work.exhibits.customMetrics.number"></span><span class="pe-l" data-c="home.work.exhibits.customMetrics.short"></span></a></li>
+        <li><a href="#pe-p4"><span class="pe-no" data-c="home.work.exhibits.investorPortal.number"></span><span class="pe-l" data-c="home.work.exhibits.investorPortal.short"></span></a></li>
+        </ol>
+      </div>
     </div>
 
-    <!-- Design system -->
-    <a class="exhibit" href="design-system-case-study.html"
-       data-c="@href:home.work.exhibits.designSystem.href;@aria-label:home.work.exhibits.designSystem.ariaLabel">
-      <div class="ex-grid">
-        <div class="ex-media ex-media--ds rise-clip"><img src="assets/design system images/hero/full-hero.webp" width="1600" height="1250" data-c="@alt:home.work.exhibits.designSystem.imageAlt" loading="lazy" decoding="async"></div>
-        <div class="ex-body">
-          <div class="ex-label rise"><span class="ex-no" data-c="home.work.exhibits.designSystem.number"></span><span class="ex-cat" data-c="home.work.exhibits.designSystem.category"></span></div>
-          <h3 class="ex-title rise" data-c="home.work.exhibits.designSystem.title"></h3>
-          <p class="ex-stand rise" data-c="home.work.exhibits.designSystem.standfirst"></p>
-          <p class="ex-impact rise" data-c="home.work.exhibits.designSystem.impact"></p>
-          <span class="ex-cta rise" data-c="home.work.exhibits.designSystem.cta"></span>
+    <div class="pe-list">
+      <!-- Design system -->
+      <a class="pe-p" id="pe-p1" href="design-system-case-study.html"
+         data-c="@href:home.work.exhibits.designSystem.href;@aria-label:home.work.exhibits.designSystem.ariaLabel">
+        <div class="pe-img pe-img--ds rise-clip" style="--field:#eeeaf5"><img src="assets/design system images/hero/full-hero.webp" width="1600" height="1250" data-c="@alt:home.work.exhibits.designSystem.imageAlt" loading="lazy" decoding="async"></div>
+        <div class="pe-cap">
+          <h3 class="pe-t rise" data-c="home.work.exhibits.designSystem.title"></h3>
+          <p class="pe-s rise" data-c="home.work.exhibits.designSystem.standfirst"></p>
+          <p class="pe-m rise" data-c="home.work.exhibits.designSystem.category"></p>
+          <span class="pe-go rise"><span data-c="home.work.exhibits.designSystem.cta"></span> <svg class="ar" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5l7-7M5.75 4.5h5.75v5.75" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span>
         </div>
-      </div>
-    </a>
-
-    <!-- Import -->
-    <a class="exhibit flip" href="https://www.figma.com/proto/7P5aqn9a7O2yC875AsKbrv/%F0%9F%8E%A8-Portfolio-design?page-id=308%3A1651&node-id=1701-15362&viewport=5214%2C75%2C0.19&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1701%3A15362"
+      </a>
+      <!-- Import -->
+      <a class="pe-p" id="pe-p2" href="https://www.figma.com/proto/7P5aqn9a7O2yC875AsKbrv/%F0%9F%8E%A8-Portfolio-design?page-id=308%3A1651&amp;node-id=1701-15362&amp;viewport=5214%2C75%2C0.19&amp;scaling=min-zoom&amp;content-scaling=fixed&amp;starting-point-node-id=1701%3A15362"
        target="_blank" rel="noopener noreferrer"
-       data-c="@href:home.work.exhibits.import.href;@aria-label:home.work.exhibits.import.ariaLabel">
-      <div class="ex-grid">
-        <div class="ex-media rise-clip"><img src="assets/thumbnails/import-experience.png" width="1600" height="1000" data-c="@alt:home.work.exhibits.import.imageAlt" loading="lazy" decoding="async"></div>
-        <div class="ex-body">
-          <div class="ex-label rise"><span class="ex-no" data-c="home.work.exhibits.import.number"></span><span class="ex-cat" data-c="home.work.exhibits.import.category"></span></div>
-          <h3 class="ex-title rise" data-c="home.work.exhibits.import.title"></h3>
-          <p class="ex-stand rise" data-c="home.work.exhibits.import.standfirst"></p>
-          <p class="ex-impact rise" data-c="home.work.exhibits.import.impact"></p>
-          <span class="ex-cta rise" data-c="home.work.exhibits.import.cta"></span>
+         data-c="@href:home.work.exhibits.import.href;@aria-label:home.work.exhibits.import.ariaLabel">
+        <div class="pe-img rise-clip" style="--field:#4352d8"><img src="assets/thumbnails/import-experience.png" width="1600" height="1000" data-c="@alt:home.work.exhibits.import.imageAlt" loading="lazy" decoding="async"></div>
+        <div class="pe-cap">
+          <h3 class="pe-t rise" data-c="home.work.exhibits.import.title"></h3>
+          <p class="pe-s rise" data-c="home.work.exhibits.import.standfirst"></p>
+          <p class="pe-m rise" data-c="home.work.exhibits.import.category"></p>
+          <span class="pe-go rise"><span data-c="home.work.exhibits.import.cta"></span> <svg class="ar" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5l7-7M5.75 4.5h5.75v5.75" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span>
         </div>
-      </div>
-    </a>
-
-    <!-- Custom metrics -->
-    <a class="exhibit" href="https://www.figma.com/proto/7P5aqn9a7O2yC875AsKbrv/%F0%9F%8E%A8-Portfolio-design?page-id=308%3A1651&node-id=1947-53513&viewport=12939%2C-9706%2C0.3&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=607%3A16155"
+      </a>
+      <!-- Custom metrics -->
+      <a class="pe-p" id="pe-p3" href="https://www.figma.com/proto/7P5aqn9a7O2yC875AsKbrv/%F0%9F%8E%A8-Portfolio-design?page-id=308%3A1651&amp;node-id=1947-53513&amp;viewport=12939%2C-9706%2C0.3&amp;scaling=min-zoom&amp;content-scaling=fixed&amp;starting-point-node-id=607%3A16155"
        target="_blank" rel="noopener noreferrer"
-       data-c="@href:home.work.exhibits.customMetrics.href;@aria-label:home.work.exhibits.customMetrics.ariaLabel">
-      <div class="ex-grid">
-        <div class="ex-media rise-clip"><img src="assets/thumbnails/custom-metrics.png" width="1600" height="1000" data-c="@alt:home.work.exhibits.customMetrics.imageAlt" loading="lazy" decoding="async"></div>
-        <div class="ex-body">
-          <div class="ex-label rise"><span class="ex-no" data-c="home.work.exhibits.customMetrics.number"></span><span class="ex-cat" data-c="home.work.exhibits.customMetrics.category"></span></div>
-          <h3 class="ex-title rise" data-c="home.work.exhibits.customMetrics.title"></h3>
-          <p class="ex-stand rise" data-c="home.work.exhibits.customMetrics.standfirst"></p>
-          <p class="ex-impact rise" data-c="home.work.exhibits.customMetrics.impact"></p>
-          <span class="ex-cta rise" data-c="home.work.exhibits.customMetrics.cta"></span>
+         data-c="@href:home.work.exhibits.customMetrics.href;@aria-label:home.work.exhibits.customMetrics.ariaLabel">
+        <div class="pe-img rise-clip" style="--field:#f6e6a5"><img src="assets/thumbnails/custom-metrics.png" width="1600" height="1000" data-c="@alt:home.work.exhibits.customMetrics.imageAlt" loading="lazy" decoding="async"></div>
+        <div class="pe-cap">
+          <h3 class="pe-t rise" data-c="home.work.exhibits.customMetrics.title"></h3>
+          <p class="pe-s rise" data-c="home.work.exhibits.customMetrics.standfirst"></p>
+          <p class="pe-m rise" data-c="home.work.exhibits.customMetrics.category"></p>
+          <span class="pe-go rise"><span data-c="home.work.exhibits.customMetrics.cta"></span> <svg class="ar" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5l7-7M5.75 4.5h5.75v5.75" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span>
         </div>
-      </div>
-    </a>
-
-    <!-- Investor portal -->
-    <a class="exhibit flip" href="https://www.figma.com/proto/7P5aqn9a7O2yC875AsKbrv/%F0%9F%8E%A8-Portfolio-design?page-id=308%3A1651&node-id=607-16155&viewport=19441%2C-4615%2C0.44&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=607%3A16155"
+      </a>
+      <!-- Investor portal -->
+      <a class="pe-p" id="pe-p4" href="https://www.figma.com/proto/7P5aqn9a7O2yC875AsKbrv/%F0%9F%8E%A8-Portfolio-design?page-id=308%3A1651&amp;node-id=607-16155&amp;viewport=19441%2C-4615%2C0.44&amp;scaling=min-zoom&amp;content-scaling=fixed&amp;starting-point-node-id=607%3A16155"
        target="_blank" rel="noopener noreferrer"
-       data-c="@href:home.work.exhibits.investorPortal.href;@aria-label:home.work.exhibits.investorPortal.ariaLabel">
-      <div class="ex-grid">
-        <div class="ex-media rise-clip"><img src="assets/thumbnails/investor-portal.png" width="1600" height="1000" data-c="@alt:home.work.exhibits.investorPortal.imageAlt" loading="lazy" decoding="async"></div>
-        <div class="ex-body">
-          <div class="ex-label rise"><span class="ex-no" data-c="home.work.exhibits.investorPortal.number"></span><span class="ex-cat" data-c="home.work.exhibits.investorPortal.category"></span></div>
-          <h3 class="ex-title rise" data-c="home.work.exhibits.investorPortal.title"></h3>
-          <p class="ex-stand rise" data-c="home.work.exhibits.investorPortal.standfirst"></p>
-          <p class="ex-impact rise" data-c="home.work.exhibits.investorPortal.impact"></p>
-          <span class="ex-cta rise" data-c="home.work.exhibits.investorPortal.cta"></span>
+         data-c="@href:home.work.exhibits.investorPortal.href;@aria-label:home.work.exhibits.investorPortal.ariaLabel">
+        <div class="pe-img rise-clip" style="--field:#80c6c4"><img src="assets/thumbnails/investor-portal.png" width="1600" height="1000" data-c="@alt:home.work.exhibits.investorPortal.imageAlt" loading="lazy" decoding="async"></div>
+        <div class="pe-cap">
+          <h3 class="pe-t rise" data-c="home.work.exhibits.investorPortal.title"></h3>
+          <p class="pe-s rise" data-c="home.work.exhibits.investorPortal.standfirst"></p>
+          <p class="pe-m rise" data-c="home.work.exhibits.investorPortal.category"></p>
+          <span class="pe-go rise"><span data-c="home.work.exhibits.investorPortal.cta"></span> <svg class="ar" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5l7-7M5.75 4.5h5.75v5.75" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span>
         </div>
-      </div>
-    </a>
+      </a>
+    </div>
   </section>
 
-  <!-- ABOUT -->
-  <div class="about-wrap">
-    <section class="about shell" id="about" aria-labelledby="about-h">
-      <div class="about-grid">
-        <figure class="about-portrait rise-clip" style="margin:0">
-          <div class="about-frame"><img src="assets/portrait/about.png" width="1122" height="1402" data-c="@alt:home.about.portraitAlt" loading="lazy" decoding="async"></div>
-        </figure>
-
-        <div>
-          <h2 id="about-h" class="rise" data-c="home.about.heading"></h2>
-          <p class="lead rise" data-c="home.about.lead"></p>
-          <p class="rise" data-c="home.about.body.0"></p>
-          <p class="rise" data-c="home.about.body.1"></p>
-          <p class="rise" data-c="home.about.body.2"></p>
-          <p class="status rise" data-c="home.about.status"></p>
+  <!-- ABOUT : portrait left, words right, facts in a row beneath -->
+  <div class="a3-wrap">
+    <section class="a3 shell" id="about" aria-labelledby="about-h">
+      <div class="a3-g">
+        <div class="a3-main">
+          <h2 class="a3-k rise" id="about-h" data-c="home.about.label"></h2>
+          <p class="a3-lead rise" data-c="home.about.lead"></p>
+          <p class="a3-p rise" data-c="home.about.body.0"></p>
+          <p class="a3-p rise" data-c="home.about.body.1"></p>
+          <p class="a3-p rise" data-c="home.about.body.2"></p>
+          <p class="a3-st rise"><span class="dot-live" aria-hidden="true"></span><span data-c="home.about.status"></span></p>
         </div>
+        <div class="a3-side">
+          <figure class="a3-ph rise-clip"><img src="assets/portrait/about.png" width="1122" height="1402" data-c="@alt:home.about.portraitAlt" loading="lazy" decoding="async"></figure>
+        </div>
+        <dl class="a3-dl">
+          <div class="rise"><dt data-c="home.about.facts.0.label"></dt><dd data-c="home.about.facts.0.value"></dd></div>
+          <div class="rise"><dt data-c="home.about.facts.1.label"></dt><dd data-c="home.about.facts.1.value"></dd></div>
+          <div class="rise"><dt data-c="home.about.facts.2.label"></dt><dd data-c="home.about.facts.2.value"></dd></div>
+          <div class="rise"><dt data-c="home.about.facts.3.label"></dt><dd data-c="home.about.facts.3.value"></dd></div>
+        </dl>
       </div>
     </section>
   </div>
@@ -449,6 +466,7 @@
     <a href="https://www.linkedin.com/in/tal-yanay/" target="_blank" rel="noopener noreferrer" data-c="shared.contact.linkedinLabel;@href:shared.contact.linkedinHref"></a>
     <a href="#" data-c="shared.contact.resumeLabel;@href:shared.contact.resumeHref"></a>
   </div>
+  <p class="contact-addr rise" data-c="text:shared.contact.emailText"></p>
   <div class="colophon">
     <span data-c="shared.contact.colophonLeft"></span>
     <span data-c="shared.contact.colophonRight"></span>
@@ -479,12 +497,30 @@
   /* About portrait: fade in once the image has decoded. Images that are
      already complete (cache) are left untouched so they paint instantly —
      only a still-loading image is hidden, then revealed on load/error. */
-  var portrait = document.querySelector(".about-portrait img");
+  var portrait = document.querySelector(".a3-ph img");
   if (portrait && !(portrait.complete && portrait.naturalWidth > 0)){
     portrait.classList.add("img-loading");
     var showPortrait = function(){ portrait.classList.remove("img-loading"); };
     portrait.addEventListener("load", showPortrait, { once:true });
     portrait.addEventListener("error", showPortrait, { once:true });
+  }
+
+  /* work index: mark the project crossing the middle band of the screen.
+     Runs with reduced motion too (it is a state change, not an animation). */
+  var idxLinks = [].slice.call(document.querySelectorAll(".pe-idx a"));
+  var projects = [].slice.call(document.querySelectorAll(".pe-p"));
+  if (idxLinks.length && projects.length && "IntersectionObserver" in window){
+    var mark = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (!e.isIntersecting) return;
+        var i = projects.indexOf(e.target);
+        idxLinks.forEach(function(a, j){
+          a.classList.toggle("on", j === i);
+          if (j === i) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
+        });
+      });
+    }, { rootMargin:"-42% 0px -52% 0px" });
+    projects.forEach(function(p){ mark.observe(p); });
   }
 
   /* staggered reveal + clip unveil. Content is visible by default (see CSS);
@@ -494,7 +530,7 @@
   try {
     var root = document.documentElement;
     var items = document.querySelectorAll(".rise, .rise-clip");
-    document.querySelectorAll(".ex-body, .hero, .about-grid > div, .sec-head").forEach(function(group){
+    document.querySelectorAll(".hero, .pe-stick, .pe-cap, .a3-main, .a3-dl").forEach(function(group){
       group.querySelectorAll(".rise").forEach(function(el,i){ el.style.transitionDelay = (i*60)+"ms"; });
     });
     root.classList.add("reveal-ready");   // now the hidden states apply

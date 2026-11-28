@@ -30,6 +30,9 @@ window.CONTENT.shared = {
     // One email address, reused by the big heading link, the "Email me"
     // button, and the nav's "Get in touch". Change it once here.
     email: "mailto:talyanay10@gmail.com",
+    // The address as written out under the buttons (homepage). Keep it the
+    // same as the email above, without "mailto:".
+    emailText: "talyanay10@gmail.com",
 
     heading: "Let&#8217;s build something.",
     lead: "Currently looking for my next opportunity to help teams ship better products.",
